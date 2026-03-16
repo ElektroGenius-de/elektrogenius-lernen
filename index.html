@@ -1,0 +1,1484 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VoltIQ by ElektroGenius</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --yellow:#F5C518;
+  --yellow2:#E6A800;
+  --dark:#0A0A0F;
+  --dark2:#111118;
+  --dark3:#1A1A24;
+  --dark4:#22222E;
+  --dark5:#2C2C3A;
+  --text:#F0F0F0;
+  --text2:#A0A0B8;
+  --text3:#6A6A88;
+  --green:#00D084;
+  --blue:#4A90E2;
+  --red:#FF5A5A;
+  --orange:#FF8C42;
+}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:var(--dark);color:var(--text);min-height:100vh;overflow-x:hidden}
+
+/* SCROLLBAR */
+::-webkit-scrollbar{width:6px}
+::-webkit-scrollbar-track{background:var(--dark2)}
+::-webkit-scrollbar-thumb{background:var(--dark5);border-radius:3px}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(10,10,15,0.95);backdrop-filter:blur(12px);border-bottom:1px solid rgba(245,197,24,0.15);padding:0 2rem;height:60px;display:flex;align-items:center;justify-content:space-between}
+.nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+.nav-logo-icon{width:32px;height:32px;background:var(--yellow);border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:18px}
+.nav-logo-text{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:2px;color:var(--yellow)}
+.nav-logo-sub{font-size:10px;color:var(--text3);letter-spacing:1px;text-transform:uppercase;margin-top:-2px}
+.nav-links{display:flex;gap:4px}
+.nav-link{padding:6px 14px;border-radius:6px;font-size:13px;color:var(--text2);cursor:pointer;transition:all .2s;border:none;background:none}
+.nav-link:hover{color:var(--yellow);background:rgba(245,197,24,0.08)}
+.nav-link.active{color:var(--yellow);background:rgba(245,197,24,0.12)}
+.nav-socials{display:flex;align-items:center;gap:6px;margin-left:8px;padding-left:12px;border-left:1px solid rgba(255,255,255,0.08)}
+.social-btn{width:32px;height:32px;border-radius:7px;border:none;background:rgba(255,255,255,0.05);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s;text-decoration:none}
+.social-btn:hover{background:rgba(245,197,24,0.15);transform:translateY(-1px)}
+.social-btn svg{width:16px;height:16px}
+
+/* MAIN LAYOUT */
+.layout{display:flex;min-height:100vh;padding-top:60px}
+.sidebar{width:260px;flex-shrink:0;background:var(--dark2);border-right:1px solid rgba(255,255,255,0.06);padding:1.5rem 1rem;position:sticky;top:60px;height:calc(100vh - 60px);overflow-y:auto}
+.main{flex:1;padding:2.5rem 3rem;max-width:900px}
+
+/* SIDEBAR */
+.sidebar-section{margin-bottom:1.5rem}
+.sidebar-title{font-size:10px;font-weight:600;letter-spacing:2px;color:var(--text3);text-transform:uppercase;padding:0 8px;margin-bottom:8px}
+.sidebar-item{display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:8px;cursor:pointer;transition:all .2s;font-size:13.5px;color:var(--text2);border:none;background:none;width:100%;text-align:left}
+.sidebar-item:hover{background:var(--dark4);color:var(--text)}
+.sidebar-item.active{background:rgba(245,197,24,0.12);color:var(--yellow)}
+.sidebar-item .icon{font-size:16px;width:20px;text-align:center;flex-shrink:0}
+.sidebar-badge{margin-left:auto;font-size:10px;background:var(--yellow);color:var(--dark);padding:1px 6px;border-radius:10px;font-weight:600}
+
+/* HERO */
+.hero{margin-bottom:3rem}
+.hero-tag{display:inline-flex;align-items:center;gap:6px;background:rgba(245,197,24,0.1);border:1px solid rgba(245,197,24,0.25);border-radius:20px;padding:4px 14px;font-size:12px;color:var(--yellow);margin-bottom:1.2rem;letter-spacing:.5px}
+.hero h1{font-family:'Bebas Neue',sans-serif;font-size:56px;line-height:1;letter-spacing:3px;margin-bottom:.8rem}
+.hero h1 span{color:var(--yellow)}
+.hero p{font-size:16px;color:var(--text2);max-width:500px;line-height:1.7;margin-bottom:1.8rem}
+.hero-stats{display:flex;gap:2rem}
+.stat{text-align:center}
+.stat-num{font-family:'Bebas Neue',sans-serif;font-size:32px;color:var(--yellow);letter-spacing:1px}
+.stat-label{font-size:11px;color:var(--text3);text-transform:uppercase;letter-spacing:1px}
+
+/* CARDS GRID */
+.cards-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:16px;margin-bottom:3rem}
+.card{background:var(--dark3);border:1px solid rgba(255,255,255,0.06);border-radius:14px;padding:1.4rem;cursor:pointer;transition:all .25s;position:relative;overflow:hidden}
+.card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--card-color,var(--yellow));opacity:.6;transition:opacity .2s}
+.card:hover{transform:translateY(-3px);border-color:rgba(255,255,255,0.12);box-shadow:0 12px 32px rgba(0,0,0,0.4)}
+.card:hover::before{opacity:1}
+.card-icon{font-size:28px;margin-bottom:.8rem}
+.card-title{font-size:15px;font-weight:600;margin-bottom:.4rem}
+.card-desc{font-size:13px;color:var(--text2);line-height:1.5}
+.card-count{margin-top:.8rem;font-size:11px;color:var(--text3);display:flex;align-items:center;gap:4px}
+.card-count::before{content:'';width:4px;height:4px;border-radius:50%;background:var(--card-color,var(--yellow))}
+
+/* SECTIONS */
+.section{display:none;animation:fadeIn .3s ease}
+.section.active{display:block}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+
+/* PAGE HEADER */
+.page-header{margin-bottom:2.5rem;padding-bottom:1.5rem;border-bottom:1px solid rgba(255,255,255,0.06)}
+.back-btn{display:inline-flex;align-items:center;gap:6px;font-size:13px;color:var(--text3);cursor:pointer;margin-bottom:1rem;transition:color .2s;background:none;border:none;padding:0}
+.back-btn:hover{color:var(--yellow)}
+.page-title{font-family:'Bebas Neue',sans-serif;font-size:40px;letter-spacing:2px;margin-bottom:.4rem}
+.page-title span{color:var(--yellow)}
+.page-subtitle{font-size:14px;color:var(--text2)}
+
+/* THEORY CONTENT */
+.theory-block{background:var(--dark3);border:1px solid rgba(255,255,255,0.06);border-radius:12px;padding:1.8rem;margin-bottom:1.2rem}
+.theory-block h3{font-size:17px;font-weight:600;margin-bottom:.8rem;display:flex;align-items:center;gap:8px}
+.theory-block h3 .accent{color:var(--yellow)}
+.theory-block p{font-size:14px;color:var(--text2);line-height:1.8;margin-bottom:.8rem}
+.theory-block ul{padding-left:1.2rem}
+.theory-block ul li{font-size:14px;color:var(--text2);line-height:1.8;margin-bottom:.3rem}
+
+/* FORMULA BOX */
+.formula-box{background:var(--dark);border:1px solid rgba(245,197,24,0.25);border-radius:10px;padding:1rem 1.4rem;margin:1rem 0;font-family:'JetBrains Mono',monospace}
+.formula-box .formula-title{font-size:11px;color:var(--yellow);letter-spacing:1px;text-transform:uppercase;margin-bottom:.5rem}
+.formula-main{font-size:20px;color:var(--yellow);font-weight:600;letter-spacing:1px}
+.formula-vars{font-size:12px;color:var(--text3);margin-top:.5rem;line-height:1.8}
+
+/* INFO BOX */
+.info-box{display:flex;gap:12px;padding:1rem 1.2rem;border-radius:10px;margin:1rem 0;font-size:13px;line-height:1.6}
+.info-box.blue{background:rgba(74,144,226,0.1);border:1px solid rgba(74,144,226,0.2);color:#93BBEF}
+.info-box.green{background:rgba(0,208,132,0.1);border:1px solid rgba(0,208,132,0.2);color:#5DEBB0}
+.info-box.yellow{background:rgba(245,197,24,0.1);border:1px solid rgba(245,197,24,0.2);color:#F5C518}
+.info-box.red{background:rgba(255,90,90,0.1);border:1px solid rgba(255,90,90,0.2);color:#FF9090}
+.info-box-icon{font-size:18px;flex-shrink:0;margin-top:1px}
+
+/* TABLE */
+.theory-table{width:100%;border-collapse:collapse;font-size:13.5px;margin:1rem 0}
+.theory-table th{background:var(--dark4);padding:10px 14px;text-align:left;font-size:11px;letter-spacing:1px;color:var(--text3);text-transform:uppercase;font-weight:500}
+.theory-table td{padding:10px 14px;border-bottom:1px solid rgba(255,255,255,0.04);color:var(--text2)}
+.theory-table tr:hover td{background:rgba(255,255,255,0.02)}
+.mono{font-family:'JetBrains Mono',monospace;color:var(--yellow);font-size:13px}
+
+/* CALCULATOR */
+.calc-box{background:var(--dark3);border:1px solid rgba(245,197,24,0.2);border-radius:14px;padding:1.8rem;margin-bottom:1.5rem}
+.calc-title{font-size:16px;font-weight:600;margin-bottom:.3rem;display:flex;align-items:center;gap:8px}
+.calc-title .icon{color:var(--yellow)}
+.calc-desc{font-size:13px;color:var(--text3);margin-bottom:1.4rem}
+.calc-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:1.2rem}
+.calc-field{display:flex;flex-direction:column;gap:6px}
+.calc-field label{font-size:12px;color:var(--text3);letter-spacing:.5px}
+.calc-field input,.calc-field select{background:var(--dark);border:1px solid rgba(255,255,255,0.1);border-radius:8px;padding:9px 12px;font-size:14px;color:var(--text);font-family:'JetBrains Mono',monospace;transition:border-color .2s;outline:none}
+.calc-field input:focus,.calc-field select:focus{border-color:var(--yellow)}
+.calc-field select{cursor:pointer}
+.calc-field select option{background:var(--dark3)}
+.calc-btn{width:100%;padding:11px;background:var(--yellow);color:var(--dark);border:none;border-radius:8px;font-size:14px;font-weight:600;cursor:pointer;transition:all .2s;font-family:'DM Sans',sans-serif;letter-spacing:.5px}
+.calc-btn:hover{background:var(--yellow2);transform:translateY(-1px)}
+.calc-result{background:var(--dark);border:1px solid rgba(0,208,132,0.3);border-radius:10px;padding:1rem 1.4rem;margin-top:1rem;display:none}
+.calc-result.show{display:block;animation:fadeIn .3s ease}
+.calc-result-label{font-size:11px;color:var(--green);letter-spacing:1px;text-transform:uppercase;margin-bottom:.4rem}
+.calc-result-value{font-family:'Bebas Neue',sans-serif;font-size:36px;color:var(--green);letter-spacing:2px}
+.calc-result-unit{font-size:16px;color:var(--text3)}
+.calc-result-formula{font-size:12px;color:var(--text3);margin-top:.5rem;font-family:'JetBrains Mono',monospace}
+
+/* UNIT BADGE */
+.unit{display:inline-block;background:var(--dark4);border:1px solid rgba(255,255,255,0.08);border-radius:4px;padding:1px 7px;font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--text2)}
+
+/* TABS */
+.tabs{display:flex;gap:4px;margin-bottom:1.5rem;background:var(--dark3);border-radius:10px;padding:4px;border:1px solid rgba(255,255,255,0.06)}
+.tab{flex:1;padding:8px 14px;border-radius:7px;font-size:13px;cursor:pointer;transition:all .2s;text-align:center;color:var(--text3);border:none;background:none}
+.tab:hover{color:var(--text)}
+.tab.active{background:var(--yellow);color:var(--dark);font-weight:600}
+.tab-content{display:none}
+.tab-content.active{display:block}
+
+/* PROGRESS BAR */
+.progress-bar{height:3px;background:var(--dark4);border-radius:2px;margin-top:.8rem;overflow:hidden}
+.progress-fill{height:100%;background:var(--yellow);border-radius:2px;transition:width .5s ease}
+
+/* BADGE */
+.badge{display:inline-block;font-size:11px;padding:2px 9px;border-radius:10px;font-weight:600;letter-spacing:.3px}
+.badge-yellow{background:rgba(245,197,24,0.15);color:var(--yellow);border:1px solid rgba(245,197,24,0.25)}
+.badge-green{background:rgba(0,208,132,0.15);color:var(--green);border:1px solid rgba(0,208,132,0.25)}
+.badge-blue{background:rgba(74,144,226,0.15);color:var(--blue);border:1px solid rgba(74,144,226,0.25)}
+
+/* DIVIDER */
+.divider{height:1px;background:rgba(255,255,255,0.06);margin:1.5rem 0}
+
+/* SEARCH */
+.search-bar{display:flex;align-items:center;gap:10px;background:var(--dark3);border:1px solid rgba(255,255,255,0.08);border-radius:10px;padding:10px 14px;margin-bottom:2rem}
+.search-bar span{color:var(--text3);font-size:16px}
+.search-bar input{background:none;border:none;outline:none;color:var(--text);font-size:14px;flex:1;font-family:'DM Sans',sans-serif}
+.search-bar input::placeholder{color:var(--text3)}
+
+/* GLOWING ACCENT */
+.glow-dot{width:8px;height:8px;border-radius:50%;background:var(--yellow);box-shadow:0 0 12px var(--yellow);display:inline-block}
+/* CHAPTER NAV */
+.chapter-nav{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:2rem}
+.chapter-btn{padding:6px 16px;background:var(--dark3);border:1px solid rgba(255,255,255,0.08);border-radius:20px;font-size:12.5px;color:var(--text2);cursor:pointer;transition:all .2s}
+.chapter-btn:hover,.chapter-btn.active{background:rgba(245,197,24,0.12);border-color:rgba(245,197,24,0.3);color:var(--yellow)}
+/* BOTTOM NAV */
+.bottom-nav{display:none}
+@media(max-width:768px){
+  .sidebar{display:none}.nav-links{display:none}.nav-socials{display:none}
+  nav{padding:0 1rem;justify-content:center}
+  .layout{padding-top:56px;padding-bottom:76px}
+  .main{padding:1rem;max-width:100%}
+  .hero{margin-bottom:1.5rem}.hero h1{font-size:32px;letter-spacing:1px}.hero p{font-size:14px}
+  .hero-stats{gap:1.2rem}.stat-num{font-size:24px}
+  .cards-grid{grid-template-columns:1fr 1fr;gap:10px;margin-bottom:1.5rem}
+  .theory-block{padding:1rem}.formula-main{font-size:16px}
+  .theory-table{display:block;overflow-x:auto;-webkit-overflow-scrolling:touch;white-space:nowrap}
+  .calc-grid{grid-template-columns:1fr}.calc-box{padding:1.2rem}
+  .page-header{margin-bottom:1.2rem;padding-bottom:1rem}.page-title{font-size:26px}
+  .chapter-nav{flex-wrap:nowrap;overflow-x:auto;-webkit-overflow-scrolling:touch;padding-bottom:4px;margin-bottom:1.2rem}
+  .chapter-nav::-webkit-scrollbar{display:none}
+  .chapter-btn{white-space:nowrap;flex-shrink:0;font-size:12px;padding:5px 12px}
+  .search-bar{margin-bottom:1.2rem}.info-box{font-size:12px;padding:.8rem 1rem}
+  .bottom-nav{
+    display:flex;position:fixed;bottom:0;left:0;right:0;height:64px;z-index:200;
+    background:rgba(10,10,15,0.97);backdrop-filter:blur(16px);
+    border-top:1px solid rgba(245,197,24,0.12);
+    padding:0 4px;padding-bottom:env(safe-area-inset-bottom);
+  }
+  .bn-item{
+    flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;
+    position:relative;border:none;background:none;cursor:pointer;color:var(--text3);
+    transition:color .2s;padding:6px 2px;font-family:'DM Sans',sans-serif;
+  }
+  .bn-item.active{color:var(--yellow)}
+  .bn-item:active{opacity:.7}
+  .bn-item.active::before{content:'';position:absolute;top:6px;width:36px;height:32px;border-radius:10px;background:rgba(245,197,24,0.1);}
+  .bn-icon{font-size:21px;line-height:1;position:relative;z-index:1}
+  .bn-label{font-size:9px;letter-spacing:.3px;font-weight:500;text-transform:uppercase;position:relative;z-index:1}
+  .mobile-menu-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.55);z-index:300;backdrop-filter:blur(3px);}
+  .mobile-menu-overlay.open{display:block}
+  .mobile-drawer{
+    position:fixed;bottom:0;left:0;right:0;background:var(--dark2);
+    border-radius:20px 20px 0 0;border-top:1px solid rgba(245,197,24,0.15);
+    z-index:301;max-height:82vh;overflow-y:auto;
+    padding-bottom:calc(env(safe-area-inset-bottom) + 16px);
+    transform:translateY(100%);transition:transform .35s cubic-bezier(.16,1,.3,1);
+  }
+  .mobile-drawer.open{transform:translateY(0)}
+  .drawer-handle{width:40px;height:4px;border-radius:2px;background:rgba(255,255,255,0.15);margin:12px auto 16px}
+  .drawer-section{padding:0 16px;margin-bottom:18px}
+  .drawer-title{font-size:10px;letter-spacing:2px;color:var(--text3);text-transform:uppercase;font-weight:600;margin-bottom:8px;padding-left:4px}
+  .drawer-item{display:flex;align-items:center;gap:12px;padding:11px 12px;border-radius:10px;font-size:14px;color:var(--text2);cursor:pointer;border:none;background:none;width:100%;text-align:left;transition:background .15s;font-family:'DM Sans',sans-serif;}
+  .drawer-item:active{background:var(--dark4)}.drawer-item.active{color:var(--yellow);background:rgba(245,197,24,0.08)}
+  .drawer-icon{font-size:18px;width:24px;text-align:center;flex-shrink:0}
+  .drawer-badge{margin-left:auto;font-size:9px;background:var(--yellow);color:var(--dark);padding:1px 6px;border-radius:8px;font-weight:700}
+  .drawer-socials{display:flex;gap:8px;padding:0 16px;margin-bottom:8px}
+  .drawer-soc{flex:1;display:flex;align-items:center;justify-content:center;gap:6px;padding:10px 6px;border-radius:10px;background:var(--dark3);border:1px solid rgba(255,255,255,0.06);font-size:11px;color:var(--text2);text-decoration:none;transition:background .15s;}
+  .drawer-soc:active{background:var(--dark4)}
+}
+@media(max-width:400px){.cards-grid{grid-template-columns:1fr}.hero h1{font-size:26px}}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">
+    <div class="nav-logo-icon">⚡</div>
+    <div>
+      <div class="nav-logo-text">VoltIQ</div>
+      <div class="nav-logo-sub">by ElektroGenius</div>
+    </div>
+  </div>
+  <div style="display:flex;align-items:center;gap:0">
+    <div class="nav-links">
+      <button class="nav-link active" onclick="showSection('home')">Übersicht</button>
+      <button class="nav-link" onclick="showSection('grundlagen')">Grundlagen</button>
+      <button class="nav-link" onclick="showSection('wechselstrom')">Wechselstrom</button>
+      <button class="nav-link" onclick="showSection('rechner')">Rechner</button>
+      <button class="nav-link" onclick="showSection('normen')">Normen</button>
+    </div>
+    <div class="nav-socials">
+      <!-- Instagram -->
+      <a class="social-btn" href="https://www.instagram.com/elektrogenius.de/" target="_blank" title="Instagram">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#E1306C" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+          <circle cx="12" cy="12" r="4.5"/>
+          <circle cx="17.5" cy="6.5" r="1" fill="#E1306C" stroke="none"/>
+        </svg>
+      </a>
+      <!-- YouTube -->
+      <a class="social-btn" href="https://www.youtube.com/channel/UCM4BVx1bDFUrbMhQ39Y9VCg" target="_blank" title="YouTube">
+        <svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="2" y="5" width="20" height="14" rx="4" fill="#FF0000" stroke="none"/>
+          <polygon points="10,9 16,12 10,15" fill="white" stroke="none"/>
+        </svg>
+      </a>
+      <!-- WhatsApp -->
+      <a class="social-btn" href="https://chat.whatsapp.com/FIRdC7y5bg1Az9H3JfpouL" target="_blank" title="WhatsApp Community">
+        <svg viewBox="0 0 24 24" fill="none">
+          <circle cx="12" cy="12" r="10" fill="#25D366" stroke="none"/>
+          <path d="M8 13.5c1.5 2 4 3 6.5 2l2 1-0.5-2c1-1.5 1-3.5 0-5C14.5 7.5 9.5 7.5 7.5 10c-1 1.5-1 3 0.5 3.5z" fill="white" stroke="none"/>
+          <path d="M10 11.5c0.3-0.3 1.2 0.8 1.5 1s1.2-0.5 1.5-0.3c0.3 0.3-0.2 1.5-0.5 1.5s-2-0.7-2.5-1.2c-0.5-0.5-0.3-0.7 0-1z" fill="#25D366" stroke="none"/>
+        </svg>
+      </a>
+    </div>
+  </div>
+</nav>
+
+<!-- LAYOUT -->
+<div class="layout">
+
+<!-- SIDEBAR -->
+<aside class="sidebar">
+  <div class="sidebar-section">
+    <div class="sidebar-title">Grundlagen</div>
+    <button class="sidebar-item" onclick="showSection('grundlagen');setChapter('ohm')"><span class="icon">⚡</span> Ohmsches Gesetz</button>
+    <button class="sidebar-item" onclick="showSection('grundlagen');setChapter('kirchhoff')"><span class="icon">🔀</span> Kirchhoffsche Gesetze</button>
+    <button class="sidebar-item" onclick="showSection('grundlagen');setChapter('leistung')"><span class="icon">💡</span> Leistung & Energie</button>
+    <button class="sidebar-item" onclick="showSection('grundlagen');setChapter('widerstand')"><span class="icon">📐</span> Widerstand</button>
+    <button class="sidebar-item" onclick="showSection('grundlagen');setChapter('schaltungen')"><span class="icon">🔌</span> Schaltungen</button>
+  </div>
+  <div class="sidebar-section">
+    <div class="sidebar-title">Wechselstrom</div>
+    <button class="sidebar-item" onclick="showSection('wechselstrom');setChapter('grundlagen_ws')"><span class="icon">〰️</span> Grundlagen AC</button>
+    <button class="sidebar-item" onclick="showSection('wechselstrom');setChapter('drehstrom')"><span class="icon">🔁</span> Drehstrom</button>
+    <button class="sidebar-item" onclick="showSection('wechselstrom');setChapter('impedanz')"><span class="icon">📊</span> Impedanz & Blindwid.</button>
+    <button class="sidebar-item" onclick="showSection('wechselstrom');setChapter('leistung_ac')"><span class="icon">⚙️</span> Wirk- & Blindleistung</button>
+    <button class="sidebar-item" onclick="showSection('wechselstrom');setChapter('transformator')"><span class="icon">🔄</span> Transformator</button>
+  </div>
+  <div class="sidebar-section">
+    <div class="sidebar-title">Elektronik</div>
+    <button class="sidebar-item" onclick="showSection('elektronik')"><span class="icon">🔬</span> Halbleiter <span class="sidebar-badge">NEU</span></button>
+    <button class="sidebar-item" onclick="showSection('elektronik');setChapter('diode')"><span class="icon">➡️</span> Dioden</button>
+    <button class="sidebar-item" onclick="showSection('elektronik');setChapter('transistor')"><span class="icon">📡</span> Transistoren</button>
+    <button class="sidebar-item" onclick="showSection('elektronik');setChapter('kondensator')"><span class="icon">🗄️</span> Kondensatoren</button>
+    <button class="sidebar-item" onclick="showSection('elektronik');setChapter('spule')"><span class="icon">🌀</span> Spulen & Induktivität</button>
+  </div>
+  <div class="sidebar-section">
+    <div class="sidebar-title">Rechner</div>
+    <button class="sidebar-item" onclick="showSection('rechner')"><span class="icon">🔢</span> Alle Rechner</button>
+  </div>
+  <div class="sidebar-section">
+    <div class="sidebar-title">Normen & Vorschriften</div>
+    <button class="sidebar-item" onclick="showSection('normen')"><span class="icon">📋</span> VDE-Normen</button>
+    <button class="sidebar-item" onclick="showSection('normen');setChapter('vde0100')"><span class="icon">🏠</span> VDE 0100</button>
+    <button class="sidebar-item" onclick="showSection('normen');setChapter('schutzklassen')"><span class="icon">🛡️</span> Schutzklassen & IP</button>
+  </div>
+  <div class="sidebar-section" style="margin-top:auto;padding-top:1rem;border-top:1px solid rgba(255,255,255,0.06)">
+    <div class="sidebar-title">Folge uns</div>
+    <a href="https://www.instagram.com/elektrogenius.de/" target="_blank" class="sidebar-item" style="text-decoration:none;color:inherit">
+      <span class="icon" style="color:#E1306C">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#E1306C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4.5"/><circle cx="17.5" cy="6.5" r="1" fill="#E1306C" stroke="none"/></svg>
+      </span> Instagram
+    </a>
+    <a href="https://www.youtube.com/channel/UCM4BVx1bDFUrbMhQ39Y9VCg" target="_blank" class="sidebar-item" style="text-decoration:none;color:inherit">
+      <span class="icon">
+        <svg width="16" height="16" viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="4" fill="#FF0000"/><polygon points="10,9 16,12 10,15" fill="white"/></svg>
+      </span> YouTube
+    </a>
+    <a href="https://chat.whatsapp.com/FIRdC7y5bg1Az9H3JfpouL" target="_blank" class="sidebar-item" style="text-decoration:none;color:inherit">
+      <span class="icon">
+        <svg width="16" height="16" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="#25D366"/><path d="M8 13.5c1.5 2 4 3 6.5 2l2 1-0.5-2c1-1.5 1-3.5 0-5C14.5 7.5 9.5 7.5 7.5 10c-1 1.5-1 3 0.5 3.5z" fill="white"/></svg>
+      </span> WhatsApp Community
+    </a>
+  </div>
+</aside>
+
+<!-- MAIN CONTENT -->
+<main class="main">
+
+<!-- ===================== HOME ===================== -->
+<section id="section-home" class="section active">
+  <div class="hero">
+    <div class="hero-tag"><span class="glow-dot"></span> Elektrotechnik Lernportal</div>
+    <h1>DEIN WEG ZUM<br><span>ELEKTRO</span>GENIUS</h1>
+    <p>Alle Theorieinhalte, interaktive Rechner und Formelsammlungen – kompakt und verständlich für Azubis, Gesellen und Meister.</p>
+    <div class="hero-stats">
+      <div class="stat"><div class="stat-num">8+</div><div class="stat-label">Themen</div></div>
+      <div class="stat"><div class="stat-num">50+</div><div class="stat-label">Formeln</div></div>
+      <div class="stat"><div class="stat-num">12</div><div class="stat-label">Rechner</div></div>
+    </div>
+  </div>
+
+  <div class="search-bar">
+    <span>🔍</span>
+    <input type="text" placeholder="Thema suchen z.B. Ohmsches Gesetz, Drehstrom, VDE..." id="searchInput" oninput="handleSearch(this.value)">
+  </div>
+
+  <div class="cards-grid">
+    <div class="card" style="--card-color:#F5C518" onclick="showSection('grundlagen')">
+      <div class="card-icon">⚡</div>
+      <div class="card-title">Grundlagen DC</div>
+      <div class="card-desc">Ohm, Kirchhoff, Leistung, Widerstandsschaltungen</div>
+      <div class="card-count">5 Kapitel</div>
+    </div>
+    <div class="card" style="--card-color:#4A90E2" onclick="showSection('wechselstrom')">
+      <div class="card-icon">〰️</div>
+      <div class="card-title">Wechselstrom & Drehstrom</div>
+      <div class="card-desc">AC-Grundlagen, Impedanz, Transformatoren, Drehstrom</div>
+      <div class="card-count">5 Kapitel</div>
+    </div>
+    <div class="card" style="--card-color:#00D084" onclick="showSection('elektronik')">
+      <div class="card-icon">🔬</div>
+      <div class="card-title">Elektronik & Bauteile</div>
+      <div class="card-desc">Halbleiter, Dioden, Transistoren, Kondensatoren, Spulen</div>
+      <div class="card-count">5 Kapitel</div>
+    </div>
+    <div class="card" style="--card-color:#FF8C42" onclick="showSection('rechner')">
+      <div class="card-icon">🔢</div>
+      <div class="card-title">Interaktive Rechner</div>
+      <div class="card-desc">Ohm, Leistung, Drehstrom, Kondensator, Spannungsteiler</div>
+      <div class="card-count">12 Rechner</div>
+    </div>
+    <div class="card" style="--card-color:#FF5A5A" onclick="showSection('normen')">
+      <div class="card-icon">📋</div>
+      <div class="card-title">Normen & Vorschriften</div>
+      <div class="card-desc">VDE 0100, Schutzklassen, IP-Schutzarten, BGV A3</div>
+      <div class="card-count">3 Kapitel</div>
+    </div>
+    <div class="card" style="--card-color:#B24BF3" onclick="showSection('installation')">
+      <div class="card-icon">🏠</div>
+      <div class="card-title">Installationstechnik</div>
+      <div class="card-desc">Leitungsberechnung, Absicherung, Schutzmaßnahmen</div>
+      <div class="card-count">4 Kapitel</div>
+    </div>
+  </div>
+
+  <div class="info-box yellow">
+    <div class="info-box-icon">⚡</div>
+    <div><strong>Tipp:</strong> Nutze die Seitenleiste für schnelle Navigation zu einzelnen Themen. Alle Rechner findest du auch direkt über das Menü oben.</div>
+  </div>
+</section>
+
+<!-- ===================== GRUNDLAGEN ===================== -->
+<section id="section-grundlagen" class="section">
+  <div class="page-header">
+    <button class="back-btn" onclick="showSection('home')">← Zurück zur Übersicht</button>
+    <div class="page-title">GRUNDLAGEN <span>GLEICHSTROM</span></div>
+    <div class="page-subtitle">Fundamentale Gesetze und Zusammenhänge der Elektrotechnik</div>
+  </div>
+
+  <div class="chapter-nav">
+    <button class="chapter-btn active" onclick="setChapter('ohm',this)">⚡ Ohmsches Gesetz</button>
+    <button class="chapter-btn" onclick="setChapter('kirchhoff',this)">🔀 Kirchhoff</button>
+    <button class="chapter-btn" onclick="setChapter('leistung',this)">💡 Leistung</button>
+    <button class="chapter-btn" onclick="setChapter('widerstand',this)">📐 Widerstand</button>
+    <button class="chapter-btn" onclick="setChapter('schaltungen',this)">🔌 Schaltungen</button>
+  </div>
+
+  <!-- OHM -->
+  <div id="chapter-ohm" class="tab-content active">
+    <div class="theory-block">
+      <h3>⚡ Das <span class="accent">Ohmsche Gesetz</span></h3>
+      <p>Das Ohmsche Gesetz beschreibt den Zusammenhang zwischen elektrischer Spannung <span class="unit">U</span>, Stromstärke <span class="unit">I</span> und Widerstand <span class="unit">R</span> in einem linearen Leiter. Es ist die fundamentalste Grundlage der Elektrotechnik.</p>
+      <div class="formula-box">
+        <div class="formula-title">Grundformel</div>
+        <div class="formula-main">U = R × I</div>
+        <div class="formula-vars">U = Spannung [V] &nbsp;|&nbsp; R = Widerstand [Ω] &nbsp;|&nbsp; I = Stromstärke [A]</div>
+      </div>
+      <p>Durch Umformung erhält man alle drei Varianten:</p>
+      <div class="formula-box">
+        <div class="formula-title">Umformungen</div>
+        <div class="formula-main">R = U / I &nbsp;&nbsp; I = U / R</div>
+      </div>
+      <div class="info-box blue">
+        <div class="info-box-icon">ℹ️</div>
+        <div>Das Gesetz gilt nur für <strong>ohmsche Widerstände</strong> bei konstanter Temperatur. Bei Halbleitern, Spulen und Kondensatoren gelten erweiterte Gesetze.</div>
+      </div>
+    </div>
+    <div class="theory-block">
+      <h3>📐 <span class="accent">Widerstand und Temperatur</span></h3>
+      <p>Der elektrische Widerstand ist temperaturabhängig. Bei Metallen steigt der Widerstand mit der Temperatur (positive Temperaturabhängigkeit – PTC), bei Halbleitern sinkt er (NTC).</p>
+      <div class="formula-box">
+        <div class="formula-title">Temperaturabhängigkeit</div>
+        <div class="formula-main">R(T) = R₀ × (1 + α × ΔT)</div>
+        <div class="formula-vars">R₀ = Widerstand bei 20°C &nbsp;|&nbsp; α = Temperaturkoeffizient [1/K] &nbsp;|&nbsp; ΔT = Temperaturdifferenz</div>
+      </div>
+      <table class="theory-table">
+        <tr><th>Material</th><th>α [1/K]</th><th>Verhalten</th></tr>
+        <tr><td>Kupfer (Cu)</td><td class="mono">0,00393</td><td><span class="badge badge-yellow">PTC</span></td></tr>
+        <tr><td>Aluminium (Al)</td><td class="mono">0,00403</td><td><span class="badge badge-yellow">PTC</span></td></tr>
+        <tr><td>Silber (Ag)</td><td class="mono">0,00380</td><td><span class="badge badge-yellow">PTC</span></td></tr>
+        <tr><td>Konstantan</td><td class="mono">±0,00001</td><td><span class="badge badge-green">Neutral</span></td></tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- KIRCHHOFF -->
+  <div id="chapter-kirchhoff" class="tab-content">
+    <div class="theory-block">
+      <h3>🔀 <span class="accent">1. Kirchhoffsches Gesetz</span> — Knotenregel</h3>
+      <p>Die Summe aller zufließenden Ströme ist gleich der Summe aller abfließenden Ströme an einem Knoten. Die Gesamtladung bleibt erhalten – es kann keine Ladung „verloren gehen".</p>
+      <div class="formula-box">
+        <div class="formula-title">Knotenregel (KCL)</div>
+        <div class="formula-main">ΣI_zu = ΣI_ab &nbsp;&nbsp;→&nbsp;&nbsp; ΣI = 0</div>
+        <div class="formula-vars">Alle zufließenden Ströme positiv, alle abfließenden negativ zählen</div>
+      </div>
+      <div class="info-box green">
+        <div class="info-box-icon">✅</div>
+        <div>Merkhilfe: Ein Knotenpunkt ist wie ein Wasserverteiler – was reinkommt, muss auch rausgehen. Es sammelt sich nichts an.</div>
+      </div>
+    </div>
+    <div class="theory-block">
+      <h3>🔁 <span class="accent">2. Kirchhoffsches Gesetz</span> — Maschenregel</h3>
+      <p>Die Summe aller Spannungen in einer geschlossenen Masche (Schleife) ist gleich null. Spannungsquellen und Spannungsabfälle halten sich die Waage.</p>
+      <div class="formula-box">
+        <div class="formula-title">Maschenregel (KVL)</div>
+        <div class="formula-main">ΣU = 0</div>
+        <div class="formula-vars">Spannungsquellen positiv, Spannungsabfälle an Widerständen negativ</div>
+      </div>
+      <p>Beispiel: In einer Masche mit Quelle U₀ und zwei Widerständen R₁, R₂:</p>
+      <div class="formula-box">
+        <div class="formula-title">Beispiel</div>
+        <div class="formula-main">U₀ - U_R1 - U_R2 = 0</div>
+        <div class="formula-vars">U₀ = I×R₁ + I×R₂</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- LEISTUNG -->
+  <div id="chapter-leistung" class="tab-content">
+    <div class="theory-block">
+      <h3>💡 <span class="accent">Elektrische Leistung</span></h3>
+      <p>Die elektrische Leistung gibt an, wie viel Energie pro Zeiteinheit umgesetzt wird. Sie wird in Watt <span class="unit">W</span> gemessen.</p>
+      <div class="formula-box">
+        <div class="formula-title">Leistungsformeln (Gleichstrom)</div>
+        <div class="formula-main">P = U × I = I² × R = U² / R</div>
+        <div class="formula-vars">P = Leistung [W] &nbsp;|&nbsp; U = Spannung [V] &nbsp;|&nbsp; I = Strom [A] &nbsp;|&nbsp; R = Widerstand [Ω]</div>
+      </div>
+      <div class="formula-box">
+        <div class="formula-title">Elektrische Energie</div>
+        <div class="formula-main">W = P × t</div>
+        <div class="formula-vars">W = Energie [Ws oder J] &nbsp;|&nbsp; P = Leistung [W] &nbsp;|&nbsp; t = Zeit [s]<br>1 kWh = 3.600.000 J = 3,6 MJ</div>
+      </div>
+      <table class="theory-table">
+        <tr><th>Einheit</th><th>Zeichen</th><th>Umrechnung</th></tr>
+        <tr><td>Wattsekunde</td><td class="mono">Ws</td><td>= 1 Joule (J)</td></tr>
+        <tr><td>Wattstunde</td><td class="mono">Wh</td><td>= 3.600 J</td></tr>
+        <tr><td>Kilowattstunde</td><td class="mono">kWh</td><td>= 3.600.000 J</td></tr>
+      </table>
+    </div>
+    <div class="theory-block">
+      <h3>🔥 <span class="accent">Wirkungsgrad</span></h3>
+      <p>Der Wirkungsgrad η (Eta) gibt an, wie viel der zugeführten Energie nutzbringend abgegeben wird. Verluste entstehen meist durch Wärme.</p>
+      <div class="formula-box">
+        <div class="formula-title">Wirkungsgrad</div>
+        <div class="formula-main">η = P_ab / P_zu × 100%</div>
+        <div class="formula-vars">η = Wirkungsgrad [%] &nbsp;|&nbsp; P_ab = abgegebene Nutzleistung &nbsp;|&nbsp; P_zu = zugeführte Leistung</div>
+      </div>
+      <div class="info-box red">
+        <div class="info-box-icon">⚠️</div>
+        <div>Der Wirkungsgrad ist immer &lt; 100%, da es keine verlustfreien Maschinen gibt. Sehr gute Transformatoren erreichen bis zu 99%.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- WIDERSTAND -->
+  <div id="chapter-widerstand" class="tab-content">
+    <div class="theory-block">
+      <h3>📐 <span class="accent">Spezifischer Widerstand & Leiterwiderstand</span></h3>
+      <p>Der Widerstand eines Leiters hängt von Material, Länge und Querschnitt ab. Der spezifische Widerstand ρ (Rho) ist eine Materialkonstante.</p>
+      <div class="formula-box">
+        <div class="formula-title">Leiterwiderstand</div>
+        <div class="formula-main">R = ρ × l / A</div>
+        <div class="formula-vars">ρ = spez. Widerstand [Ωmm²/m] &nbsp;|&nbsp; l = Länge [m] &nbsp;|&nbsp; A = Querschnitt [mm²]</div>
+      </div>
+      <table class="theory-table">
+        <tr><th>Material</th><th>ρ [Ωmm²/m]</th><th>Leitfähigkeit σ [m/Ωmm²]</th></tr>
+        <tr><td>Silber (Ag)</td><td class="mono">0,0160</td><td class="mono">62,5</td></tr>
+        <tr><td>Kupfer (Cu)</td><td class="mono">0,0172</td><td class="mono">58,0</td></tr>
+        <tr><td>Gold (Au)</td><td class="mono">0,0222</td><td class="mono">45,0</td></tr>
+        <tr><td>Aluminium (Al)</td><td class="mono">0,0282</td><td class="mono">35,5</td></tr>
+        <tr><td>Eisen (Fe)</td><td class="mono">0,1000</td><td class="mono">10,0</td></tr>
+        <tr><td>Konstantan</td><td class="mono">0,4900</td><td class="mono">2,04</td></tr>
+      </table>
+      <div class="info-box blue">
+        <div class="info-box-icon">💡</div>
+        <div>In der Praxis wird Kupfer am häufigsten für elektrische Leitungen verwendet, da es nach Silber die beste Leitfähigkeit hat und deutlich günstiger ist.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCHALTUNGEN -->
+  <div id="chapter-schaltungen" class="tab-content">
+    <div class="theory-block">
+      <h3>🔌 <span class="accent">Reihenschaltung</span></h3>
+      <p>Bei der Reihenschaltung fließt durch alle Widerstände derselbe Strom. Die Spannungen addieren sich, der Gesamtwiderstand ist die Summe aller Einzelwiderstände.</p>
+      <div class="formula-box">
+        <div class="formula-title">Reihenschaltung</div>
+        <div class="formula-main">R_ges = R₁ + R₂ + R₃ + ...</div>
+        <div class="formula-vars">I = konstant überall &nbsp;|&nbsp; U_ges = U₁ + U₂ + U₃</div>
+      </div>
+    </div>
+    <div class="theory-block">
+      <h3>🔀 <span class="accent">Parallelschaltung</span></h3>
+      <p>Bei der Parallelschaltung liegt an allen Widerständen dieselbe Spannung an. Die Ströme addieren sich, der Gesamtwiderstand ist kleiner als der kleinste Einzelwiderstand.</p>
+      <div class="formula-box">
+        <div class="formula-title">Parallelschaltung</div>
+        <div class="formula-main">1/R_ges = 1/R₁ + 1/R₂ + 1/R₃</div>
+        <div class="formula-vars">U = konstant überall &nbsp;|&nbsp; I_ges = I₁ + I₂ + I₃</div>
+      </div>
+      <p>Für zwei Widerstände gibt es die vereinfachte Formel:</p>
+      <div class="formula-box">
+        <div class="formula-title">Zwei Widerstände parallel</div>
+        <div class="formula-main">R_ges = (R₁ × R₂) / (R₁ + R₂)</div>
+      </div>
+    </div>
+    <div class="theory-block">
+      <h3>📉 <span class="accent">Spannungsteiler</span></h3>
+      <p>Ein unbelasteter Spannungsteiler teilt die Eingangsspannung proportional zu den Widerstandsverhältnissen auf.</p>
+      <div class="formula-box">
+        <div class="formula-title">Spannungsteilerformel</div>
+        <div class="formula-main">U₂ = U_ges × R₂ / (R₁ + R₂)</div>
+        <div class="formula-vars">U₂ = Teilspannung an R₂ &nbsp;|&nbsp; U_ges = Gesamtspannung</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== WECHSELSTROM ===================== -->
+<section id="section-wechselstrom" class="section">
+  <div class="page-header">
+    <button class="back-btn" onclick="showSection('home')">← Zurück zur Übersicht</button>
+    <div class="page-title">WECHSELSTROM & <span>DREHSTROM</span></div>
+    <div class="page-subtitle">Sinusförmige Wechselgrößen, Impedanzen und Drehstromsysteme</div>
+  </div>
+
+  <div class="chapter-nav">
+    <button class="chapter-btn active" onclick="setChapterWS('grundlagen_ws',this)">〰️ Grundlagen AC</button>
+    <button class="chapter-btn" onclick="setChapterWS('drehstrom',this)">🔁 Drehstrom</button>
+    <button class="chapter-btn" onclick="setChapterWS('impedanz',this)">📊 Impedanz</button>
+    <button class="chapter-btn" onclick="setChapterWS('leistung_ac',this)">⚙️ Wirk- & Blindleistung</button>
+    <button class="chapter-btn" onclick="setChapterWS('transformator',this)">🔄 Transformator</button>
+  </div>
+
+  <div id="chapter-grundlagen_ws" class="tab-content active">
+    <div class="theory-block">
+      <h3>〰️ <span class="accent">Wechselspannung</span> — Grundbegriffe</h3>
+      <p>Wechselstrom wechselt periodisch seine Richtung. In Europa beträgt die Netzfrequenz <strong>50 Hz</strong> mit einer Nennspannung von <strong>230 V</strong> (Effektivwert).</p>
+      <div class="formula-box">
+        <div class="formula-title">Sinusförmige Wechselspannung</div>
+        <div class="formula-main">u(t) = Û × sin(ωt + φ)</div>
+        <div class="formula-vars">Û = Scheitelwert (Amplitude) &nbsp;|&nbsp; ω = Kreisfrequenz [rad/s] &nbsp;|&nbsp; φ = Phasenwinkel</div>
+      </div>
+      <div class="formula-box">
+        <div class="formula-title">Wichtige Zusammenhänge</div>
+        <div class="formula-main">ω = 2π × f &nbsp;&nbsp; T = 1/f</div>
+        <div class="formula-vars">f = Frequenz [Hz] &nbsp;|&nbsp; T = Periodendauer [s] &nbsp;|&nbsp; ω = Kreisfrequenz [rad/s]</div>
+      </div>
+      <table class="theory-table">
+        <tr><th>Größe</th><th>Formel</th><th>50 Hz Netz</th></tr>
+        <tr><td>Frequenz</td><td class="mono">f = 50 Hz</td><td>50 Hz</td></tr>
+        <tr><td>Periodendauer</td><td class="mono">T = 1/f</td><td class="mono">20 ms</td></tr>
+        <tr><td>Kreisfrequenz</td><td class="mono">ω = 2πf</td><td class="mono">314,16 rad/s</td></tr>
+        <tr><td>Scheitelwert</td><td class="mono">Û = U × √2</td><td class="mono">325,27 V</td></tr>
+        <tr><td>Effektivwert</td><td class="mono">U = Û / √2</td><td class="mono">230 V</td></tr>
+      </table>
+      <div class="info-box yellow">
+        <div class="info-box-icon">⚡</div>
+        <div>Der <strong>Effektivwert</strong> (RMS) ist der Gleichstromwert, der die gleiche Wärmeleistung erzeugt. Bei einer Steckdose misst man 230 V Effektivwert, der Scheitelwert beträgt ca. 325 V!</div>
+      </div>
+    </div>
+  </div>
+
+  <div id="chapter-drehstrom" class="tab-content">
+    <div class="theory-block">
+      <h3>🔁 <span class="accent">Drehstrom (Dreiphasensystem)</span></h3>
+      <p>Drehstrom besteht aus drei um je 120° phasenverschobenen Wechselspannungen. In Deutschland: 230 V Strangspannung (Phase–Neutral), 400 V Leiterspannung (Phase–Phase).</p>
+      <div class="formula-box">
+        <div class="formula-title">Spannungsbeziehung Drehstrom</div>
+        <div class="formula-main">U_L = U_S × √3 ≈ 1,732 × U_S</div>
+        <div class="formula-vars">U_L = Leiterspannung (verkettete Spannung) &nbsp;|&nbsp; U_S = Strangspannung (Phasenspannung)</div>
+      </div>
+      <div class="formula-box">
+        <div class="formula-title">Drehstromleistung (symmetrische Last)</div>
+        <div class="formula-main">P = √3 × U_L × I_L × cos φ</div>
+        <div class="formula-vars">P = Wirkleistung [W] &nbsp;|&nbsp; U_L = 400 V &nbsp;|&nbsp; I_L = Leiterstrom &nbsp;|&nbsp; cos φ = Leistungsfaktor</div>
+      </div>
+      <table class="theory-table">
+        <tr><th>Schaltung</th><th>Strangspannung</th><th>Strangstrom</th></tr>
+        <tr><td>Sternschaltung (Y)</td><td class="mono">U_S = U_L / √3</td><td class="mono">I_S = I_L</td></tr>
+        <tr><td>Dreieckschaltung (Δ)</td><td class="mono">U_S = U_L</td><td class="mono">I_S = I_L / √3</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <div id="chapter-impedanz" class="tab-content">
+    <div class="theory-block">
+      <h3>📊 <span class="accent">Impedanz</span> — Wechselstromwiderstand</h3>
+      <p>Im Wechselstromkreis wirken neben ohmschen Widerständen auch reaktive Widerstände (Blindwiderstände). Der Gesamtwiderstand heißt <strong>Impedanz Z</strong>.</p>
+      <div class="formula-box">
+        <div class="formula-title">Impedanz (Betrag)</div>
+        <div class="formula-main">Z = √(R² + X²)</div>
+        <div class="formula-vars">Z = Impedanz [Ω] &nbsp;|&nbsp; R = Wirkwiderstand [Ω] &nbsp;|&nbsp; X = Blindwiderstand [Ω]</div>
+      </div>
+      <div class="formula-box">
+        <div class="formula-title">Blindwiderstände</div>
+        <div class="formula-main">X_L = ω × L &nbsp;&nbsp; X_C = 1/(ω × C)</div>
+        <div class="formula-vars">X_L = induktiver Blindwiderstand [Ω] &nbsp;|&nbsp; X_C = kapazitiver Blindwiderstand [Ω]</div>
+      </div>
+      <table class="theory-table">
+        <tr><th>Bauteil</th><th>Blindwiderstand</th><th>Phasenverschiebung</th></tr>
+        <tr><td>Ohmscher Widerstand R</td><td class="mono">—</td><td>φ = 0°</td></tr>
+        <tr><td>Spule L (induktiv)</td><td class="mono">X_L = ωL</td><td>U eilt I um 90° vor</td></tr>
+        <tr><td>Kondensator C (kapazitiv)</td><td class="mono">X_C = 1/ωC</td><td>I eilt U um 90° vor</td></tr>
+      </table>
+      <div class="info-box blue">
+        <div class="info-box-icon">💡</div>
+        <div>Merkhilfe: <strong>„EMIL"</strong> — Im Kondensator eilt der Strom der Spannung voraus. Bei der Induktivität ist es umgekehrt: Spannung eilt Strom voraus.</div>
+      </div>
+    </div>
+  </div>
+
+  <div id="chapter-leistung_ac" class="tab-content">
+    <div class="theory-block">
+      <h3>⚙️ <span class="accent">Wirkleistung, Blindleistung, Scheinleistung</span></h3>
+      <div class="formula-box">
+        <div class="formula-title">Leistungsdreieck</div>
+        <div class="formula-main">S² = P² + Q²</div>
+        <div class="formula-vars">S = Scheinleistung [VA] &nbsp;|&nbsp; P = Wirkleistung [W] &nbsp;|&nbsp; Q = Blindleistung [var]</div>
+      </div>
+      <div class="formula-box">
+        <div class="formula-title">Leistungsfaktor</div>
+        <div class="formula-main">cos φ = P / S</div>
+        <div class="formula-vars">cos φ = Leistungsfaktor (0…1) &nbsp;|&nbsp; φ = Phasenwinkel zwischen U und I</div>
+      </div>
+      <table class="theory-table">
+        <tr><th>Leistungsart</th><th>Symbol</th><th>Einheit</th><th>Bedeutung</th></tr>
+        <tr><td>Wirkleistung</td><td class="mono">P</td><td class="mono">W</td><td>Nutzbare Leistung</td></tr>
+        <tr><td>Blindleistung</td><td class="mono">Q</td><td class="mono">var</td><td>Pendelt zwischen Quelle & Last</td></tr>
+        <tr><td>Scheinleistung</td><td class="mono">S</td><td class="mono">VA</td><td>Vektorsumme aus P und Q</td></tr>
+      </table>
+      <div class="info-box red">
+        <div class="info-box-icon">⚠️</div>
+        <div>Ein niedriger Leistungsfaktor (cos φ &lt; 0,9) belastet das Netz unnötig. Energieversorger können Blindleistung in Rechnung stellen. Abhilfe: Kondensatoren zur Blindleistungskompensation.</div>
+      </div>
+    </div>
+  </div>
+
+  <div id="chapter-transformator" class="tab-content">
+    <div class="theory-block">
+      <h3>🔄 <span class="accent">Transformator</span></h3>
+      <p>Der Transformator überträgt elektrische Energie zwischen zwei galvanisch getrennten Stromkreisen durch elektromagnetische Induktion.</p>
+      <div class="formula-box">
+        <div class="formula-title">Übersetzungsverhältnis</div>
+        <div class="formula-main">ü = U₁/U₂ = N₁/N₂ = I₂/I₁</div>
+        <div class="formula-vars">ü = Übersetzungsverhältnis &nbsp;|&nbsp; N₁/N₂ = Windungszahlen &nbsp;|&nbsp; U₁/U₂ = Spannungen</div>
+      </div>
+      <div class="info-box green">
+        <div class="info-box-icon">✅</div>
+        <div>Beim idealen Transformator gilt: <strong>P₁ = P₂</strong>. Was an Spannung gewonnen wird, geht beim Strom verloren – und umgekehrt.</div>
+      </div>
+      <table class="theory-table">
+        <tr><th>Typ</th><th>ü &gt; 1</th><th>ü &lt; 1</th></tr>
+        <tr><td>Spannung</td><td>Hochspannungstrafo</td><td>Niederspannungstrafo</td></tr>
+        <tr><td>Strom</td><td>Strom sinkt</td><td>Strom steigt</td></tr>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== ELEKTRONIK ===================== -->
+<section id="section-elektronik" class="section">
+  <div class="page-header">
+    <button class="back-btn" onclick="showSection('home')">← Zurück</button>
+    <div class="page-title">ELEKTRONIK & <span>BAUTEILE</span></div>
+    <div class="page-subtitle">Halbleiter, passive und aktive Bauelemente</div>
+  </div>
+
+  <div class="chapter-nav">
+    <button class="chapter-btn active" onclick="setChapterEl('halbleiter',this)">🔬 Halbleiter</button>
+    <button class="chapter-btn" onclick="setChapterEl('diode',this)">➡️ Diode</button>
+    <button class="chapter-btn" onclick="setChapterEl('transistor',this)">📡 Transistor</button>
+    <button class="chapter-btn" onclick="setChapterEl('kondensator',this)">🗄️ Kondensator</button>
+    <button class="chapter-btn" onclick="setChapterEl('spule',this)">🌀 Spule</button>
+  </div>
+
+  <div id="chapter-halbleiter" class="tab-content active">
+    <div class="theory-block">
+      <h3>🔬 <span class="accent">Halbleiter</span> — Grundlagen</h3>
+      <p>Halbleiter haben eine elektrische Leitfähigkeit zwischen Leitern und Isolatoren. Durch gezielte Dotierung (Einbringen von Fremdatomen) lässt sich ihre Leitfähigkeit steuern.</p>
+      <table class="theory-table">
+        <tr><th>Typ</th><th>Dotierung</th><th>Ladungsträger</th></tr>
+        <tr><td>n-Halbleiter</td><td>Donatoren (5-wertig, z.B. Phosphor)</td><td>Elektronen (negativ)</td></tr>
+        <tr><td>p-Halbleiter</td><td>Akzeptoren (3-wertig, z.B. Bor)</td><td>Löcher (positiv)</td></tr>
+      </table>
+      <div class="info-box blue">
+        <div class="info-box-icon">ℹ️</div>
+        <div>Der wichtigste Halbleiter ist <strong>Silizium (Si)</strong>. An der Grenzschicht zwischen p- und n-Halbleiter entsteht die <strong>pn-Übergang</strong>, Grundlage aller Halbleiterbauelemente.</div>
+      </div>
+    </div>
+  </div>
+
+  <div id="chapter-diode" class="tab-content">
+    <div class="theory-block">
+      <h3>➡️ <span class="accent">Diode</span></h3>
+      <p>Eine Diode lässt Strom nur in einer Richtung durch (Durchlassrichtung). In Sperrrichtung sperrt sie (bis zur Durchbruchspannung).</p>
+      <div class="formula-box">
+        <div class="formula-title">Schleusenspannung (Silizium)</div>
+        <div class="formula-main">U_F ≈ 0,6 … 0,7 V</div>
+        <div class="formula-vars">Si-Diode: 0,6–0,7 V &nbsp;|&nbsp; Ge-Diode: 0,2–0,3 V &nbsp;|&nbsp; LED: 1,5–3,5 V</div>
+      </div>
+      <table class="theory-table">
+        <tr><th>Diode</th><th>Verwendung</th><th>U_F</th></tr>
+        <tr><td>Si-Diode</td><td>Gleichrichter, Schutzschaltungen</td><td class="mono">0,6–0,7 V</td></tr>
+        <tr><td>Zener-Diode</td><td>Spannungsreferenz, Schutz</td><td class="mono">z.B. 5,1 V</td></tr>
+        <tr><td>LED</td><td>Leuchtmittel, Anzeige</td><td class="mono">1,5–3,5 V</td></tr>
+        <tr><td>Schottky-Diode</td><td>HF-Technik, geringe Verluste</td><td class="mono">0,2–0,4 V</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <div id="chapter-transistor" class="tab-content">
+    <div class="theory-block">
+      <h3>📡 <span class="accent">Bipolartransistor (BJT)</span></h3>
+      <p>Ein Transistor kann als steuerbarer Schalter oder Verstärker genutzt werden. Beim NPN-Transistor steuert der Basisstrom I_B den Kollektorstrom I_C.</p>
+      <div class="formula-box">
+        <div class="formula-title">Stromverstärkung</div>
+        <div class="formula-main">I_C = β × I_B &nbsp;&nbsp; β = 20 … 500</div>
+        <div class="formula-vars">β = Gleichstromverstärkung (h_FE) &nbsp;|&nbsp; I_C = Kollektorstrom &nbsp;|&nbsp; I_B = Basisstrom</div>
+      </div>
+      <table class="theory-table">
+        <tr><th>Betriebsbereich</th><th>Beschreibung</th></tr>
+        <tr><td>Sperrbetrieb</td><td>I_B = 0, Transistor sperrt (Schalter offen)</td></tr>
+        <tr><td>Aktiver Bereich</td><td>Verstärkerbetrieb: I_C = β × I_B</td></tr>
+        <tr><td>Sättigungsbereich</td><td>Transistor leitet voll (Schalter geschlossen)</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <div id="chapter-kondensator" class="tab-content">
+    <div class="theory-block">
+      <h3>🗄️ <span class="accent">Kondensator</span></h3>
+      <p>Ein Kondensator speichert elektrische Ladung und damit Energie im elektrischen Feld zwischen zwei Platten.</p>
+      <div class="formula-box">
+        <div class="formula-title">Kapazität & Ladung</div>
+        <div class="formula-main">Q = C × U &nbsp;&nbsp; E = ½ × C × U²</div>
+        <div class="formula-vars">C = Kapazität [F] &nbsp;|&nbsp; Q = Ladung [C] &nbsp;|&nbsp; E = gespeicherte Energie [J]</div>
+      </div>
+      <div class="formula-box">
+        <div class="formula-title">Kapazität einer Plattenkondensators</div>
+        <div class="formula-main">C = ε₀ × εᵣ × A / d</div>
+        <div class="formula-vars">ε₀ = 8,854×10⁻¹² F/m &nbsp;|&nbsp; εᵣ = Dielektrizitätszahl &nbsp;|&nbsp; A = Fläche &nbsp;|&nbsp; d = Plattenabstand</div>
+      </div>
+      <div class="formula-box">
+        <div class="formula-title">Auf-/Entladen (Zeitkonstante)</div>
+        <div class="formula-main">τ = R × C &nbsp;&nbsp; u(t) = U₀ × e^(-t/τ)</div>
+        <div class="formula-vars">τ = Zeitkonstante [s] &nbsp;|&nbsp; Nach 5τ ist Kondensator ≈99% geladen/entladen</div>
+      </div>
+    </div>
+  </div>
+
+  <div id="chapter-spule" class="tab-content">
+    <div class="theory-block">
+      <h3>🌀 <span class="accent">Spule & Induktivität</span></h3>
+      <p>Eine Spule speichert Energie im Magnetfeld. Sie widersetzt sich Änderungen des Stroms (Selbstinduktion).</p>
+      <div class="formula-box">
+        <div class="formula-title">Induktionsspannung</div>
+        <div class="formula-main">u_L = L × dI/dt</div>
+        <div class="formula-vars">L = Induktivität [H] &nbsp;|&nbsp; dI/dt = Stromänderung pro Zeit [A/s]</div>
+      </div>
+      <div class="formula-box">
+        <div class="formula-title">Gespeicherte Energie & Zeitkonstante</div>
+        <div class="formula-main">E = ½ × L × I² &nbsp;&nbsp; τ = L / R</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== RECHNER ===================== -->
+<section id="section-rechner" class="section">
+  <div class="page-header">
+    <button class="back-btn" onclick="showSection('home')">← Zurück</button>
+    <div class="page-title">INTERAKTIVE <span>RECHNER</span></div>
+    <div class="page-subtitle">Berechne Werte direkt — gib bekannte Größen ein</div>
+  </div>
+
+  <!-- OHM RECHNER -->
+  <div class="calc-box">
+    <div class="calc-title"><span class="icon">⚡</span> Ohmsches Gesetz</div>
+    <div class="calc-desc">Zwei Werte eingeben → dritten berechnen (U, I oder R freilassen)</div>
+    <div class="calc-grid">
+      <div class="calc-field"><label>Spannung U [V]</label><input type="number" id="ohm_u" placeholder="z.B. 230"></div>
+      <div class="calc-field"><label>Strom I [A]</label><input type="number" id="ohm_i" placeholder="z.B. 5"></div>
+      <div class="calc-field"><label>Widerstand R [Ω]</label><input type="number" id="ohm_r" placeholder="z.B. 46"></div>
+      <div class="calc-field" style="align-self:end"><button class="calc-btn" onclick="calcOhm()">Berechnen</button></div>
+    </div>
+    <div class="calc-result" id="ohm_result">
+      <div class="calc-result-label">Ergebnis</div>
+      <div><span class="calc-result-value" id="ohm_val">—</span> <span class="calc-result-unit" id="ohm_unit"></span></div>
+      <div class="calc-result-formula" id="ohm_formula"></div>
+    </div>
+  </div>
+
+  <!-- LEISTUNG RECHNER -->
+  <div class="calc-box">
+    <div class="calc-title"><span class="icon">💡</span> Elektrische Leistung</div>
+    <div class="calc-desc">Leistung, Spannung, Strom und Widerstand berechnen</div>
+    <div class="calc-grid">
+      <div class="calc-field"><label>Spannung U [V]</label><input type="number" id="pow_u" placeholder="z.B. 230"></div>
+      <div class="calc-field"><label>Strom I [A]</label><input type="number" id="pow_i" placeholder="z.B. 10"></div>
+      <div class="calc-field"><label>Widerstand R [Ω]</label><input type="number" id="pow_r" placeholder="optional"></div>
+      <div class="calc-field" style="align-self:end"><button class="calc-btn" onclick="calcLeistung()">Berechnen</button></div>
+    </div>
+    <div class="calc-result" id="pow_result">
+      <div class="calc-result-label">Wirkleistung</div>
+      <div><span class="calc-result-value" id="pow_val">—</span> <span class="calc-result-unit">W</span></div>
+      <div class="calc-result-formula" id="pow_formula"></div>
+    </div>
+  </div>
+
+  <!-- DREHSTROM RECHNER -->
+  <div class="calc-box">
+    <div class="calc-title"><span class="icon">🔁</span> Drehstrom-Leistung</div>
+    <div class="calc-desc">Gesamtleistung einer symmetrischen Drehstromlast</div>
+    <div class="calc-grid">
+      <div class="calc-field"><label>Leiterspannung U_L [V]</label><input type="number" id="ds_ul" value="400"></div>
+      <div class="calc-field"><label>Leiterstrom I_L [A]</label><input type="number" id="ds_il" placeholder="z.B. 16"></div>
+      <div class="calc-field"><label>Leistungsfaktor cos φ</label><input type="number" id="ds_cos" value="0.85" step="0.01" min="0" max="1"></div>
+      <div class="calc-field" style="align-self:end"><button class="calc-btn" onclick="calcDrehstrom()">Berechnen</button></div>
+    </div>
+    <div class="calc-result" id="ds_result">
+      <div class="calc-result-label">Wirkleistung P</div>
+      <div><span class="calc-result-value" id="ds_val">—</span> <span class="calc-result-unit">W</span></div>
+      <div class="calc-result-formula" id="ds_formula"></div>
+    </div>
+  </div>
+
+  <!-- LEITERWIDERSTAND -->
+  <div class="calc-box">
+    <div class="calc-title"><span class="icon">📐</span> Leiterwiderstand</div>
+    <div class="calc-desc">Widerstand einer Leitung berechnen (R = ρ × l / A)</div>
+    <div class="calc-grid">
+      <div class="calc-field">
+        <label>Material</label>
+        <select id="lr_mat">
+          <option value="0.0172">Kupfer (Cu) – 0,0172</option>
+          <option value="0.0282">Aluminium (Al) – 0,0282</option>
+          <option value="0.0160">Silber (Ag) – 0,0160</option>
+          <option value="0.1000">Eisen (Fe) – 0,100</option>
+        </select>
+      </div>
+      <div class="calc-field"><label>Länge l [m]</label><input type="number" id="lr_l" placeholder="z.B. 100"></div>
+      <div class="calc-field"><label>Querschnitt A [mm²]</label><input type="number" id="lr_a" placeholder="z.B. 2.5"></div>
+      <div class="calc-field" style="align-self:end"><button class="calc-btn" onclick="calcLeiter()">Berechnen</button></div>
+    </div>
+    <div class="calc-result" id="lr_result">
+      <div class="calc-result-label">Leiterwiderstand R</div>
+      <div><span class="calc-result-value" id="lr_val">—</span> <span class="calc-result-unit">Ω</span></div>
+      <div class="calc-result-formula" id="lr_formula"></div>
+    </div>
+  </div>
+
+  <!-- SPANNUNGSTEILER -->
+  <div class="calc-box">
+    <div class="calc-title"><span class="icon">📉</span> Spannungsteiler</div>
+    <div class="calc-desc">Teilspannung U₂ an R₂ berechnen</div>
+    <div class="calc-grid">
+      <div class="calc-field"><label>Gesamtspannung U [V]</label><input type="number" id="st_u" placeholder="z.B. 12"></div>
+      <div class="calc-field"><label>R₁ [Ω]</label><input type="number" id="st_r1" placeholder="z.B. 1000"></div>
+      <div class="calc-field"><label>R₂ [Ω]</label><input type="number" id="st_r2" placeholder="z.B. 2200"></div>
+      <div class="calc-field" style="align-self:end"><button class="calc-btn" onclick="calcSpannungsteiler()">Berechnen</button></div>
+    </div>
+    <div class="calc-result" id="st_result">
+      <div class="calc-result-label">Teilspannung U₂</div>
+      <div><span class="calc-result-value" id="st_val">—</span> <span class="calc-result-unit">V</span></div>
+      <div class="calc-result-formula" id="st_formula"></div>
+    </div>
+  </div>
+
+  <!-- KONDENSATOR ENERGIE -->
+  <div class="calc-box">
+    <div class="calc-title"><span class="icon">🗄️</span> Kondensator – Energie & Ladung</div>
+    <div class="calc-desc">Gespeicherte Energie und Ladung berechnen</div>
+    <div class="calc-grid">
+      <div class="calc-field"><label>Kapazität C [µF]</label><input type="number" id="ck_c" placeholder="z.B. 100"></div>
+      <div class="calc-field"><label>Spannung U [V]</label><input type="number" id="ck_u" placeholder="z.B. 24"></div>
+      <div class="calc-field" style="align-self:end"><button class="calc-btn" onclick="calcKondensator()">Berechnen</button></div>
+    </div>
+    <div class="calc-result" id="ck_result">
+      <div class="calc-result-label">Ergebnisse</div>
+      <div><span class="calc-result-value" id="ck_val">—</span></div>
+      <div class="calc-result-formula" id="ck_formula"></div>
+    </div>
+  </div>
+
+  <!-- BLINDWIDERSTAND -->
+  <div class="calc-box">
+    <div class="calc-title"><span class="icon">〰️</span> Blindwiderstand (Spule & Kondensator)</div>
+    <div class="calc-desc">Induktiver oder kapazitiver Blindwiderstand bei Frequenz f</div>
+    <div class="calc-grid">
+      <div class="calc-field"><label>Frequenz f [Hz]</label><input type="number" id="bw_f" value="50"></div>
+      <div class="calc-field"><label>Induktivität L [mH] (für X_L)</label><input type="number" id="bw_l" placeholder="z.B. 100"></div>
+      <div class="calc-field"><label>Kapazität C [µF] (für X_C)</label><input type="number" id="bw_c" placeholder="z.B. 100"></div>
+      <div class="calc-field" style="align-self:end"><button class="calc-btn" onclick="calcBlindwiderstand()">Berechnen</button></div>
+    </div>
+    <div class="calc-result" id="bw_result">
+      <div class="calc-result-label">Blindwiderstände</div>
+      <div><span class="calc-result-value" id="bw_val">—</span></div>
+      <div class="calc-result-formula" id="bw_formula"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== NORMEN ===================== -->
+<section id="section-normen" class="section">
+  <div class="page-header">
+    <button class="back-btn" onclick="showSection('home')">← Zurück</button>
+    <div class="page-title">NORMEN & <span>VORSCHRIFTEN</span></div>
+    <div class="page-subtitle">VDE-Normen, Schutzklassen, IP-Schutzarten und Sicherheitsvorschriften</div>
+  </div>
+
+  <div class="chapter-nav">
+    <button class="chapter-btn active" onclick="setChapterNorm('vde_ueber',this)">📋 VDE Übersicht</button>
+    <button class="chapter-btn" onclick="setChapterNorm('vde0100',this)">🏠 VDE 0100</button>
+    <button class="chapter-btn" onclick="setChapterNorm('schutzklassen',this)">🛡️ Schutzklassen & IP</button>
+  </div>
+
+  <div id="chapter-vde_ueber" class="tab-content active">
+    <div class="theory-block">
+      <h3>📋 <span class="accent">VDE-Normen</span> — Überblick</h3>
+      <p>Der VDE (Verband der Elektrotechnik) gibt Normen heraus, die als Sicherheitsstandard für elektrische Anlagen in Deutschland gelten. Viele sind identisch mit europäischen EN-Normen.</p>
+      <table class="theory-table">
+        <tr><th>Norm</th><th>Inhalt</th></tr>
+        <tr><td class="mono">VDE 0100</td><td>Errichten von Niederspannungsanlagen (≤1000 V)</td></tr>
+        <tr><td class="mono">VDE 0105</td><td>Betrieb von elektrischen Anlagen</td></tr>
+        <tr><td class="mono">VDE 0132</td><td>Brandbekämpfung im Bereich elektrischer Anlagen</td></tr>
+        <tr><td class="mono">VDE 0141</td><td>Erdungsanlagen für besondere Anlagen</td></tr>
+        <tr><td class="mono">VDE 0276</td><td>Starkstromkabel – Auswahl und Verlegung</td></tr>
+        <tr><td class="mono">VDE 0298</td><td>Verwendung von Kabeln und Leitungen</td></tr>
+        <tr><td class="mono">VDE 0470</td><td>Schutzarten durch Gehäuse (IP-Code)</td></tr>
+        <tr><td class="mono">DIN VDE 0620</td><td>Stecker und Steckdosen für den Hausgebrauch</td></tr>
+      </table>
+      <div class="info-box red">
+        <div class="info-box-icon">⚠️</div>
+        <div>VDE-Normen sind in Deutschland nicht direkt gesetzlich verbindlich, gelten aber als „anerkannte Regeln der Technik". Bei Nichtbeachtung kann bei Unfällen die Haftung entfallen.</div>
+      </div>
+    </div>
+  </div>
+
+  <div id="chapter-vde0100" class="tab-content">
+    <div class="theory-block">
+      <h3>🏠 <span class="accent">VDE 0100</span> — Niederspannungsanlagen</h3>
+      <p>Die DIN VDE 0100 regelt das Errichten von Starkstromanlagen bis 1000 V AC / 1500 V DC. Sie ist in viele Teile gegliedert:</p>
+      <table class="theory-table">
+        <tr><th>Teil</th><th>Inhalt</th></tr>
+        <tr><td class="mono">Teil 100</td><td>Grundsätze, Begriffe, allgemeine Anforderungen</td></tr>
+        <tr><td class="mono">Teil 200</td><td>Definitionen</td></tr>
+        <tr><td class="mono">Teil 410</td><td>Schutz gegen elektrischen Schlag</td></tr>
+        <tr><td class="mono">Teil 430</td><td>Schutz von Kabeln bei Überstrom</td></tr>
+        <tr><td class="mono">Teil 520</td><td>Auswahl und Errichtung von Kabeln und Leitungen</td></tr>
+        <tr><td class="mono">Teil 540</td><td>Schutz- und Erdungsleiter</td></tr>
+        <tr><td class="mono">Teil 600</td><td>Prüfungen (Erstprüfung, wiederkehrende Prüfung)</td></tr>
+        <tr><td class="mono">Teil 710</td><td>Medizinisch genutzte Bereiche</td></tr>
+        <tr><td class="mono">Teil 722</td><td>Ladestationen für Elektrofahrzeuge</td></tr>
+      </table>
+      <div class="info-box yellow">
+        <div class="info-box-icon">⚡</div>
+        <div>Wichtig: <strong>Schutzmaßnahmen</strong> nach VDE 0100-410 — Basisschutz (Schutz gegen direktes Berühren), Fehlerschutz (Schutz bei indirektem Berühren) und Zusatzschutz (FI-Schutzschalter ≤30 mA).</div>
+      </div>
+    </div>
+  </div>
+
+  <div id="chapter-schutzklassen" class="tab-content">
+    <div class="theory-block">
+      <h3>🛡️ <span class="accent">Schutzklassen</span> elektrischer Betriebsmittel</h3>
+      <table class="theory-table">
+        <tr><th>Schutzklasse</th><th>Zeichen</th><th>Beschreibung</th></tr>
+        <tr><td><span class="badge badge-yellow">SK I</span></td><td class="mono">PE</td><td>Schutzerde (gelb-grüner PE-Leiter). Metallgehäuse mit Schutzerde verbunden.</td></tr>
+        <tr><td><span class="badge badge-blue">SK II</span></td><td class="mono">□□</td><td>Schutzisolierung (doppelt isoliert). Kein PE nötig, 2-fache Isolierung.</td></tr>
+        <tr><td><span class="badge badge-green">SK III</span></td><td class="mono">SELV</td><td>Schutzkleinspannung ≤50 V AC / 120 V DC. Kein Berührungsschutz nötig.</td></tr>
+      </table>
+    </div>
+    <div class="theory-block">
+      <h3>💧 <span class="accent">IP-Schutzarten</span> (DIN VDE 0470)</h3>
+      <p>Der IP-Code (International Protection) beschreibt den Schutz eines Gehäuses gegen Fremdkörper und Feuchtigkeit. Format: <strong>IP XY</strong></p>
+      <table class="theory-table">
+        <tr><th>1. Ziffer (Fremdkörper)</th><th>Bedeutung</th></tr>
+        <tr><td class="mono">IP 0x</td><td>Kein Schutz</td></tr>
+        <tr><td class="mono">IP 1x</td><td>Schutz gegen Fremdkörper &gt;50 mm</td></tr>
+        <tr><td class="mono">IP 2x</td><td>Schutz gegen Fremdkörper &gt;12 mm (Finger)</td></tr>
+        <tr><td class="mono">IP 3x</td><td>Schutz gegen Fremdkörper &gt;2,5 mm</td></tr>
+        <tr><td class="mono">IP 4x</td><td>Schutz gegen Fremdkörper &gt;1 mm</td></tr>
+        <tr><td class="mono">IP 5x</td><td>Staubgeschützt</td></tr>
+        <tr><td class="mono">IP 6x</td><td>Staubdicht</td></tr>
+      </table>
+      <table class="theory-table" style="margin-top:.5rem">
+        <tr><th>2. Ziffer (Feuchtigkeit)</th><th>Bedeutung</th></tr>
+        <tr><td class="mono">IPx0</td><td>Kein Schutz</td></tr>
+        <tr><td class="mono">IPx4</td><td>Spritzwassergeschützt (allseitig)</td></tr>
+        <tr><td class="mono">IPx5</td><td>Strahlwassergeschützt</td></tr>
+        <tr><td class="mono">IPx6</td><td>Schutz gegen starken Wasserstrahl</td></tr>
+        <tr><td class="mono">IPx7</td><td>Schutz gegen zeitweiliges Untertauchen</td></tr>
+        <tr><td class="mono">IPx8</td><td>Dauerhaft wasserdicht (Herstellerangabe)</td></tr>
+      </table>
+      <div class="info-box green">
+        <div class="info-box-icon">💡</div>
+        <div>Beispiele: <strong>IP44</strong> = Schutz gegen Fremdkörper &gt;1 mm + Spritzwasser → Außenleuchten. <strong>IP65</strong> = Staubdicht + Strahlwassergeschützt → Badezimmerleuchten. <strong>IP68</strong> = Staubdicht + Tauchdicht → Unterwasserpumpen.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== INSTALLATION ===================== -->
+<section id="section-installation" class="section">
+  <div class="page-header">
+    <button class="back-btn" onclick="showSection('home')">← Zurück</button>
+    <div class="page-title">INSTALLATIONS<span>TECHNIK</span></div>
+    <div class="page-subtitle">Leitungsberechnung, Absicherung und Schutzmaßnahmen</div>
+  </div>
+
+  <div class="theory-block">
+    <h3>🔌 <span class="accent">Leitungsberechnung</span></h3>
+    <p>Bei der Auswahl eines Leitungsquerschnitts müssen drei Kriterien erfüllt sein:</p>
+    <div class="info-box blue">
+      <div class="info-box-icon">📐</div>
+      <div>1. <strong>Strombelastbarkeit</strong> (thermische Belastung) — Leiter muss Dauerstrom tragen. 2. <strong>Spannungsfall</strong> — max. 3% bei Endstromkreisen. 3. <strong>Kurzschlussschutz</strong> — Schutzorgan muss im Kurzschluss ansprechen.</div>
+    </div>
+    <div class="formula-box">
+      <div class="formula-title">Spannungsfall Gleichstrom</div>
+      <div class="formula-main">ΔU = 2 × ρ × l × I / A</div>
+      <div class="formula-vars">ΔU = Spannungsfall [V] &nbsp;|&nbsp; l = einfache Leitungslänge [m] &nbsp;|&nbsp; I = Strom [A] &nbsp;|&nbsp; A = Querschnitt [mm²]</div>
+    </div>
+    <div class="formula-box">
+      <div class="formula-title">Spannungsfall Wechselstrom (vereinfacht)</div>
+      <div class="formula-main">ΔU = √3 × ρ × l × I × cos φ / A</div>
+    </div>
+    <table class="theory-table">
+      <tr><th>Querschnitt [mm²]</th><th>Max. Strom (Verlegeart B2)</th><th>Typische Verwendung</th></tr>
+      <tr><td class="mono">1,5</td><td class="mono">16 A</td><td>Licht, Steckdosen ≤16 A</td></tr>
+      <tr><td class="mono">2,5</td><td class="mono">20 A</td><td>Steckdosen, kleine Geräte</td></tr>
+      <tr><td class="mono">4,0</td><td class="mono">25 A</td><td>Herd, Waschmaschine</td></tr>
+      <tr><td class="mono">6,0</td><td class="mono">32 A</td><td>E-Herd, Wallbox</td></tr>
+      <tr><td class="mono">10,0</td><td class="mono">50 A</td><td>Unterverteiler</td></tr>
+      <tr><td class="mono">16,0</td><td class="mono">63 A</td><td>Zuleitung, Hauptleitung</td></tr>
+    </table>
+  </div>
+
+  <div class="theory-block">
+    <h3>🔒 <span class="accent">Schutzmaßnahmen</span></h3>
+    <table class="theory-table">
+      <tr><th>Maßnahme</th><th>Beschreibung</th></tr>
+      <tr><td>Schutzerdung</td><td>Leitfähige Teile werden mit PE verbunden → bei Fehler fließt Fehlerstrom → Sicherung löst aus</td></tr>
+      <tr><td>FI-Schutzschalter (RCD)</td><td>Trennt bei Fehlerstrom &gt;30 mA (Personenschutz) oder &gt;300 mA (Brandschutz) innerhalb von ms</td></tr>
+      <tr><td>Leitungsschutzschalter (LS)</td><td>Schutz gegen Überlast und Kurzschluss — Kennlinien B, C, D</td></tr>
+      <tr><td>PELV/SELV</td><td>Schutzkleinspannung — max. 50 V AC, keine Gefährdung bei Berühren</td></tr>
+    </table>
+    <div class="info-box red">
+      <div class="info-box-icon">⚠️</div>
+      <div>Seit 2009 sind <strong>FI-Schutzschalter (30 mA)</strong> in allen neuen Steckdosenstromkreisen Pflicht! Bei Renovierungen und Umbauten gilt die aktuelle VDE 0100.</div>
+    </div>
+  </div>
+</section>
+
+</main>
+</div>
+
+<script>
+// ── NAVIGATION ──
+function showSection(id) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.getElementById('section-' + id).classList.add('active');
+  document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+  const map = {home:'Übersicht',grundlagen:'Grundlagen',wechselstrom:'Wechselstrom',rechner:'Rechner',normen:'Normen'};
+  document.querySelectorAll('.nav-link').forEach(l => {
+    if(l.textContent.trim() === (map[id]||'')) l.classList.add('active');
+  });
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+// ── CHAPTER SWITCHING ──
+function setChapter(id, btn) {
+  document.querySelectorAll('#section-grundlagen .tab-content').forEach(t => t.classList.remove('active'));
+  const el = document.getElementById('chapter-' + id);
+  if(el) el.classList.add('active');
+  if(btn) {
+    document.querySelectorAll('#section-grundlagen .chapter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+  }
+}
+function setChapterWS(id, btn) {
+  document.querySelectorAll('#section-wechselstrom .tab-content').forEach(t => t.classList.remove('active'));
+  const el = document.getElementById('chapter-' + id);
+  if(el) el.classList.add('active');
+  if(btn) {
+    document.querySelectorAll('#section-wechselstrom .chapter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+  }
+}
+function setChapterEl(id, btn) {
+  document.querySelectorAll('#section-elektronik .tab-content').forEach(t => t.classList.remove('active'));
+  const el = document.getElementById('chapter-' + id);
+  if(el) el.classList.add('active');
+  if(btn) {
+    document.querySelectorAll('#section-elektronik .chapter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+  }
+}
+function setChapterNorm(id, btn) {
+  document.querySelectorAll('#section-normen .tab-content').forEach(t => t.classList.remove('active'));
+  const el = document.getElementById('chapter-' + id);
+  if(el) el.classList.add('active');
+  if(btn) {
+    document.querySelectorAll('#section-normen .chapter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+  }
+}
+
+// ── SEARCH ──
+function handleSearch(val) {
+  if(!val.trim()) return;
+  const terms = val.toLowerCase();
+  const map = {
+    'ohm':'grundlagen','kirchhoff':'grundlagen','leistung':'grundlagen','widerstand':'grundlagen','schaltung':'grundlagen',
+    'wechselstrom':'wechselstrom','drehstrom':'wechselstrom','impedanz':'wechselstrom','transformator':'wechselstrom','blindleistung':'wechselstrom',
+    'diode':'elektronik','transistor':'elektronik','kondensator':'elektronik','halbleiter':'elektronik','spule':'elektronik',
+    'vde':'normen','norm':'normen','schutzklasse':'normen','ip-schutz':'normen','ip schutz':'normen',
+    'installation':'installation','leitungsberechnung':'installation','querschnitt':'installation',
+  };
+  for(const [key, section] of Object.entries(map)) {
+    if(terms.includes(key)) { showSection(section); break; }
+  }
+}
+
+// ── SMART ROUNDING ──
+// Removes unnecessary trailing zeros: 0.2500 → 0.25, 46.0000 → 46, 3.1416 → 3.1416
+function fmt(num) {
+  if(isNaN(num) || !isFinite(num)) return '—';
+  const abs = Math.abs(num);
+  let decimals;
+  if(abs === 0) return '0';
+  if(abs >= 1000) decimals = 0;
+  else if(abs >= 100) decimals = 1;
+  else if(abs >= 10) decimals = 2;
+  else if(abs >= 1) decimals = 3;
+  else if(abs >= 0.1) decimals = 4;
+  else if(abs >= 0.01) decimals = 5;
+  else decimals = 6;
+  // Remove trailing zeros
+  return parseFloat(num.toFixed(decimals)).toString();
+}
+
+// ── RECHNER ──
+function calcOhm() {
+  const u = parseFloat(document.getElementById('ohm_u').value);
+  const i = parseFloat(document.getElementById('ohm_i').value);
+  const r = parseFloat(document.getElementById('ohm_r').value);
+  const box = document.getElementById('ohm_result');
+  box.classList.add('show');
+  if(!isNaN(u) && !isNaN(i) && isNaN(r)) {
+    const res = fmt(u/i);
+    document.getElementById('ohm_val').textContent = res;
+    document.getElementById('ohm_unit').textContent = 'Ω';
+    document.getElementById('ohm_formula').textContent = `R = U / I = ${u} / ${i} = ${res} Ω`;
+  } else if(!isNaN(u) && !isNaN(r) && isNaN(i)) {
+    const res = fmt(u/r);
+    document.getElementById('ohm_val').textContent = res;
+    document.getElementById('ohm_unit').textContent = 'A';
+    document.getElementById('ohm_formula').textContent = `I = U / R = ${u} / ${r} = ${res} A`;
+  } else if(!isNaN(i) && !isNaN(r) && isNaN(u)) {
+    const res = fmt(i*r);
+    document.getElementById('ohm_val').textContent = res;
+    document.getElementById('ohm_unit').textContent = 'V';
+    document.getElementById('ohm_formula').textContent = `U = I × R = ${i} × ${r} = ${res} V`;
+  } else if(!isNaN(u) && !isNaN(i) && !isNaN(r)) {
+    // All three filled — check consistency
+    const calcR = fmt(u/i);
+    document.getElementById('ohm_val').textContent = calcR;
+    document.getElementById('ohm_unit').textContent = 'Ω';
+    document.getElementById('ohm_formula').textContent = `R = U / I = ${u} / ${i} = ${calcR} Ω (R-Feld ignoriert)`;
+  } else {
+    document.getElementById('ohm_val').textContent = 'Bitte genau 2 Felder ausfüllen';
+    document.getElementById('ohm_unit').textContent = '';
+    document.getElementById('ohm_formula').textContent = '';
+  }
+}
+
+function calcLeistung() {
+  const u = parseFloat(document.getElementById('pow_u').value);
+  const i = parseFloat(document.getElementById('pow_i').value);
+  const r = parseFloat(document.getElementById('pow_r').value);
+  const box = document.getElementById('pow_result');
+  if(!isNaN(u) && !isNaN(i)) {
+    const p = fmt(u * i);
+    document.getElementById('pow_val').textContent = p;
+    document.getElementById('pow_formula').textContent = `P = U × I = ${u} V × ${i} A = ${p} W`;
+    box.classList.add('show');
+  } else if(!isNaN(u) && !isNaN(r)) {
+    const p = fmt(u*u / r);
+    document.getElementById('pow_val').textContent = p;
+    document.getElementById('pow_formula').textContent = `P = U² / R = ${u}² / ${r} = ${p} W`;
+    box.classList.add('show');
+  } else if(!isNaN(i) && !isNaN(r)) {
+    const p = fmt(i*i * r);
+    document.getElementById('pow_val').textContent = p;
+    document.getElementById('pow_formula').textContent = `P = I² × R = ${i}² × ${r} = ${p} W`;
+    box.classList.add('show');
+  }
+}
+
+function calcDrehstrom() {
+  const ul = parseFloat(document.getElementById('ds_ul').value);
+  const il = parseFloat(document.getElementById('ds_il').value);
+  const cos = parseFloat(document.getElementById('ds_cos').value);
+  if(!isNaN(ul) && !isNaN(il) && !isNaN(cos)) {
+    const pRaw = Math.sqrt(3) * ul * il * cos;
+    const sRaw = Math.sqrt(3) * ul * il;
+    const qRaw = Math.sqrt(Math.max(0, sRaw*sRaw - pRaw*pRaw));
+    const p = fmt(pRaw), s = fmt(sRaw), q = fmt(qRaw);
+    document.getElementById('ds_val').textContent = `P = ${p} W  |  S = ${s} VA  |  Q = ${q} var`;
+    document.getElementById('ds_formula').textContent = `P = √3 × ${ul} V × ${il} A × ${cos} = ${p} W`;
+    document.getElementById('ds_result').classList.add('show');
+  }
+}
+
+function calcLeiter() {
+  const rho = parseFloat(document.getElementById('lr_mat').value);
+  const l = parseFloat(document.getElementById('lr_l').value);
+  const a = parseFloat(document.getElementById('lr_a').value);
+  if(!isNaN(l) && !isNaN(a) && a > 0) {
+    const r = fmt(rho * l / a);
+    document.getElementById('lr_val').textContent = r;
+    document.getElementById('lr_formula').textContent = `R = ρ × l / A = ${rho} × ${l} m / ${a} mm² = ${r} Ω`;
+    document.getElementById('lr_result').classList.add('show');
+  }
+}
+
+function calcSpannungsteiler() {
+  const u = parseFloat(document.getElementById('st_u').value);
+  const r1 = parseFloat(document.getElementById('st_r1').value);
+  const r2 = parseFloat(document.getElementById('st_r2').value);
+  if(!isNaN(u) && !isNaN(r1) && !isNaN(r2)) {
+    const u2 = fmt(u * r2 / (r1 + r2));
+    const u1 = fmt(u * r1 / (r1 + r2));
+    document.getElementById('st_val').textContent = u2;
+    document.getElementById('st_formula').textContent = `U₂ = ${u} × ${r2} / (${r1} + ${r2}) = ${u2} V  |  U₁ = ${u1} V`;
+    document.getElementById('st_result').classList.add('show');
+  }
+}
+
+function calcKondensator() {
+  const cUF = parseFloat(document.getElementById('ck_c').value);
+  const c = cUF * 1e-6;
+  const u = parseFloat(document.getElementById('ck_u').value);
+  if(!isNaN(c) && !isNaN(u)) {
+    const qMC = fmt(c * u * 1000);
+    const eJ = fmt(0.5 * c * u * u);
+    const eML = fmt(0.5 * c * u * u * 1000);
+    document.getElementById('ck_val').textContent = `Q = ${qMC} mC  |  E = ${eML} mJ`;
+    document.getElementById('ck_formula').textContent = `Q = C×U = ${cUF}µF × ${u}V   |   E = ½×C×U² = ${eJ} J`;
+    document.getElementById('ck_result').classList.add('show');
+  }
+}
+
+function calcBlindwiderstand() {
+  const f = parseFloat(document.getElementById('bw_f').value);
+  const lVal = document.getElementById('bw_l').value;
+  const cVal = document.getElementById('bw_c').value;
+  const omega = 2 * Math.PI * f;
+  let result = '', formula = '';
+  if(lVal !== '') {
+    const l = parseFloat(lVal) / 1000;
+    if(!isNaN(l)) {
+      const xl = fmt(omega * l);
+      result += `X_L = ${xl} Ω   `;
+      formula += `X_L = ω×L = 2π×${f}×${parseFloat(lVal)}mH = ${xl} Ω\n`;
+    }
+  }
+  if(cVal !== '') {
+    const c = parseFloat(cVal) * 1e-6;
+    if(!isNaN(c) && c > 0) {
+      const xc = fmt(1 / (omega * c));
+      result += `X_C = ${xc} Ω`;
+      formula += `X_C = 1/(ω×C) = 1/(2π×${f}×${parseFloat(cVal)}µF) = ${xc} Ω`;
+    }
+  }
+  if(result) {
+    document.getElementById('bw_val').textContent = result;
+    document.getElementById('bw_formula').textContent = formula;
+    document.getElementById('bw_result').classList.add('show');
+  }
+}
+
+// Sidebar active state
+document.querySelectorAll('.sidebar-item').forEach(item => {
+  item.addEventListener('click', function() {
+    document.querySelectorAll('.sidebar-item').forEach(i => i.classList.remove('active'));
+    this.classList.add('active');
+  });
+});
+
+// ── BOTTOM NAV ──
+function setBottomNav(id) {
+  document.querySelectorAll('.bn-item').forEach(b => b.classList.remove('active'));
+  const el = document.getElementById('bn-' + id);
+  if(el) el.classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+// Override showSection to sync bottom nav
+const _origShowSection = showSection;
+// patch nav-link active for mobile bottom nav sync
+document.querySelectorAll('.nav-link').forEach(l => {
+  l.addEventListener('click', function() {
+    const map2 = {'Übersicht':'home','Grundlagen':'grundlagen','Wechselstrom':'wechselstrom','Rechner':'rechner','Normen':'more'};
+    const k = map2[this.textContent.trim()];
+    if(k) setBottomNav(k);
+  });
+});
+
+// ── DRAWER ──
+function openDrawer() {
+  document.getElementById('menuOverlay').classList.add('open');
+  document.getElementById('menuDrawer').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeDrawer() {
+  document.getElementById('menuOverlay').classList.remove('open');
+  document.getElementById('menuDrawer').classList.remove('open');
+  document.body.style.overflow = '';
+}
+// Close on swipe down
+let touchStartY = 0;
+document.getElementById('menuDrawer').addEventListener('touchstart', e => { touchStartY = e.touches[0].clientY; });
+document.getElementById('menuDrawer').addEventListener('touchend', e => {
+  if(e.changedTouches[0].clientY - touchStartY > 60) closeDrawer();
+});
+</script>
+
+<!-- ══ MOBILE BOTTOM NAV ══ -->
+<nav class="bottom-nav">
+  <button class="bn-item active" id="bn-home" onclick="showSection('home');setBottomNav('home')">
+    <span class="bn-icon">🏠</span><span class="bn-label">Start</span>
+  </button>
+  <button class="bn-item" id="bn-grundlagen" onclick="showSection('grundlagen');setBottomNav('grundlagen')">
+    <span class="bn-icon">⚡</span><span class="bn-label">Grundlagen</span>
+  </button>
+  <button class="bn-item" id="bn-rechner" onclick="showSection('rechner');setBottomNav('rechner')">
+    <span class="bn-icon">🔢</span><span class="bn-label">Rechner</span>
+  </button>
+  <button class="bn-item" id="bn-wechselstrom" onclick="showSection('wechselstrom');setBottomNav('wechselstrom')">
+    <span class="bn-icon">〰️</span><span class="bn-label">AC</span>
+  </button>
+  <button class="bn-item" id="bn-more" onclick="openDrawer()">
+    <span class="bn-icon">☰</span><span class="bn-label">Mehr</span>
+  </button>
+</nav>
+
+<!-- ══ MOBILE DRAWER ══ -->
+<div class="mobile-menu-overlay" id="menuOverlay" onclick="closeDrawer()"></div>
+<div class="mobile-drawer" id="menuDrawer">
+  <div class="drawer-handle"></div>
+
+  <div class="drawer-section">
+    <div class="drawer-title">Themen</div>
+    <button class="drawer-item" onclick="showSection('elektronik');closeDrawer();setBottomNav('more')">
+      <span class="drawer-icon">🔬</span> Elektronik & Bauteile <span class="drawer-badge">NEU</span>
+    </button>
+    <button class="drawer-item" onclick="showSection('normen');closeDrawer();setBottomNav('more')">
+      <span class="drawer-icon">📋</span> Normen & Vorschriften
+    </button>
+    <button class="drawer-item" onclick="showSection('installation');closeDrawer();setBottomNav('more')">
+      <span class="drawer-icon">🏠</span> Installationstechnik
+    </button>
+  </div>
+
+  <div class="drawer-section">
+    <div class="drawer-title">Grundlagen – Kapitel</div>
+    <button class="drawer-item" onclick="showSection('grundlagen');setChapter('ohm');closeDrawer();setBottomNav('grundlagen')">
+      <span class="drawer-icon">⚡</span> Ohmsches Gesetz
+    </button>
+    <button class="drawer-item" onclick="showSection('grundlagen');setChapter('kirchhoff');closeDrawer();setBottomNav('grundlagen')">
+      <span class="drawer-icon">🔀</span> Kirchhoffsche Gesetze
+    </button>
+    <button class="drawer-item" onclick="showSection('grundlagen');setChapter('leistung');closeDrawer();setBottomNav('grundlagen')">
+      <span class="drawer-icon">💡</span> Leistung & Energie
+    </button>
+    <button class="drawer-item" onclick="showSection('grundlagen');setChapter('schaltungen');closeDrawer();setBottomNav('grundlagen')">
+      <span class="drawer-icon">🔌</span> Schaltungen
+    </button>
+  </div>
+
+  <div class="drawer-section">
+    <div class="drawer-title">Folge uns</div>
+    <div class="drawer-socials">
+      <a class="drawer-soc" href="https://www.instagram.com/elektrogenius.de/" target="_blank">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#E1306C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4.5"/><circle cx="17.5" cy="6.5" r="1" fill="#E1306C" stroke="none"/></svg>
+        Instagram
+      </a>
+      <a class="drawer-soc" href="https://www.youtube.com/channel/UCM4BVx1bDFUrbMhQ39Y9VCg" target="_blank">
+        <svg width="14" height="14" viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="4" fill="#FF0000"/><polygon points="10,9 16,12 10,15" fill="white"/></svg>
+        YouTube
+      </a>
+      <a class="drawer-soc" href="https://chat.whatsapp.com/FIRdC7y5bg1Az9H3JfpouL" target="_blank">
+        <svg width="14" height="14" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="#25D366"/><path d="M8 13.5c1.5 2 4 3 6.5 2l2 1-0.5-2c1-1.5 1-3.5 0-5C14.5 7.5 9.5 7.5 7.5 10c-1 1.5-1 3 0.5 3.5z" fill="white"/></svg>
+        WhatsApp
+      </a>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
