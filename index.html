@@ -4,11 +4,44 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="theme-color" content="#0d1b2a" />
-  <meta name="description" content="ElektroGenius – Elektrotechnik einfach erklärt für Azubis, Gesellen und Technikinteressierte" />
+  <meta name="description" content="ElektroGenius – Elektrotechnik einfach erklärt für Azubis, Gesellen und Technikinteressierte. Kostenlose Lernplattform mit Quiz, Formeln und Community." />
   <title>ElektroGenius | Elektrotechnik einfach erklärt</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Barlow:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
+  <!-- SEO -->
+  <meta name="robots" content="index, follow" />
+  <meta name="author" content="ElektroGenius" />
+  <meta name="keywords" content="Elektrotechnik, Azubi, Elektro lernen, Elektroniker, Ausbildung, Quiz, Elektrohandwerk, VDE, Ohmsches Gesetz, Drehstrom" />
+  <link rel="canonical" href="https://elektrogenius.de" />
+  <meta property="og:title" content="ElektroGenius – Elektrotechnik einfach erklärt" />
+  <meta property="og:description" content="Kostenlose Lernplattform für Elektro-Azubis. Quiz, Formeln, Rechner und Community." />
+  <meta property="og:url" content="https://elektrogenius.de" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://elektrogenius.de/logonewEG.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="ElektroGenius – Elektrotechnik einfach erklärt" />
+  <meta name="twitter:description" content="Kostenlose Lernplattform für Elektro-Azubis. Quiz, Formeln und Community." />
+  <meta name="twitter:image" content="https://elektrogenius.de/logonewEG.png" />
+  <!-- PWA -->
+  <link rel="manifest" href="/manifest.json" />
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-9EYXMP1S7Y"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-9EYXMP1S7Y');
+  </script>
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/service-worker.js')
+          .then(() => console.log('SW registered'))
+          .catch(err => console.log('SW error', err));
+      });
+    }
+  </script>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
@@ -35,6 +68,16 @@
     .nav-links .vl { color:var(--electric)!important; font-weight:700; }
     .nav-cta { background:var(--electric); color:var(--navy); border:none; border-radius:6px; padding:.5rem 1.2rem; font-family:'Barlow Condensed',sans-serif; font-size:.95rem; font-weight:700; letter-spacing:.06em; cursor:pointer; transition:background .2s,transform .15s; text-decoration:none; }
     .nav-cta:hover { background:var(--electric2); transform:translateY(-1px); }
+
+    /* MOBILE NAV TOGGLE */
+    .nav-toggle { display:none; flex-direction:column; gap:5px; cursor:pointer; background:none; border:none; padding:4px; }
+    .nav-toggle span { width:24px; height:2px; background:var(--white); border-radius:2px; transition:all .3s; }
+    @media(max-width:768px){
+      .nav-links { display:none; position:fixed; top:68px; left:0; right:0; background:rgba(13,27,42,.98); flex-direction:column; padding:1.5rem 5%; gap:1rem; border-bottom:1px solid var(--border); }
+      .nav-links.open { display:flex; }
+      .nav-toggle { display:flex; }
+      .nav-cta { display:none; }
+    }
 
     /* PAGE SYSTEM */
     .page { display:none; }
@@ -72,10 +115,8 @@
     h2.eg em { font-style:normal; color:var(--electric); }
     .lead { font-size:1.05rem; color:var(--muted); line-height:1.75; max-width:560px; }
     .divider-eg { width:60px; height:3px; background:linear-gradient(90deg,var(--electric),transparent); border-radius:2px; margin:1rem 0 2rem; }
-
     .about-text p { color:var(--muted); line-height:1.8; margin-bottom:1.1rem; font-size:.98rem; }
     .about-text p strong { color:var(--white); }
-
     .features-bg { background:linear-gradient(180deg,transparent 0%,rgba(18,34,54,.5) 50%,transparent 100%); }
     .features-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:1.5rem; margin-top:3.5rem; }
     .feature-card { background:var(--navy-mid); border:1px solid var(--border); border-radius:14px; padding:2rem 1.8rem; transition:border-color .25s,transform .2s,box-shadow .25s; }
@@ -83,29 +124,37 @@
     .feature-icon { font-size:2rem; margin-bottom:1rem; display:block; }
     .feature-card h3 { font-family:'Barlow Condensed',sans-serif; font-size:1.3rem; font-weight:800; margin-bottom:.5rem; }
     .feature-card p { color:var(--muted); font-size:.9rem; line-height:1.7; }
-
     .topics-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:1rem; margin-top:3rem; }
     .topic-chip { background:var(--navy-mid); border:1px solid var(--border); border-radius:10px; padding:1.2rem 1.4rem; display:flex; align-items:center; gap:.7rem; font-size:.92rem; font-weight:600; }
     .topic-chip-dot { width:8px; height:8px; border-radius:50%; background:var(--electric); flex-shrink:0; box-shadow:0 0 8px var(--electric); }
-
     .cta-section { background:var(--navy-mid); border-top:1px solid var(--border); border-bottom:1px solid var(--border); }
     .cta-inner { max-width:860px; margin:0 auto; padding:100px 5%; text-align:center; }
     .channels-grid { display:flex; flex-wrap:wrap; gap:1rem; justify-content:center; margin-top:2.5rem; }
     .channel-btn { display:flex; align-items:center; gap:.6rem; background:rgba(240,244,248,.06); border:1px solid var(--border); border-radius:10px; padding:.75rem 1.4rem; color:var(--white); text-decoration:none; font-size:.9rem; font-weight:600; transition:background .2s,border-color .2s,transform .15s; }
     .channel-btn:hover { background:rgba(79,195,247,.12); border-color:rgba(79,195,247,.35); transform:translateY(-2px); }
 
+    /* QUIZ */
+    .quiz-option-btn { padding:.9rem 1rem; background:var(--navy); color:var(--white); border:1px solid var(--border); border-radius:8px; cursor:pointer; font-size:.95rem; text-align:left; width:100%; transition:border-color .2s; font-family:'Barlow',sans-serif; }
+    .quiz-option-btn:hover { border-color:var(--electric); }
+
+    /* CONTACT FORM */
+    .contact-input { padding:1rem; border-radius:8px; border:1px solid var(--border); background:var(--navy); color:var(--white); font-size:1rem; width:100%; transition:border-color .2s; outline:none; font-family:'Barlow',sans-serif; }
+    .contact-input:focus { border-color:var(--electric); }
+
+    /* FOOTER */
     footer { position:relative; z-index:1; background:rgba(10,20,32,.8); border-top:1px solid var(--border); padding:3rem 5%; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:1.5rem; }
     .footer-logo { font-family:'Barlow Condensed',sans-serif; font-size:1.2rem; font-weight:800; }
     .footer-logo span { color:var(--electric); }
-    .footer-links { display:flex; gap:1.5rem; list-style:none; }
+    .footer-links { display:flex; gap:1.5rem; list-style:none; flex-wrap:wrap; }
     .footer-links a { color:var(--muted); text-decoration:none; font-size:.85rem; cursor:pointer; transition:color .2s; }
     .footer-links a:hover { color:var(--electric); }
     .footer-copy { color:var(--muted); font-size:.8rem; width:100%; text-align:center; margin-top:1rem; padding-top:1rem; border-top:1px solid var(--border); }
 
+    /* SCROLL REVEAL */
     .reveal { opacity:0; transform:translateY(28px); transition:opacity .6s ease,transform .6s ease; }
     .reveal.visible { opacity:1; transform:none; }
 
-    /* VOLTIQ STYLES */
+    /* VOLTIQ */
     #page-lernplattform { padding-top:68px; min-height:100vh; }
     .vq-layout { display:flex; min-height:calc(100vh - 68px); }
     .vq-sidebar { width:250px; flex-shrink:0; background:var(--navy-mid); border-right:1px solid var(--border); padding:1.5rem 1rem; position:sticky; top:68px; height:calc(100vh - 68px); overflow-y:auto; }
@@ -117,16 +166,14 @@
     .vq-sidebar-item.active { background:rgba(79,195,247,.12); color:var(--electric); }
     .vq-sidebar-item .icon { font-size:15px; width:20px; text-align:center; flex-shrink:0; }
     .vq-badge { margin-left:auto; font-size:10px; background:var(--electric); color:var(--navy); padding:1px 6px; border-radius:10px; font-weight:600; }
-
     .vq-hero { margin-bottom:3rem; }
     .vq-hero-tag { display:inline-flex; align-items:center; gap:6px; background:rgba(79,195,247,.1); border:1px solid rgba(79,195,247,.25); border-radius:20px; padding:4px 14px; font-size:12px; color:var(--electric); margin-bottom:1.2rem; }
     .vq-hero h1 { font-family:'Barlow Condensed',sans-serif; font-size:clamp(32px,5vw,52px); line-height:1; letter-spacing:2px; margin-bottom:.8rem; }
     .vq-hero h1 span { color:var(--electric); }
     .vq-hero p { font-size:15px; color:var(--muted); max-width:500px; line-height:1.7; margin-bottom:1.8rem; }
-    .vq-hero-stats { display:flex; gap:2rem; }
+    .vq-hero-stats { display:flex; gap:2rem; flex-wrap:wrap; }
     .vq-stat-num { font-family:'Barlow Condensed',sans-serif; font-size:30px; color:var(--electric); }
     .vq-stat-label { font-size:11px; color:var(--text3); text-transform:uppercase; letter-spacing:1px; }
-
     .vq-cards { display:grid; grid-template-columns:repeat(auto-fill,minmax(210px,1fr)); gap:14px; margin-bottom:3rem; }
     .vq-card { background:var(--navy-mid); border:1px solid var(--border); border-radius:14px; padding:1.4rem; cursor:pointer; transition:all .25s; position:relative; overflow:hidden; }
     .vq-card::before { content:''; position:absolute; top:0; left:0; right:0; height:2px; background:var(--card-color,var(--electric)); opacity:.6; transition:opacity .2s; }
@@ -137,43 +184,36 @@
     .vq-card-desc { font-size:12.5px; color:var(--muted); line-height:1.5; }
     .vq-card-count { margin-top:.7rem; font-size:11px; color:var(--text3); display:flex; align-items:center; gap:4px; }
     .vq-card-count::before { content:''; width:4px; height:4px; border-radius:50%; background:var(--card-color,var(--electric)); }
-
     .vq-section { display:none; animation:vqFade .3s ease; }
     .vq-section.active { display:block; }
     @keyframes vqFade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
-
     .vq-page-header { margin-bottom:2.5rem; padding-bottom:1.5rem; border-bottom:1px solid var(--border); }
     .vq-back-btn { display:inline-flex; align-items:center; gap:6px; font-size:13px; color:var(--text3); cursor:pointer; margin-bottom:1rem; transition:color .2s; background:none; border:none; padding:0; font-family:'Barlow',sans-serif; }
     .vq-back-btn:hover { color:var(--electric); }
     .vq-page-title { font-family:'Barlow Condensed',sans-serif; font-size:clamp(26px,4vw,38px); letter-spacing:2px; margin-bottom:.4rem; }
     .vq-page-title span { color:var(--electric); }
     .vq-page-subtitle { font-size:13px; color:var(--muted); }
-
     .theory-block { background:var(--navy-mid); border:1px solid var(--border); border-radius:12px; padding:1.8rem; margin-bottom:1.2rem; }
     .theory-block h3 { font-size:16px; font-weight:700; margin-bottom:.8rem; display:flex; align-items:center; gap:8px; }
     .theory-block h3 .accent { color:var(--electric); }
     .theory-block p { font-size:13.5px; color:var(--muted); line-height:1.8; margin-bottom:.8rem; }
     .theory-block ul { padding-left:1.2rem; }
     .theory-block ul li { font-size:13.5px; color:var(--muted); line-height:1.8; }
-
     .formula-box { background:rgba(13,27,42,.8); border:1px solid rgba(79,195,247,.25); border-radius:10px; padding:1rem 1.4rem; margin:1rem 0; }
     .formula-title { font-size:11px; color:var(--electric); letter-spacing:1px; text-transform:uppercase; margin-bottom:.5rem; }
     .formula-main { font-family:'JetBrains Mono',monospace; font-size:18px; color:var(--electric); font-weight:600; letter-spacing:1px; }
     .formula-vars { font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--text3); margin-top:.5rem; line-height:1.8; }
-
     .info-box { display:flex; gap:12px; padding:1rem 1.2rem; border-radius:10px; margin:1rem 0; font-size:13px; line-height:1.6; }
     .info-box.blue { background:rgba(74,144,226,.1); border:1px solid rgba(74,144,226,.2); color:#93BBEF; }
     .info-box.green { background:rgba(0,208,132,.1); border:1px solid rgba(0,208,132,.2); color:#5DEBB0; }
     .info-box.yellow { background:rgba(79,195,247,.1); border:1px solid rgba(79,195,247,.2); color:var(--electric); }
     .info-box.red { background:rgba(255,90,90,.1); border:1px solid rgba(255,90,90,.2); color:#FF9090; }
     .info-box-icon { font-size:18px; flex-shrink:0; margin-top:1px; }
-
     .theory-table { width:100%; border-collapse:collapse; font-size:13px; margin:1rem 0; }
     .theory-table th { background:rgba(26,48,80,.6); padding:10px 14px; text-align:left; font-size:10px; letter-spacing:1px; color:var(--text3); text-transform:uppercase; }
     .theory-table td { padding:10px 14px; border-bottom:1px solid rgba(255,255,255,.04); color:var(--muted); }
     .theory-table tr:hover td { background:rgba(255,255,255,.02); }
     .mono { font-family:'JetBrains Mono',monospace; color:var(--electric); font-size:12px; }
-
     .calc-box { background:var(--navy-mid); border:1px solid rgba(79,195,247,.2); border-radius:14px; padding:1.8rem; margin-bottom:1.5rem; }
     .calc-title { font-size:15px; font-weight:700; margin-bottom:.3rem; display:flex; align-items:center; gap:8px; }
     .calc-title .icon { color:var(--electric); }
@@ -192,68 +232,30 @@
     .calc-result-value { font-family:'Barlow Condensed',sans-serif; font-size:32px; color:var(--green); letter-spacing:2px; }
     .calc-result-unit { font-size:14px; color:var(--text3); }
     .calc-result-formula { font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--text3); margin-top:.5rem; }
-
     .unit { display:inline-block; background:rgba(26,48,80,.6); border:1px solid rgba(255,255,255,.08); border-radius:4px; padding:1px 7px; font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--muted); }
     .chapter-nav { display:flex; flex-wrap:wrap; gap:8px; margin-bottom:2rem; }
     .chapter-btn { padding:6px 16px; background:var(--navy-mid); border:1px solid var(--border); border-radius:20px; font-size:12px; color:var(--muted); cursor:pointer; transition:all .2s; font-family:'Barlow',sans-serif; }
     .chapter-btn:hover,.chapter-btn.active { background:rgba(79,195,247,.12); border-color:rgba(79,195,247,.3); color:var(--electric); }
     .tab-content { display:none; }
     .tab-content.active { display:block; }
-
     .badge { display:inline-block; font-size:10px; padding:2px 9px; border-radius:10px; font-weight:600; }
     .badge-yellow { background:rgba(79,195,247,.12); color:var(--electric); border:1px solid rgba(79,195,247,.25); }
     .badge-green { background:rgba(0,208,132,.12); color:var(--green); border:1px solid rgba(0,208,132,.25); }
     .badge-blue { background:rgba(74,144,226,.12); color:var(--blue); border:1px solid rgba(74,144,226,.25); }
-
     .vq-search { display:flex; align-items:center; gap:10px; background:var(--navy-mid); border:1px solid var(--border); border-radius:10px; padding:10px 14px; margin-bottom:2rem; }
     .vq-search span { color:var(--text3); }
     .vq-search input { background:none; border:none; outline:none; color:var(--white); font-size:13px; flex:1; font-family:'Barlow',sans-serif; }
     .vq-search input::placeholder { color:var(--text3); }
     .glow-dot { width:8px; height:8px; border-radius:50%; background:var(--electric); box-shadow:0 0 12px var(--electric); display:inline-block; }
-
-    @media(max-width:768px){.vq-sidebar{display:none}.vq-main{padding:1.5rem}.calc-grid{grid-template-columns:1fr}.nav-links{display:none}}
+    @media(max-width:768px){.vq-sidebar{display:none}.vq-main{padding:1.5rem}.calc-grid{grid-template-columns:1fr}}
   </style>
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-9EYXMP1S7Y"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-9EYXMP1S7Y');
-  </script>
-  <!-- SEO Meta Tags -->
-  <meta name="robots" content="index, follow">
-  <meta name="author" content="ElektroGenius">
-  <meta name="keywords" content="Elektrotechnik, Azubi, Elektro lernen, Elektroniker, Ausbildung, Quiz, Elektrohandwerk">
-  <link rel="canonical" href="https://elektrogenius.de">
-  <meta property="og:title" content="ElektroGenius – Elektrotechnik einfach erklärt">
-  <meta property="og:description" content="Lernplattform für Elektro-Azubis und Fachkräfte. Quizfragen, Erklärungen und Community.">
-  <meta property="og:url" content="https://elektrogenius.de">
-  <meta property="og:type" content="website">
-  <meta property="og:image" content="https://elektrogenius.de/logonewEG.png">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="ElektroGenius – Elektrotechnik einfach erklärt">
-  <meta name="twitter:description" content="Lernplattform für Elektro-Azubis. Quiz, Erklärungen und Community.">
-  <meta name="twitter:image" content="https://elektrogenius.de/logonewEG.png">
-  <link rel="manifest" href="/manifest.json">
-  <script>
-    if ('serviceWorker' in navigator) {
-      window.addEventListener('load', () => {
-        navigator.serviceWorker.register('/service-worker.js')
-          .then(reg => console.log('SW registered'))
-          .catch(err => console.log('SW error', err));
-      });
-    }
-  </script>
 </head>
 <body>
 
 <!-- COOKIE BANNER -->
 <div id="cookie-banner" style="display:none; position:fixed; bottom:0; left:0; right:0; z-index:9999; background:var(--navy-mid); border-top:1px solid var(--border); padding:1.2rem 5%; align-items:center; justify-content:space-between; gap:1rem; flex-wrap:wrap;">
   <p style="color:var(--text2); font-size:.9rem; margin:0; flex:1;">
-    🍪 Wir nutzen <strong style="color:var(--white);">Google Analytics</strong> um unsere Website zu verbessern.
-    Deine Daten werden anonymisiert verarbeitet.
-    <a href="#datenschutz" style="color:var(--electric);">Mehr erfahren</a>
+    🍪 Wir nutzen <strong style="color:var(--white);">Google Analytics</strong> um unsere Website zu verbessern. Deine Daten werden anonymisiert verarbeitet.
   </p>
   <div style="display:flex; gap:.8rem; flex-shrink:0;">
     <button onclick="acceptCookies()" style="padding:.6rem 1.5rem; background:var(--electric); color:var(--navy); border:none; border-radius:8px; font-weight:700; cursor:pointer; font-size:.9rem;">Akzeptieren ✅</button>
@@ -261,20 +263,10 @@
   </div>
 </div>
 <script>
-  function showCookieBanner() {
-    if (!localStorage.getItem('cookieConsent')) {
-      document.getElementById('cookie-banner').style.display = 'flex';
-    }
-  }
-  function acceptCookies() {
-    localStorage.setItem('cookieConsent', 'accepted');
-    document.getElementById('cookie-banner').style.display = 'none';
-  }
-  function declineCookies() {
-    localStorage.setItem('cookieConsent', 'declined');
-    document.getElementById('cookie-banner').style.display = 'none';
-  }
-  window.addEventListener('load', showCookieBanner);
+  function showCookieBanner(){if(!localStorage.getItem('cookieConsent')){document.getElementById('cookie-banner').style.display='flex';}}
+  function acceptCookies(){localStorage.setItem('cookieConsent','accepted');document.getElementById('cookie-banner').style.display='none';}
+  function declineCookies(){localStorage.setItem('cookieConsent','declined');document.getElementById('cookie-banner').style.display='none';}
+  window.addEventListener('load',showCookieBanner);
 </script>
 
 <!-- NAV -->
@@ -288,12 +280,15 @@
     </svg>
     <span class="nav-logo-text">Elektro<span>Genius</span></span>
   </div>
-  <ul class="nav-links">
-    <li><a onclick="showPage('home')" id="nav-home" class="active">Startseite</a></li>
-    <li><a onclick="showPage('home');smoothTo('ueber-uns')">Über uns</a></li>
-    <li><a onclick="showPage('home');smoothTo('community')">Community</a></li>
-    <li><a onclick="showPage('lernplattform')" class="vl" id="nav-lern">⚡ VoltIQ Lernen</a></li>
+  <ul class="nav-links" id="nav-menu">
+    <li><a onclick="showPage('home');closeNav()" id="nav-home" class="active">Startseite</a></li>
+    <li><a onclick="showPage('home');smoothTo('ueber-uns');closeNav()">Über uns</a></li>
+    <li><a onclick="showPage('home');smoothTo('community');closeNav()">Community</a></li>
+    <li><a onclick="showPage('lernplattform');closeNav()" class="vl" id="nav-lern">⚡ VoltIQ Lernen</a></li>
   </ul>
+  <button class="nav-toggle" onclick="toggleNav()" aria-label="Menü">
+    <span></span><span></span><span></span>
+  </button>
   <a href="https://chat.whatsapp.com/FIRdC7y5bg1Az9H3JfpouL" target="_blank" class="nav-cta">JETZT MITMACHEN</a>
 </nav>
 
@@ -316,7 +311,7 @@
     <div class="stat-item reveal"><span class="stat-num">100%</span><span class="stat-label">Kostenlos & frei zugänglich</span></div>
     <div class="stat-item reveal"><span class="stat-num">50+</span><span class="stat-label">Formeln & Themen</span></div>
     <div class="stat-item reveal"><span class="stat-num">12</span><span class="stat-label">Interaktive Rechner</span></div>
-    <div class="stat-item reveal"><span class="stat-num">∞</span><span class="stat-label">Community-Wachstum</span></div>
+    <div class="stat-item reveal"><span class="stat-num">20</span><span class="stat-label">Quiz-Fragen</span></div>
   </div>
 
   <section id="ueber-uns">
@@ -340,12 +335,12 @@
       <div class="divider-eg reveal"></div>
       <p class="lead reveal">Wir liefern Inhalte in den Formaten, die wirklich funktionieren — modern, schnell und praxisnah.</p>
       <div class="features-grid">
-        <div class="feature-card reveal"><span class="feature-icon">📸</span><h3>Instagram-Lernposts</h3><p>Wir veröffentlichen regelmäßig Karussell-Beiträge mit Fachwissen, Erklärungen und Memes aus dem echten Handwerksalltag.</p></div>
-        <div class="feature-card reveal"><span class="feature-icon">🧠</span><h3>Quizfragen für Azubis</h3><p>Multiple-Choice-Fragen zu typischen Prüfungsthemen — damit ihr euer Wissen festigt und optimal auf Prüfungen vorbereitet seid.</p></div>
+        <div class="feature-card reveal"><span class="feature-icon">📸</span><h3>Instagram-Lernposts</h3><p>Regelmäßige Karussell-Beiträge mit Fachwissen, Erklärungen und Memes aus dem echten Handwerksalltag.</p></div>
+        <div class="feature-card reveal"><span class="feature-icon">🧠</span><h3>Quizfragen für Azubis</h3><p>20 Multiple-Choice-Fragen zu typischen Prüfungsthemen — Wissen festigen und optimal auf Prüfungen vorbereiten.</p></div>
         <div class="feature-card reveal"><span class="feature-icon">▶️</span><h3>YouTube-Videos</h3><p>Schritt-für-Schritt-Erklärungen zu komplexen Themen — so, wie es ein erfahrener Kollege erklären würde.</p></div>
-        <div class="feature-card reveal"><span class="feature-icon">💬</span><h3>WhatsApp Community</h3><p>Fragen stellen, Erfahrungen teilen, voneinander lernen. Wir haben eine aktive Community aufgebaut, in der niemand allein gelassen wird.</p></div>
-        <div class="feature-card reveal"><span class="feature-icon">⚡</span><h3>VoltIQ Lernportal</h3><p>Unser interaktives Lernportal mit Theorie, Formeln und Rechnern — direkt hier auf der Website, keine extra App nötig.</p></div>
-        <div class="feature-card reveal"><span class="feature-icon">😄</span><h3>Humor trifft Handwerk</h3><p>Wir nehmen das Lernen ernst — uns selbst nicht immer. Memes und Humor gehören dazu, denn Lernen darf auch Spaß machen.</p></div>
+        <div class="feature-card reveal"><span class="feature-icon">💬</span><h3>WhatsApp Community</h3><p>Fragen stellen, Erfahrungen teilen, voneinander lernen. Eine aktive Community, in der niemand allein gelassen wird.</p></div>
+        <div class="feature-card reveal"><span class="feature-icon">⚡</span><h3>VoltIQ Lernportal</h3><p>Interaktives Lernportal mit Theorie, Formeln und Rechnern — direkt auf der Website, keine extra App nötig.</p></div>
+        <div class="feature-card reveal"><span class="feature-icon">😄</span><h3>Humor trifft Handwerk</h3><p>Lernen darf Spaß machen. Memes und Humor gehören dazu — Wissen das hängen bleibt.</p></div>
       </div>
     </div>
   </section>
@@ -389,30 +384,46 @@
 
   <!-- QUIZ SECTION -->
   <section id="quiz" style="padding:4rem 5%; background:var(--navy);">
-    <h2 style="text-align:center; font-size:2rem; color:var(--white); margin-bottom:.5rem;">🧠 Elektrotechnik Quiz</h2>
-    <p style="text-align:center; color:var(--text2); margin-bottom:2rem;">Teste dein Wissen – für Azubis und Profis!</p>
+    <div style="text-align:center; margin-bottom:2rem;">
+      <span style="display:inline-block; font-size:.75rem; font-weight:700; letter-spacing:.12em; color:var(--electric); text-transform:uppercase; margin-bottom:.8rem;">Teste dein Wissen</span>
+      <h2 style="font-family:'Barlow Condensed',sans-serif; font-size:clamp(2rem,5vw,3rem); font-weight:800; margin-bottom:.5rem;">🧠 Elektrotechnik <span style="color:var(--electric);">Quiz</span></h2>
+      <p style="color:var(--text2); font-size:1rem;">20 Fragen für Azubis und Profis – teste jetzt dein Wissen!</p>
+    </div>
     <div id="quiz-box" style="max-width:700px; margin:0 auto; background:var(--navy-mid); border-radius:16px; padding:2rem; border:1px solid var(--border);">
-      <div id="quiz-question" style="font-size:1.2rem; color:var(--white); margin-bottom:1.5rem; font-weight:600;"></div>
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem;">
+        <div id="quiz-progress-text" style="font-size:.85rem; color:var(--text3);"></div>
+        <div id="quiz-score-live" style="font-size:.85rem; color:var(--electric); font-weight:700;"></div>
+      </div>
+      <div id="quiz-progress-bar" style="height:4px; background:var(--navy); border-radius:2px; margin-bottom:1.5rem;">
+        <div id="quiz-progress-fill" style="height:100%; background:var(--electric); border-radius:2px; transition:width .4s ease; width:0%;"></div>
+      </div>
+      <div id="quiz-question" style="font-size:1.15rem; color:var(--white); margin-bottom:1.5rem; font-weight:600; line-height:1.5;"></div>
       <div id="quiz-options" style="display:flex; flex-direction:column; gap:.8rem;"></div>
       <div id="quiz-feedback" style="margin-top:1rem; font-weight:600; font-size:1rem;"></div>
       <button id="quiz-next" onclick="nextQuestion()" style="display:none; margin-top:1.5rem; padding:.8rem 2rem; background:var(--electric); color:var(--navy); border:none; border-radius:8px; font-weight:700; cursor:pointer; font-size:1rem;">Nächste Frage ⚡</button>
-      <div id="quiz-result" style="display:none; text-align:center;">
-        <div id="quiz-score" style="font-size:2rem; color:var(--electric); font-weight:800; margin-bottom:1rem;"></div>
-        <p style="color:var(--text2); margin-bottom:1.5rem;">Gut gemacht! Weiter üben auf ElektroGenius!</p>
-        <button onclick="restartQuiz()" style="padding:.8rem 2rem; background:var(--electric); color:var(--navy); border:none; border-radius:8px; font-weight:700; cursor:pointer; font-size:1rem;">Nochmal versuchen 🔄</button>
+      <div id="quiz-result" style="display:none; text-align:center; padding:1rem 0;">
+        <div id="quiz-score" style="font-size:3rem; color:var(--electric); font-weight:800; margin-bottom:.5rem;"></div>
+        <div id="quiz-result-msg" style="font-size:1.2rem; color:var(--white); font-weight:700; margin-bottom:.5rem;"></div>
+        <p style="color:var(--text2); margin-bottom:1.5rem;">Weiter üben und Profi werden! 💪</p>
+        <button onclick="restartQuiz()" style="padding:.8rem 2rem; background:var(--electric); color:var(--navy); border:none; border-radius:8px; font-weight:700; cursor:pointer; font-size:1rem; margin-right:.5rem;">Nochmal 🔄</button>
+        <a onclick="showPage('lernplattform')" style="padding:.8rem 2rem; background:transparent; color:var(--electric); border:1px solid var(--electric); border-radius:8px; font-weight:700; cursor:pointer; font-size:1rem; text-decoration:none; display:inline-block;">Jetzt lernen ⚡</a>
       </div>
     </div>
   </section>
 
   <!-- KONTAKT SECTION -->
   <section id="kontakt" style="padding:4rem 5%; background:var(--navy-mid);">
-    <h2 style="text-align:center; font-size:2rem; color:var(--white); margin-bottom:.5rem;">⚡ Kontakt</h2>
-    <p style="text-align:center; color:var(--text2); margin-bottom:2rem;">Fragen, Feedback oder Zusammenarbeit? Schreib uns!</p>
+    <div style="text-align:center; margin-bottom:2rem;">
+      <span style="display:inline-block; font-size:.75rem; font-weight:700; letter-spacing:.12em; color:var(--electric); text-transform:uppercase; margin-bottom:.8rem;">Schreib uns</span>
+      <h2 style="font-family:'Barlow Condensed',sans-serif; font-size:clamp(2rem,5vw,3rem); font-weight:800; margin-bottom:.5rem;">⚡ <span style="color:var(--electric);">Kontakt</span></h2>
+      <p style="color:var(--text2);">Fragen, Feedback oder Zusammenarbeit? Wir freuen uns auf deine Nachricht!</p>
+    </div>
     <form action="https://formspree.io/f/mreyjjan" method="POST" style="max-width:600px; margin:0 auto; display:flex; flex-direction:column; gap:1rem;">
-      <input type="text" name="name" placeholder="Dein Name" required style="padding:1rem; border-radius:8px; border:1px solid var(--border); background:var(--navy); color:var(--white); font-size:1rem;">
-      <input type="email" name="email" placeholder="Deine E-Mail" required style="padding:1rem; border-radius:8px; border:1px solid var(--border); background:var(--navy); color:var(--white); font-size:1rem;">
-      <textarea name="message" placeholder="Deine Nachricht..." rows="5" required style="padding:1rem; border-radius:8px; border:1px solid var(--border); background:var(--navy); color:var(--white); font-size:1rem; resize:vertical;"></textarea>
-      <button type="submit" style="padding:1rem; border-radius:8px; background:var(--electric); color:var(--navy); font-weight:700; font-size:1rem; border:none; cursor:pointer;">Nachricht senden ⚡</button>
+      <input type="text" name="name" placeholder="Dein Name" required class="contact-input">
+      <input type="email" name="email" placeholder="Deine E-Mail" required class="contact-input">
+      <input type="text" name="subject" placeholder="Betreff" class="contact-input">
+      <textarea name="message" placeholder="Deine Nachricht..." rows="5" required class="contact-input" style="resize:vertical;"></textarea>
+      <button type="submit" class="btn-primary" style="width:100%; text-align:center;">Nachricht senden ⚡</button>
     </form>
   </section>
 
@@ -421,6 +432,7 @@
     <ul class="footer-links">
       <li><a href="https://www.instagram.com/elektrogenius.de" target="_blank">Instagram</a></li>
       <li><a href="https://www.youtube.com/channel/UCM4BVx1bDFUrbMhQ39Y9VCg" target="_blank">YouTube</a></li>
+      <li><a href="https://chat.whatsapp.com/FIRdC7y5bg1Az9H3JfpouL" target="_blank">WhatsApp</a></li>
       <li><a onclick="showPage('lernplattform')">VoltIQ Lernen</a></li>
     </ul>
     <div class="footer-copy">© 2026 ElektroGenius — Elektrotechnik einfach erklärt. Alle Rechte vorbehalten.</div>
@@ -470,7 +482,6 @@
         <button class="vq-sidebar-item" onclick="showPage('home')"><span class="icon">🏠</span> Zurück zur Startseite</button>
       </div>
     </aside>
-
     <main class="vq-main">
       <div id="vq-home" class="vq-section active">
         <div class="vq-hero">
@@ -535,21 +546,11 @@
           <button class="chapter-btn" onclick="vqChapWS('leistung_ac',this)">⚙️ Leistung AC</button>
           <button class="chapter-btn" onclick="vqChapWS('transformator',this)">🔄 Transformator</button>
         </div>
-        <div id="chapter-grundlagen_ws" class="tab-content active">
-          <div class="theory-block"><h3>〰️ <span class="accent">Wechselspannung</span> — Grundbegriffe</h3><p>Netzfrequenz in Europa: <strong>50 Hz</strong>, Nennspannung <strong>230 V</strong> (Effektivwert).</p><div class="formula-box"><div class="formula-title">Sinusförmige Wechselspannung</div><div class="formula-main">u(t) = Û × sin(ωt + φ)</div><div class="formula-vars">Û = Scheitelwert | ω = 2πf [rad/s] | φ = Phasenwinkel</div></div><table class="theory-table"><tr><th>Größe</th><th>50 Hz Netz</th></tr><tr><td>Scheitelwert</td><td class="mono">325,27 V</td></tr><tr><td>Effektivwert</td><td class="mono">230 V</td></tr><tr><td>Periodendauer</td><td class="mono">20 ms</td></tr></table><div class="info-box yellow"><div class="info-box-icon">⚡</div><div>Bei 230 V Effektivwert beträgt der Scheitelwert ca. <strong>325 V</strong>!</div></div></div>
-        </div>
-        <div id="chapter-drehstrom" class="tab-content">
-          <div class="theory-block"><h3>🔁 <span class="accent">Drehstrom</span></h3><p>230 V Strangspannung, 400 V Leiterspannung in Deutschland.</p><div class="formula-box"><div class="formula-title">Spannungsbeziehung</div><div class="formula-main">U_L = U_S × √3 ≈ 1,732 × U_S</div></div><div class="formula-box"><div class="formula-title">Drehstromleistung</div><div class="formula-main">P = √3 × U_L × I_L × cos φ</div></div><table class="theory-table"><tr><th>Schaltung</th><th>Strangspannung</th></tr><tr><td>Stern (Y)</td><td class="mono">U_S = U_L / √3</td></tr><tr><td>Dreieck (Δ)</td><td class="mono">U_S = U_L</td></tr></table></div>
-        </div>
-        <div id="chapter-impedanz" class="tab-content">
-          <div class="theory-block"><h3>📊 <span class="accent">Impedanz</span></h3><div class="formula-box"><div class="formula-title">Impedanz</div><div class="formula-main">Z = √(R² + X²)</div></div><div class="formula-box"><div class="formula-title">Blindwiderstände</div><div class="formula-main">X_L = ω × L &nbsp;&nbsp; X_C = 1/(ω × C)</div></div><div class="info-box blue"><div class="info-box-icon">💡</div><div>Merkhilfe: <strong>„EMIL"</strong> — Im Kondensator eilt der Strom der Spannung voraus.</div></div></div>
-        </div>
-        <div id="chapter-leistung_ac" class="tab-content">
-          <div class="theory-block"><h3>⚙️ <span class="accent">Wirkleistung, Blindleistung, Scheinleistung</span></h3><div class="formula-box"><div class="formula-title">Leistungsdreieck</div><div class="formula-main">S² = P² + Q²</div><div class="formula-vars">S = Scheinleistung [VA] | P = Wirkleistung [W] | Q = Blindleistung [var]</div></div><div class="formula-box"><div class="formula-title">Leistungsfaktor</div><div class="formula-main">cos φ = P / S</div></div><div class="info-box red"><div class="info-box-icon">⚠️</div><div>Niedriger Leistungsfaktor (cos φ &lt; 0,9) belastet das Netz. Abhilfe: Kondensatoren zur Kompensation.</div></div></div>
-        </div>
-        <div id="chapter-transformator" class="tab-content">
-          <div class="theory-block"><h3>🔄 <span class="accent">Transformator</span></h3><div class="formula-box"><div class="formula-title">Übersetzungsverhältnis</div><div class="formula-main">ü = U₁/U₂ = N₁/N₂ = I₂/I₁</div></div><div class="info-box green"><div class="info-box-icon">✅</div><div>Beim idealen Trafo gilt: <strong>P₁ = P₂</strong>. Spannungsgewinn = Stromverlust.</div></div></div>
-        </div>
+        <div id="chapter-grundlagen_ws" class="tab-content active"><div class="theory-block"><h3>〰️ <span class="accent">Wechselspannung</span> — Grundbegriffe</h3><p>Netzfrequenz in Europa: <strong>50 Hz</strong>, Nennspannung <strong>230 V</strong> (Effektivwert).</p><div class="formula-box"><div class="formula-title">Sinusförmige Wechselspannung</div><div class="formula-main">u(t) = Û × sin(ωt + φ)</div><div class="formula-vars">Û = Scheitelwert | ω = 2πf [rad/s] | φ = Phasenwinkel</div></div><table class="theory-table"><tr><th>Größe</th><th>50 Hz Netz</th></tr><tr><td>Scheitelwert</td><td class="mono">325,27 V</td></tr><tr><td>Effektivwert</td><td class="mono">230 V</td></tr><tr><td>Periodendauer</td><td class="mono">20 ms</td></tr></table><div class="info-box yellow"><div class="info-box-icon">⚡</div><div>Bei 230 V Effektivwert beträgt der Scheitelwert ca. <strong>325 V</strong>!</div></div></div></div>
+        <div id="chapter-drehstrom" class="tab-content"><div class="theory-block"><h3>🔁 <span class="accent">Drehstrom</span></h3><p>230 V Strangspannung, 400 V Leiterspannung in Deutschland.</p><div class="formula-box"><div class="formula-title">Spannungsbeziehung</div><div class="formula-main">U_L = U_S × √3 ≈ 1,732 × U_S</div></div><div class="formula-box"><div class="formula-title">Drehstromleistung</div><div class="formula-main">P = √3 × U_L × I_L × cos φ</div></div><table class="theory-table"><tr><th>Schaltung</th><th>Strangspannung</th></tr><tr><td>Stern (Y)</td><td class="mono">U_S = U_L / √3</td></tr><tr><td>Dreieck (Δ)</td><td class="mono">U_S = U_L</td></tr></table></div></div>
+        <div id="chapter-impedanz" class="tab-content"><div class="theory-block"><h3>📊 <span class="accent">Impedanz</span></h3><div class="formula-box"><div class="formula-title">Impedanz</div><div class="formula-main">Z = √(R² + X²)</div></div><div class="formula-box"><div class="formula-title">Blindwiderstände</div><div class="formula-main">X_L = ω × L &nbsp;&nbsp; X_C = 1/(ω × C)</div></div><div class="info-box blue"><div class="info-box-icon">💡</div><div>Merkhilfe: <strong>„EMIL"</strong> — Im Kondensator eilt der Strom der Spannung voraus.</div></div></div></div>
+        <div id="chapter-leistung_ac" class="tab-content"><div class="theory-block"><h3>⚙️ <span class="accent">Wirkleistung, Blindleistung, Scheinleistung</span></h3><div class="formula-box"><div class="formula-title">Leistungsdreieck</div><div class="formula-main">S² = P² + Q²</div><div class="formula-vars">S = Scheinleistung [VA] | P = Wirkleistung [W] | Q = Blindleistung [var]</div></div><div class="formula-box"><div class="formula-title">Leistungsfaktor</div><div class="formula-main">cos φ = P / S</div></div><div class="info-box red"><div class="info-box-icon">⚠️</div><div>Niedriger Leistungsfaktor (cos φ &lt; 0,9) belastet das Netz. Abhilfe: Kondensatoren zur Kompensation.</div></div></div></div>
+        <div id="chapter-transformator" class="tab-content"><div class="theory-block"><h3>🔄 <span class="accent">Transformator</span></h3><div class="formula-box"><div class="formula-title">Übersetzungsverhältnis</div><div class="formula-main">ü = U₁/U₂ = N₁/N₂ = I₂/I₁</div></div><div class="info-box green"><div class="info-box-icon">✅</div><div>Beim idealen Trafo gilt: <strong>P₁ = P₂</strong>. Spannungsgewinn = Stromverlust.</div></div></div></div>
       </div>
 
       <div id="vq-elektronik" class="vq-section">
@@ -604,48 +605,31 @@
 </div><!-- /page-lernplattform -->
 
 <script>
-function showPage(id) {
-  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-  document.getElementById('page-' + id).classList.add('active');
-  window.scrollTo({top:0, behavior:'smooth'});
-  document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
-  if(id==='home') document.getElementById('nav-home').classList.add('active');
-  if(id==='lernplattform') document.getElementById('nav-lern').classList.add('active');
+// NAV
+function toggleNav(){document.getElementById('nav-menu').classList.toggle('open');}
+function closeNav(){document.getElementById('nav-menu').classList.remove('open');}
+
+// PAGE SWITCHING
+function showPage(id){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.getElementById('page-'+id).classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+  document.querySelectorAll('.nav-links a').forEach(a=>a.classList.remove('active'));
+  if(id==='home')document.getElementById('nav-home').classList.add('active');
+  if(id==='lernplattform')document.getElementById('nav-lern').classList.add('active');
+  closeNav();
 }
-function smoothTo(id) {
-  setTimeout(() => { const el=document.getElementById(id); if(el) el.scrollIntoView({behavior:'smooth'}); }, 60);
-}
-function vqShow(id) {
-  document.querySelectorAll('.vq-section').forEach(s => s.classList.remove('active'));
-  const el = document.getElementById('vq-' + id);
-  if(el) { el.classList.add('active'); window.scrollTo({top:0,behavior:'smooth'}); }
-}
-function vqChap(id, btn) {
-  document.querySelectorAll('#vq-grundlagen .tab-content').forEach(t => t.classList.remove('active'));
-  const el = document.getElementById('chapter-' + id); if(el) el.classList.add('active');
-  if(btn) { document.querySelectorAll('#vq-grundlagen .chapter-btn').forEach(b => b.classList.remove('active')); btn.classList.add('active'); }
-}
-function vqChapWS(id, btn) {
-  document.querySelectorAll('#vq-wechselstrom .tab-content').forEach(t => t.classList.remove('active'));
-  const el = document.getElementById('chapter-' + id); if(el) el.classList.add('active');
-  if(btn) { document.querySelectorAll('#vq-wechselstrom .chapter-btn').forEach(b => b.classList.remove('active')); btn.classList.add('active'); }
-}
-function vqChapEl(id, btn) {
-  document.querySelectorAll('#vq-elektronik .tab-content').forEach(t => t.classList.remove('active'));
-  const el = document.getElementById('chapter-' + id); if(el) el.classList.add('active');
-  if(btn) { document.querySelectorAll('#vq-elektronik .chapter-btn').forEach(b => b.classList.remove('active')); btn.classList.add('active'); }
-}
-function vqChapNorm(id, btn) {
-  document.querySelectorAll('#vq-normen .tab-content').forEach(t => t.classList.remove('active'));
-  const el = document.getElementById('chapter-' + id); if(el) el.classList.add('active');
-  if(btn) { document.querySelectorAll('#vq-normen .chapter-btn').forEach(b => b.classList.remove('active')); btn.classList.add('active'); }
-}
-function vqSearch(val) {
-  if(!val.trim()) return;
-  const t = val.toLowerCase();
-  const m = {'ohm':'grundlagen','kirchhoff':'grundlagen','leistung':'grundlagen','widerstand':'grundlagen','schaltung':'grundlagen','wechselstrom':'wechselstrom','drehstrom':'wechselstrom','impedanz':'wechselstrom','transformator':'wechselstrom','diode':'elektronik','transistor':'elektronik','kondensator':'elektronik','halbleiter':'elektronik','spule':'elektronik','vde':'normen','norm':'normen','schutz':'normen','ip':'normen','installation':'installation','leitung':'installation'};
-  for(const [k,v] of Object.entries(m)) { if(t.includes(k)) { vqShow(v); break; } }
-}
+function smoothTo(id){setTimeout(()=>{const el=document.getElementById(id);if(el)el.scrollIntoView({behavior:'smooth'});},60);}
+
+// VOLTIQ
+function vqShow(id){document.querySelectorAll('.vq-section').forEach(s=>s.classList.remove('active'));const el=document.getElementById('vq-'+id);if(el){el.classList.add('active');window.scrollTo({top:0,behavior:'smooth'});}}
+function vqChap(id,btn){document.querySelectorAll('#vq-grundlagen .tab-content').forEach(t=>t.classList.remove('active'));const el=document.getElementById('chapter-'+id);if(el)el.classList.add('active');if(btn){document.querySelectorAll('#vq-grundlagen .chapter-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');}}
+function vqChapWS(id,btn){document.querySelectorAll('#vq-wechselstrom .tab-content').forEach(t=>t.classList.remove('active'));const el=document.getElementById('chapter-'+id);if(el)el.classList.add('active');if(btn){document.querySelectorAll('#vq-wechselstrom .chapter-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');}}
+function vqChapEl(id,btn){document.querySelectorAll('#vq-elektronik .tab-content').forEach(t=>t.classList.remove('active'));const el=document.getElementById('chapter-'+id);if(el)el.classList.add('active');if(btn){document.querySelectorAll('#vq-elektronik .chapter-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');}}
+function vqChapNorm(id,btn){document.querySelectorAll('#vq-normen .tab-content').forEach(t=>t.classList.remove('active'));const el=document.getElementById('chapter-'+id);if(el)el.classList.add('active');if(btn){document.querySelectorAll('#vq-normen .chapter-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');}}
+function vqSearch(val){if(!val.trim())return;const t=val.toLowerCase();const m={'ohm':'grundlagen','kirchhoff':'grundlagen','leistung':'grundlagen','widerstand':'grundlagen','schaltung':'grundlagen','wechselstrom':'wechselstrom','drehstrom':'wechselstrom','impedanz':'wechselstrom','transformator':'wechselstrom','diode':'elektronik','transistor':'elektronik','kondensator':'elektronik','halbleiter':'elektronik','spule':'elektronik','vde':'normen','norm':'normen','schutz':'normen','ip':'normen','installation':'installation','leitung':'installation'};for(const[k,v]of Object.entries(m)){if(t.includes(k)){vqShow(v);break;}}}
+
+// RECHNER
 function fmt(n){if(isNaN(n)||!isFinite(n))return'—';const a=Math.abs(n);if(a===0)return'0';let d;if(a>=1000)d=0;else if(a>=100)d=1;else if(a>=10)d=2;else if(a>=1)d=3;else if(a>=0.1)d=4;else d=5;return parseFloat(n.toFixed(d)).toString();}
 function calcOhm(){const u=parseFloat(document.getElementById('ohm_u').value),i=parseFloat(document.getElementById('ohm_i').value),r=parseFloat(document.getElementById('ohm_r').value);const b=document.getElementById('ohm_result');b.classList.add('show');if(!isNaN(u)&&!isNaN(i)&&isNaN(r)){const res=fmt(u/i);document.getElementById('ohm_val').textContent=res;document.getElementById('ohm_unit').textContent='Ω';document.getElementById('ohm_formula').textContent=`R = U/I = ${u}/${i} = ${res} Ω`;}else if(!isNaN(u)&&!isNaN(r)&&isNaN(i)){const res=fmt(u/r);document.getElementById('ohm_val').textContent=res;document.getElementById('ohm_unit').textContent='A';document.getElementById('ohm_formula').textContent=`I = U/R = ${u}/${r} = ${res} A`;}else if(!isNaN(i)&&!isNaN(r)&&isNaN(u)){const res=fmt(i*r);document.getElementById('ohm_val').textContent=res;document.getElementById('ohm_unit').textContent='V';document.getElementById('ohm_formula').textContent=`U = I×R = ${i}×${r} = ${res} V`;}else{document.getElementById('ohm_val').textContent='Bitte genau 2 Felder';document.getElementById('ohm_unit').textContent='';}}
 function calcLeistung(){const u=parseFloat(document.getElementById('pow_u').value),i=parseFloat(document.getElementById('pow_i').value),r=parseFloat(document.getElementById('pow_r').value);const b=document.getElementById('pow_result');if(!isNaN(u)&&!isNaN(i)){const p=fmt(u*i);document.getElementById('pow_val').textContent=p;document.getElementById('pow_formula').textContent=`P = U×I = ${u}V × ${i}A = ${p} W`;b.classList.add('show');}else if(!isNaN(u)&&!isNaN(r)){const p=fmt(u*u/r);document.getElementById('pow_val').textContent=p;document.getElementById('pow_formula').textContent=`P = U²/R = ${p} W`;b.classList.add('show');}else if(!isNaN(i)&&!isNaN(r)){const p=fmt(i*i*r);document.getElementById('pow_val').textContent=p;document.getElementById('pow_formula').textContent=`P = I²×R = ${p} W`;b.classList.add('show');}}
@@ -656,75 +640,111 @@ function calcKondensator(){const c=parseFloat(document.getElementById('ck_c').va
 function calcBlindwiderstand(){const f=parseFloat(document.getElementById('bw_f').value),lV=document.getElementById('bw_l').value,cV=document.getElementById('bw_c').value;const w=2*Math.PI*f;let r='',fo='';if(lV!==''){const l=parseFloat(lV)/1000;if(!isNaN(l)){const xl=fmt(w*l);r+=`X_L = ${xl} Ω   `;fo+=`X_L=ω×L=${xl}Ω\n`;}}if(cV!==''){const c=parseFloat(cV)*1e-6;if(!isNaN(c)&&c>0){const xc=fmt(1/(w*c));r+=`X_C = ${xc} Ω`;fo+=`X_C=1/(ω×C)=${xc}Ω`;}}if(r){document.getElementById('bw_val').textContent=r;document.getElementById('bw_formula').textContent=fo;document.getElementById('bw_result').classList.add('show');}}
 
 // SCROLL REVEAL
-const reveals = document.querySelectorAll('.reveal');
-const io = new IntersectionObserver((entries) => { entries.forEach((e,i) => { if(e.isIntersecting){ setTimeout(()=>e.target.classList.add('visible'), i*60); io.unobserve(e.target); } }); }, {threshold:0.12});
-reveals.forEach(el => io.observe(el));
+const reveals=document.querySelectorAll('.reveal');
+const io=new IntersectionObserver((entries)=>{entries.forEach((e,i)=>{if(e.isIntersecting){setTimeout(()=>e.target.classList.add('visible'),i*60);io.unobserve(e.target);}});},{threshold:0.12});
+reveals.forEach(el=>io.observe(el));
 
-// QUIZ
-const quizData = [
-  { question: "Wie lautet die Formel für die elektrische Leistung?", options: ["P = U × I", "P = U / I", "P = I × R", "P = U + I"], answer: 0 },
-  { question: "Was ist die Einheit des elektrischen Widerstands?", options: ["Ampere (A)", "Volt (V)", "Ohm (Ω)", "Watt (W)"], answer: 2 },
-  { question: "Welches Schutzprinzip verhindert gefährliche Berührungsspannungen?", options: ["Überlastschutz", "Schutzerdung", "Phasenverschiebung", "Blindleistung"], answer: 1 },
-  { question: "Was bedeutet IP44?", options: ["Schutz gegen Staub und Spritzwasser", "Schutz gegen Eintauchen", "Kein Schutz", "Schutz gegen Hochdruckreiniger"], answer: 0 },
-  { question: "Was ist Blindleistung?", options: ["Nutzbare Leistung", "Verlustleistung im Widerstand", "Nicht nutzbare Wechselleistung durch Kapazitäten/Induktivitäten", "Gleichstromleistung"], answer: 2 },
-  { question: "Welche Farbe hat der Schutzleiter (PE)?", options: ["Blau", "Braun", "Grün-Gelb", "Schwarz"], answer: 2 },
-  { question: "Was berechnet das Ohmsche Gesetz?", options: ["U = P × I", "U = R × I", "U = R / I", "U = I²× P"], answer: 1 },
-  { question: "Welcher FI-Schutzschalter ist für Badezimmer vorgeschrieben?", options: ["Typ B 300mA", "Typ A 30mA", "Typ AC 100mA", "Typ F 500mA"], answer: 1 }
+// QUIZ - 20 Fragen
+const quizData=[
+  {question:"Wie lautet die Formel für die elektrische Leistung?",options:["P = U × I","P = U / I","P = I × R","P = U + I"],answer:0},
+  {question:"Was ist die Einheit des elektrischen Widerstands?",options:["Ampere (A)","Volt (V)","Ohm (Ω)","Watt (W)"],answer:2},
+  {question:"Welche Farbe hat der Schutzleiter (PE)?",options:["Blau","Braun","Grün-Gelb","Schwarz"],answer:2},
+  {question:"Was bedeutet IP44?",options:["Schutz gegen Staub und Spritzwasser","Schutz gegen Eintauchen","Kein Schutz","Schutz gegen Hochdruckreiniger"],answer:0},
+  {question:"Was ist Blindleistung?",options:["Nutzbare Leistung","Verlustleistung im Widerstand","Nicht nutzbare Wechselleistung durch Kapazitäten/Induktivitäten","Gleichstromleistung"],answer:2},
+  {question:"Welcher FI-Schutzschalter ist für Badezimmer vorgeschrieben?",options:["Typ B 300mA","Typ A 30mA","Typ AC 100mA","Typ F 500mA"],answer:1},
+  {question:"Was berechnet das Ohmsche Gesetz?",options:["U = P × I","U = R × I","U = R / I","U = I² × P"],answer:1},
+  {question:"Welches Schutzprinzip verhindert gefährliche Berührungsspannungen?",options:["Überlastschutz","Schutzerdung","Phasenverschiebung","Blindleistung"],answer:1},
+  {question:"Wie hoch ist die Netzspannung in Deutschland?",options:["110 V","220 V","230 V","400 V"],answer:2},
+  {question:"Was ist die Frequenz des europäischen Stromnetzes?",options:["25 Hz","50 Hz","60 Hz","100 Hz"],answer:1},
+  {question:"Welche Schutzklasse hat ein Gerät mit doppelter Isolierung?",options:["Schutzklasse I","Schutzklasse II","Schutzklasse III","Schutzklasse IV"],answer:1},
+  {question:"Was bedeutet der Begriff 'Leiterspannung' beim Drehstrom?",options:["Spannung zwischen Phase und Nullleiter","Spannung zwischen zwei Phasen","Spannung am Widerstand","Spannung am Kondensator"],answer:1},
+  {question:"Wie groß ist die Leiterspannung beim deutschen Drehstromnetz?",options:["230 V","325 V","400 V","690 V"],answer:2},
+  {question:"Was ist der Scheitelwert der deutschen Netzspannung?",options:["230 V","280 V","325 V","400 V"],answer:2},
+  {question:"Welche Formel beschreibt die Reihenschaltung von Widerständen?",options:["R_ges = R1 × R2","R_ges = R1 + R2 + R3","1/R_ges = 1/R1 + 1/R2","R_ges = R1 / R2"],answer:1},
+  {question:"Was ist die Einheit der elektrischen Kapazität?",options:["Henry (H)","Ohm (Ω)","Farad (F)","Siemens (S)"],answer:2},
+  {question:"Welche Farbe hat der Neutralleiter (N)?",options:["Grün-Gelb","Braun","Schwarz","Blau"],answer:3},
+  {question:"Ab welchem Fehlerstrom löst ein Standard-FI-Schutzschalter aus?",options:["10 mA","30 mA","100 mA","300 mA"],answer:1},
+  {question:"Was ist der Wirkungsgrad eines Transformators?",options:["η = P_ab / P_zu × 100%","η = U1 / U2","η = I1 × I2","η = R1 + R2"],answer:0},
+  {question:"Welcher Leitungsquerschnitt wird standardmäßig für Steckdosen verwendet?",options:["1,0 mm²","1,5 mm²","2,5 mm²","4,0 mm²"],answer:2}
 ];
-let current = 0, score = 0, answered = false;
-function loadQuestion() {
-  answered = false;
-  const q = quizData[current];
-  document.getElementById('quiz-question').innerHTML = `Frage ${current + 1}/${quizData.length}: ${q.question}`;
-  document.getElementById('quiz-feedback').innerHTML = '';
-  document.getElementById('quiz-next').style.display = 'none';
-  const opts = document.getElementById('quiz-options');
-  opts.innerHTML = '';
-  q.options.forEach((opt, i) => {
-    const btn = document.createElement('button');
-    btn.innerText = opt;
-    btn.style = 'padding:.9rem 1rem; background:var(--navy); color:var(--white); border:1px solid var(--border); border-radius:8px; cursor:pointer; font-size:.95rem; text-align:left;';
-    btn.onclick = () => selectAnswer(i, btn);
+
+let current=0,score=0,answered=false;
+
+function updateProgress(){
+  const pct=Math.round((current/quizData.length)*100);
+  document.getElementById('quiz-progress-fill').style.width=pct+'%';
+  document.getElementById('quiz-progress-text').textContent=`Frage ${current+1} von ${quizData.length}`;
+  document.getElementById('quiz-score-live').textContent=`✅ ${score} richtig`;
+}
+
+function loadQuestion(){
+  answered=false;
+  updateProgress();
+  const q=quizData[current];
+  document.getElementById('quiz-question').textContent=q.question;
+  document.getElementById('quiz-feedback').innerHTML='';
+  document.getElementById('quiz-next').style.display='none';
+  const opts=document.getElementById('quiz-options');
+  opts.innerHTML='';
+  q.options.forEach((opt,i)=>{
+    const btn=document.createElement('button');
+    btn.textContent=opt;
+    btn.className='quiz-option-btn';
+    btn.onclick=()=>selectAnswer(i,btn);
     opts.appendChild(btn);
   });
 }
-function selectAnswer(i, btn) {
-  if (answered) return;
-  answered = true;
-  const correct = quizData[current].answer;
-  const btns = document.querySelectorAll('#quiz-options button');
-  btns.forEach(b => b.style.cursor = 'default');
-  if (i === correct) {
-    btn.style.background = '#00D084'; btn.style.color = '#0d1b2a';
-    document.getElementById('quiz-feedback').innerHTML = '✅ Richtig!';
-    document.getElementById('quiz-feedback').style.color = '#00D084';
+
+function selectAnswer(i,btn){
+  if(answered)return;
+  answered=true;
+  const correct=quizData[current].answer;
+  document.querySelectorAll('.quiz-option-btn').forEach(b=>b.style.cursor='default');
+  if(i===correct){
+    btn.style.background='#00D084';btn.style.color='#0d1b2a';btn.style.borderColor='#00D084';
+    document.getElementById('quiz-feedback').innerHTML='✅ Richtig! Super gemacht!';
+    document.getElementById('quiz-feedback').style.color='#00D084';
     score++;
-  } else {
-    btn.style.background = '#FF5A5A'; btn.style.color = '#fff';
-    btns[correct].style.background = '#00D084'; btns[correct].style.color = '#0d1b2a';
-    document.getElementById('quiz-feedback').innerHTML = '❌ Leider falsch!';
-    document.getElementById('quiz-feedback').style.color = '#FF5A5A';
+  }else{
+    btn.style.background='#FF5A5A';btn.style.color='#fff';btn.style.borderColor='#FF5A5A';
+    const btns=document.querySelectorAll('.quiz-option-btn');
+    btns[correct].style.background='#00D084';btns[correct].style.color='#0d1b2a';btns[correct].style.borderColor='#00D084';
+    document.getElementById('quiz-feedback').innerHTML='❌ Leider falsch! Die richtige Antwort ist grün markiert.';
+    document.getElementById('quiz-feedback').style.color='#FF5A5A';
   }
-  document.getElementById('quiz-next').style.display = 'inline-block';
+  document.getElementById('quiz-next').style.display='inline-block';
 }
-function nextQuestion() {
+
+function nextQuestion(){
   current++;
-  if (current < quizData.length) {
+  if(current<quizData.length){
     loadQuestion();
-  } else {
-    document.getElementById('quiz-options').innerHTML = '';
-    document.getElementById('quiz-question').innerHTML = '';
-    document.getElementById('quiz-feedback').innerHTML = '';
-    document.getElementById('quiz-next').style.display = 'none';
-    document.getElementById('quiz-result').style.display = 'block';
-    document.getElementById('quiz-score').innerHTML = `${score} / ${quizData.length} Punkte 🏆`;
+  }else{
+    document.getElementById('quiz-progress-fill').style.width='100%';
+    document.getElementById('quiz-progress-text').textContent='Quiz abgeschlossen!';
+    document.getElementById('quiz-score-live').textContent=`${score}/${quizData.length} richtig`;
+    document.getElementById('quiz-options').innerHTML='';
+    document.getElementById('quiz-question').innerHTML='';
+    document.getElementById('quiz-feedback').innerHTML='';
+    document.getElementById('quiz-next').style.display='none';
+    document.getElementById('quiz-result').style.display='block';
+    document.getElementById('quiz-score').innerHTML=`${score} / ${quizData.length}`;
+    let msg='';
+    if(score>=18)msg='🏆 Absoluter Profi!';
+    else if(score>=15)msg='⚡ Sehr gut!';
+    else if(score>=10)msg='👍 Gut gemacht!';
+    else if(score>=5)msg='📚 Weiter lernen!';
+    else msg='💪 Nicht aufgeben!';
+    document.getElementById('quiz-result-msg').textContent=msg;
   }
 }
-function restartQuiz() {
-  current = 0; score = 0;
-  document.getElementById('quiz-result').style.display = 'none';
+
+function restartQuiz(){
+  current=0;score=0;
+  document.getElementById('quiz-result').style.display='none';
   loadQuestion();
 }
+
 loadQuestion();
 </script>
 </body>
