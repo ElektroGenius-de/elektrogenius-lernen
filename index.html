@@ -251,7 +251,39 @@
 </script>
 </head>
 <body>
+<!-- COOKIE BANNER -->
+<div id="cookie-banner" style="display:none; position:fixed; bottom:0; left:0; right:0; z-index:9999; background:var(--navy-mid); border-top:1px solid var(--border); padding:1.2rem 5%; display:flex; align-items:center; justify-content:space-between; gap:1rem; flex-wrap:wrap;">
+  <p style="color:var(--text2); font-size:.9rem; margin:0; flex:1;">
+    🍪 Wir nutzen <strong style="color:var(--white);">Google Analytics</strong> um unsere Website zu verbessern. 
+    Deine Daten werden anonymisiert verarbeitet. 
+    <a href="#datenschutz" style="color:var(--electric);">Mehr erfahren</a>
+  </p>
+  <div style="display:flex; gap:.8rem; flex-shrink:0;">
+    <button onclick="acceptCookies()" style="padding:.6rem 1.5rem; background:var(--electric); color:var(--navy); border:none; border-radius:8px; font-weight:700; cursor:pointer; font-size:.9rem;">
+      Akzeptieren ✅
+    </button>
+    <button onclick="declineCookies()" style="padding:.6rem 1.5rem; background:transparent; color:var(--text2); border:1px solid var(--border); border-radius:8px; font-weight:600; cursor:pointer; font-size:.9rem;">
+      Ablehnen
+    </button>
+  </div>
+</div>
 
+<script>
+  function showCookieBanner() {
+    if (!localStorage.getItem('cookieConsent')) {
+      document.getElementById('cookie-banner').style.display = 'flex';
+    }
+  }
+  function acceptCookies() {
+    localStorage.setItem('cookieConsent', 'accepted');
+    document.getElementById('cookie-banner').style.display = 'none';
+  }
+  function declineCookies() {
+    localStorage.setItem('cookieConsent', 'declined');
+    document.getElementById('cookie-banner').style.display = 'none';
+  }
+  window.addEventListener('load', showCookieBanner);
+</script>
 <!-- NAV -->
 <nav>
   <div class="nav-logo" onclick="showPage('home')">
