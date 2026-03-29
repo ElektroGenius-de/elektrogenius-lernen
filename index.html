@@ -379,7 +379,7 @@
 <div id="cookie-banner">
   <div style="flex:1;min-width:200px">
     <p style="color:var(--white);font-weight:600;margin-bottom:.3rem">🍪 Datenschutz & Cookies</p>
-    <p style="color:var(--text2);font-size:.85rem">Wir nutzen <strong style="color:var(--white)">Google Analytics</strong> um unsere Website zu verbessern. Deine Daten werden anonymisiert verarbeitet. Mehr in unserer <a onclick="showPage('datenschutz')" style="color:var(--electric);cursor:pointer">Datenschutzerklärung</a>.</p>
+    <p style="color:var(--text2);font-size:.85rem">Wir nutzen <strong style="color:var(--white)">Google Analytics</strong> um unsere Website zu verbessern. Deine Daten werden anonymisiert verarbeitet. Mehr in unserer <a href="/datenschutz.html" style="color:var(--electric);cursor:pointer">Datenschutzerklärung</a>.</p>
   </div>
   <div style="display:flex;gap:.8rem;flex-shrink:0;flex-wrap:wrap">
     <button onclick="acceptCookies()" style="padding:.6rem 1.5rem;background:var(--electric);color:var(--navy);border:none;border-radius:8px;font-weight:700;cursor:pointer;font-size:.9rem">Alle akzeptieren ✅</button>
@@ -567,7 +567,7 @@
       <textarea name="message" placeholder="Deine Nachricht... *" rows="5" required class="contact-input" style="resize:vertical"></textarea>
       <div style="display:flex;align-items:center;gap:.5rem">
         <input type="checkbox" id="privacy-check" required style="width:16px;height:16px;cursor:pointer;accent-color:var(--electric)">
-        <label for="privacy-check" style="font-size:.85rem;color:var(--text2)">Ich habe die <a onclick="showPage('datenschutz')" style="color:var(--electric);cursor:pointer">Datenschutzerklärung</a> gelesen und stimme zu *</label>
+        <label for="privacy-check" style="font-size:.85rem;color:var(--text2)">Ich habe die <a href="/datenschutz.html" style="color:var(--electric);cursor:pointer">Datenschutzerklärung</a> gelesen und stimme zu *</label>
       </div>
       <button type="submit" class="btn-primary" style="width:100%;text-align:center;font-size:1rem">Nachricht senden ⚡</button>
     </form>
@@ -608,8 +608,8 @@
       <div class="footer-col">
         <h4>Rechtliches</h4>
         <ul>
-          <li><a onclick="showPage('impressum')">Impressum</a></li>
-          <li><a onclick="showPage('datenschutz')">Datenschutz</a></li>
+          <li><a href="/impressum.html">Impressum</a></li>
+          <li><a href="/datenschutz.html">Datenschutz</a></li>
           <li><a onclick="localStorage.removeItem('cookieConsent');showCookieBanner()">Cookie-Einstellungen</a></li>
         </ul>
       </div>
@@ -617,8 +617,8 @@
     <div class="footer-bottom">
       <span class="footer-copy">© 2026 ElektroGenius (Elektro Genius) — Elektrotechnik einfach erklärt. Alle Rechte vorbehalten.</span>
       <div class="footer-legal">
-        <a onclick="showPage('impressum')">Impressum</a>
-        <a onclick="showPage('datenschutz')">Datenschutz</a>
+        <a href="/impressum.html">Impressum</a>
+        <a href="/datenschutz.html">Datenschutz</a>
       </div>
     </div>
   </footer>
