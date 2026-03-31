@@ -411,12 +411,13 @@
     </svg>
     <span class="nav-logo-text">Elektro<span>Genius</span></span>
   </div>
-  <ul class="nav-links" id="nav-menu"><li><a href="https://coaching.elektrogenius.de" target="_blank">Coaching</a></li>
+  <ul class="nav-links" id="nav-menu">
     <li><a onclick="showPage('home');closeNav()" id="nav-home" class="active">Startseite</a></li>
     <li><a onclick="showPage('home');smoothTo('ueber-uns');closeNav()">Über uns</a></li>
     <li><a onclick="showPage('home');smoothTo('quiz');closeNav()">Quiz</a></li>
     <li><a onclick="showPage('home');smoothTo('community');closeNav()">Community</a></li>
     <li><a href="https://lernportal.elektrogenius.de" target="_blank" class="vl" id="nav-lern"><i data-lucide="zap" style="width:14px;height:14px;display:inline;vertical-align:-2px;margin-right:3px"></i> VoltBase</a></li>
+    <li><a href="https://coaching.elektrogenius.de" target="_blank" style="color:var(--orange)">Coaching</a></li>
   </ul>
   <div class="nav-right">
     <button class="nav-toggle" onclick="toggleNav()" aria-label="Menü">
@@ -472,10 +473,10 @@
       <p class="lead reveal">Wir liefern Inhalte in den Formaten, die wirklich funktionieren — modern, schnell und praxisnah.</p>
       <div class="features-grid">
         <div class="feature-card reveal"><span class="feature-icon"><i data-lucide="instagram" style="color:#f5a623"></i></span><h3>Instagram-Lernposts</h3><p>Regelmäßige Karussell-Beiträge mit Fachwissen, Erklärungen und Memes aus dem echten Handwerksalltag.</p></div>
-        <div class="feature-card reveal"><span class="feature-icon"><i data-lucide="help-circle" style="color:#4fc3f7"></i></span><h3>Quiz für Azubis</h3><p>20 Multiple-Choice-Fragen zu typischen Prüfungsthemen — Wissen festigen, Highscore knacken!</p></div>
+        <div class="feature-card reveal" style="opacity:.85"><span class="feature-icon" style="font-size:.85rem"><i data-lucide="help-circle" style="color:#4fc3f7;width:22px;height:22px"></i></span><h3 style="font-size:1.05rem">Schnell-Quiz</h3><p style="font-size:.82rem">20 Fragen zum Wissen testen — direkt auf der Startseite verfügbar.</p></div>
         <div class="feature-card reveal"><span class="feature-icon"><i data-lucide="play-circle" style="color:#f5a623"></i></span><h3>YouTube-Videos</h3><p>Schritt-für-Schritt-Erklärungen zu komplexen Themen — so, wie es ein erfahrener Kollege erklären würde.</p></div>
         <div class="feature-card reveal"><span class="feature-icon"><i data-lucide="message-circle" style="color:#00D084"></i></span><h3>WhatsApp Community</h3><p>Fragen stellen, Erfahrungen teilen, voneinander lernen. Eine aktive Community, in der niemand allein gelassen wird.</p></div>
-        <div class="feature-card reveal"><span class="feature-icon"><i data-lucide="zap" style="color:#4fc3f7"></i></span><h3>VoltIQ Lernportal</h3><p>Interaktives Lernportal mit Theorie, Formeln und Rechnern — direkt hier auf der Website, keine extra App nötig.</p></div>
+        <div class="feature-card reveal" style="border-color:rgba(79,195,247,.3)"><span class="feature-icon"><i data-lucide="zap" style="color:#4fc3f7"></i></span><h3>VoltBase Lernportal</h3><p>100 Fachthemen mit Quizzes, Formeln und Rechnern — interaktiv und direkt hier auf der Website. Das Herzstück von ElektroGenius.</p></div>
         <div class="feature-card reveal"><span class="feature-icon"><i data-lucide="book-open" style="color:#00D084"></i></span><h3>Lernen mit System</h3><p>Strukturierte Inhalte, die wirklich hängen bleiben — praxisnah, modern und direkt anwendbar.</p></div>
       </div>
     </div>
@@ -522,9 +523,8 @@
   <!-- QUIZ -->
   <section id="quiz" style="padding:4rem 5%;background:var(--navy)">
     <div style="text-align:center;margin-bottom:2.5rem">
-      <span style="display:inline-block;font-size:.75rem;font-weight:700;letter-spacing:.12em;color:var(--electric);text-transform:uppercase;margin-bottom:.8rem">Teste dein Wissen</span>
-      <h2 style="font-family:'Barlow Condensed',sans-serif;font-size:clamp(2rem,5vw,3rem);font-weight:800;margin-bottom:.5rem"><i data-lucide="help-circle" style="width:1em;height:1em;display:inline;vertical-align:-4px;margin-right:8px;color:var(--electric)"></i> Elektrotechnik <span style="color:var(--electric)">Quiz</span></h2>
-      <p style="color:var(--text2)">20 Fragen für Azubis und Profis – teste jetzt dein Wissen!</p>
+      <h3 style="font-family:'Barlow Condensed',sans-serif;font-size:clamp(1.3rem,3vw,1.8rem);font-weight:700;margin-bottom:.4rem;color:var(--white)"><i data-lucide="help-circle" style="width:.9em;height:.9em;display:inline;vertical-align:-3px;margin-right:6px;color:var(--electric)"></i> Elektrotechnik <span style="color:var(--electric)">Quiz</span></h3>
+      <p style="color:var(--text3);font-size:.85rem">Schnell-Test: 20 Fragen, kein Login nötig.</p>
       <div id="quiz-highscore-display" style="margin-top:.8rem"></div>
     </div>
     <div id="quiz-box" style="max-width:700px;margin:0 auto;background:var(--navy-mid);border-radius:16px;padding:2rem;border:1px solid var(--border)">
@@ -1085,7 +1085,7 @@ updateHighscoreDisplay();
 
 <script>
 // ─── KI AUDIO PLAYER ─────────────────────────────────────────────────────────
-const kiWords = ['Willkommen', 'bei', 'ElektroGenius', '—', 'deiner', 'kostenlosen', 'Lernplattform', 'für', 'Elektrotechnik.', 'Ob', 'du', 'gerade', 'deine', 'Ausbildung', 'als', 'Elektroniker', 'beginnst,', 'dich', 'als', 'Geselle', 'weiterbilden', 'willst', 'oder', 'einfach', 'tiefer', 'in', 'die', 'Welt', 'der', 'Elektrotechnik', 'eintauchen', 'möchtest', '—', 'hier', 'bist', 'du', 'richtig.', 'Auf', 'unserer', 'Website', 'findest', 'du', 'das', 'VoltIQ-Lernportal:', 'interaktive', 'Theorie', 'zu', 'Gleichstrom,', 'Wechselstrom,', 'Elektronik', 'und', 'Installationstechnik.', 'Alle', 'Formeln', 'werden', 'dir', 'Schritt', 'für', 'Schritt', 'erklärt', '—', 'so', 'wie', 'ein', 'guter', 'Lehrer', 'es', 'tun', 'würde.', 'Außerdem', 'gibt', 'es', 'zwölf', 'interaktive', 'Rechner,', 'mit', 'denen', 'du', 'Widerstände,', 'Leistungen', 'und', 'Spannungsfälle', 'direkt', 'berechnen', 'kannst.', 'Du', 'willst', 'dein', 'Wissen', 'testen?', 'Unser', 'Quiz', 'mit', 'zwanzig', 'Fragen', 'hilft', 'dir,', 'dich', 'auf', 'Prüfungen', 'vorzubereiten', 'und', 'Lücken', 'zu', 'erkennen.', 'Neu:', 'Die', 'MaterialCheck', 'Web-App', 'unter', 'app.elektrogenius.de.', 'Damit', 'kannst', 'du', 'dein', 'Elektromaterial', 'digital', 'verwalten', '—', 'jederzeit,', 'überall,', 'direkt', 'im', 'Browser.', 'Kein', 'Download', 'nötig.', 'Und', 'das', 'Beste?', 'Auf', 'Instagram,', 'YouTube', 'und', 'in', 'unserer', 'WhatsApp-Community', 'teilen', 'wir', 'täglich', 'neues', 'Wissen', '—', 'modern,', 'verständlich', 'und', 'praxisnah.', 'ElektroGenius.', 'Elektrotechnik.', 'Einfach', 'erklärt.'];
+const kiWords = ['Willkommen', 'bei', 'ElektroGenius', '—', 'deiner', 'kostenlosen', 'Lernplattform', 'für', 'Elektrotechnik.', 'Ob', 'du', 'gerade', 'deine', 'Ausbildung', 'als', 'Elektroniker', 'beginnst,', 'dich', 'als', 'Geselle', 'weiterbilden', 'willst', 'oder', 'einfach', 'tiefer', 'in', 'die', 'Welt', 'der', 'Elektrotechnik', 'eintauchen', 'möchtest', '—', 'hier', 'bist', 'du', 'richtig.', 'Auf', 'unserer', 'Website', 'findest', 'du', 'das', 'VoltBase-Lernportal:', 'interaktive', 'Theorie', 'zu', 'Gleichstrom,', 'Wechselstrom,', 'Elektronik', 'und', 'Installationstechnik.', 'Alle', 'Formeln', 'werden', 'dir', 'Schritt', 'für', 'Schritt', 'erklärt', '—', 'so', 'wie', 'ein', 'guter', 'Lehrer', 'es', 'tun', 'würde.', 'Außerdem', 'gibt', 'es', 'zwölf', 'interaktive', 'Rechner,', 'mit', 'denen', 'du', 'Widerstände,', 'Leistungen', 'und', 'Spannungsfälle', 'direkt', 'berechnen', 'kannst.', 'Du', 'willst', 'dein', 'Wissen', 'testen?', 'Unser', 'Quiz', 'mit', 'zwanzig', 'Fragen', 'hilft', 'dir,', 'dich', 'auf', 'Prüfungen', 'vorzubereiten', 'und', 'Lücken', 'zu', 'erkennen.', 'Neu:', 'Die', 'MaterialCheck', 'Web-App', 'unter', 'app.elektrogenius.de.', 'Damit', 'kannst', 'du', 'dein', 'Elektromaterial', 'digital', 'verwalten', '—', 'jederzeit,', 'überall,', 'direkt', 'im', 'Browser.', 'Kein', 'Download', 'nötig.', 'Und', 'das', 'Beste?', 'Auf', 'Instagram,', 'YouTube', 'und', 'in', 'unserer', 'WhatsApp-Community', 'teilen', 'wir', 'täglich', 'neues', 'Wissen', '—', 'modern,', 'verständlich', 'und', 'praxisnah.', 'ElektroGenius.', 'Elektrotechnik.', 'Einfach', 'erklärt.'];
 const kiAudioSrc = 'data:audio/mpeg;base64,SUQzBAAAAAIUfFRTU...'; // placeholder — wird unten gesetzt
 
 let kiAudioEl = null;
