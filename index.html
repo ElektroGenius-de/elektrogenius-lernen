@@ -135,7 +135,8 @@
     .features-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem;margin-top:3.5rem}
     .feature-card{background:var(--navy-mid);border:1px solid var(--border);border-radius:14px;padding:2rem 1.8rem;transition:border-color .25s,transform .2s,box-shadow .25s}
     .feature-card:hover{border-color:rgba(79,195,247,.4);transform:translateY(-4px);box-shadow:0 12px 40px rgba(79,195,247,.1)}
-    .feature-icon{font-size:2rem;margin-bottom:1rem;display:block}
+    .feature-icon{margin-bottom:1rem;display:flex;align-items:center}
+    .feature-icon svg{width:36px;height:36px;stroke-width:1.5}
     .feature-card h3{font-family:'Barlow Condensed',sans-serif;font-size:1.3rem;font-weight:800;margin-bottom:.5rem}
     .feature-card p{color:var(--muted);font-size:.9rem;line-height:1.7}
     .topics-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem;margin-top:3rem}
@@ -365,7 +366,7 @@
     <div style="display:flex;gap:.8rem">
       <button id="ki-btn-play" onclick="kiToggle()" style="flex:1;padding:.75rem;background:#4fc3f7;color:#0d1b2a;border:none;border-radius:10px;font-family:'Barlow Condensed',sans-serif;font-size:1rem;font-weight:700;letter-spacing:.05em;cursor:pointer;transition:all .2s">▶ VORLESEN</button>
       <button onclick="kiRestart()" style="padding:.75rem 1.2rem;background:rgba(79,195,247,.1);border:1px solid rgba(79,195,247,.2);border-radius:10px;color:#4fc3f7;cursor:pointer;font-size:1.1rem;transition:all .2s" title="Neu starten">↺</button>
-      <a href="https://app.elektrogenius.de" target="_blank" style="padding:.75rem 1.2rem;background:linear-gradient(135deg,#f5a623,#ff8c00);border:none;border-radius:10px;color:#0d1b2a;font-family:'Barlow Condensed',sans-serif;font-size:.9rem;font-weight:700;cursor:pointer;text-decoration:none;display:flex;align-items:center;gap:5px;white-space:nowrap">📦 App öffnen</a>
+      <a href="https://app.elektrogenius.de" target="_blank" style="padding:.75rem 1.2rem;background:linear-gradient(135deg,#f5a623,#ff8c00);border:none;border-radius:10px;color:#0d1b2a;font-family:'Barlow Condensed',sans-serif;font-size:.9rem;font-weight:700;cursor:pointer;text-decoration:none;display:flex;align-items:center;gap:5px;white-space:nowrap"><i data-lucide="package" style="width:16px;height:16px"></i> App öffnen</a>
     </div>
     <!-- Hidden Audio -->
     <audio id="ki-audio" preload="auto"></audio>
@@ -373,16 +374,16 @@
 </div>
 
 <!-- Floating Trigger Button -->
-<button onclick="openKIModal()" id="ki-trigger" title="KI-Erklärung anhören" style="position:fixed;bottom:5.5rem;right:2rem;width:52px;height:52px;border-radius:50%;background:linear-gradient(135deg,#122236,#1a3050);border:1px solid rgba(79,195,247,.35);color:#4fc3f7;font-size:1.4rem;cursor:pointer;z-index:99;box-shadow:0 4px 20px rgba(79,195,247,.25);transition:all .25s;display:flex;align-items:center;justify-content:center">🔊</button>
+<button onclick="openKIModal()" id="ki-trigger" title="KI-Erklärung anhören" style="position:fixed;bottom:5.5rem;right:2rem;width:52px;height:52px;border-radius:50%;background:linear-gradient(135deg,#122236,#1a3050);border:1px solid rgba(79,195,247,.35);color:#4fc3f7;font-size:1.4rem;cursor:pointer;z-index:99;box-shadow:0 4px 20px rgba(79,195,247,.25);transition:all .25s;display:flex;align-items:center;justify-content:center"><i data-lucide="volume-2" style="width:22px;height:22px"></i></button>
 
 <!-- COOKIE BANNER -->
 <div id="cookie-banner">
   <div style="flex:1;min-width:200px">
-    <p style="color:var(--white);font-weight:600;margin-bottom:.3rem">🍪 Datenschutz & Cookies</p>
+    <p style="color:var(--white);font-weight:600;margin-bottom:.3rem"><i data-lucide="shield" style="width:16px;height:16px;display:inline;vertical-align:-3px;margin-right:5px"></i> Datenschutz & Cookies</p>
     <p style="color:var(--text2);font-size:.85rem">Wir nutzen <strong style="color:var(--white)">Google Analytics</strong> um unsere Website zu verbessern. Deine Daten werden anonymisiert verarbeitet. Mehr in unserer <a onclick="showPage('datenschutz')" style="color:var(--electric);cursor:pointer">Datenschutzerklärung</a>.</p>
   </div>
   <div style="display:flex;gap:.8rem;flex-shrink:0;flex-wrap:wrap">
-    <button onclick="acceptCookies()" style="padding:.6rem 1.5rem;background:var(--electric);color:var(--navy);border:none;border-radius:8px;font-weight:700;cursor:pointer;font-size:.9rem">Alle akzeptieren ✅</button>
+    <button onclick="acceptCookies()" style="padding:.6rem 1.5rem;background:var(--electric);color:var(--navy);border:none;border-radius:8px;font-weight:700;cursor:pointer;font-size:.9rem">Alle akzeptieren</button>
     <button onclick="declineCookies()" style="padding:.6rem 1.5rem;background:transparent;color:var(--text2);border:1px solid var(--border);border-radius:8px;font-weight:600;cursor:pointer;font-size:.9rem">Nur notwendige</button>
   </div>
 </div>
@@ -415,14 +416,14 @@
     <li><a onclick="showPage('home');smoothTo('ueber-uns');closeNav()">Über uns</a></li>
     <li><a onclick="showPage('home');smoothTo('quiz');closeNav()">Quiz</a></li>
     <li><a onclick="showPage('home');smoothTo('community');closeNav()">Community</a></li>
-    <li><a href="https://lernportal.elektrogenius.de" target="_blank" class="vl" id="nav-lern">⚡ VoltBase</a></li>
+    <li><a href="https://lernportal.elektrogenius.de" target="_blank" class="vl" id="nav-lern"><i data-lucide="zap" style="width:14px;height:14px;display:inline;vertical-align:-2px;margin-right:3px"></i> VoltBase</a></li>
   </ul>
   <div class="nav-right">
     <button class="nav-toggle" onclick="toggleNav()" aria-label="Menü">
       <span></span><span></span><span></span>
     </button>
     <a href="https://chat.whatsapp.com/FIRdC7y5bg1Az9H3JfpouL" target="_blank" class="nav-cta">JETZT MITMACHEN</a>
-    <a href="https://app.elektrogenius.de" target="_blank" class="nav-cta" style="background:linear-gradient(135deg,#f5a623,#ff8c00);box-shadow:0 0 18px rgba(245,166,35,.35)">📦 MaterialCheck App</a>
+    <a href="https://app.elektrogenius.de" target="_blank" class="nav-cta" style="background:linear-gradient(135deg,#f5a623,#ff8c00);box-shadow:0 0 18px rgba(245,166,35,.35)"><i data-lucide="package" style="width:14px;height:14px;display:inline;vertical-align:-2px;margin-right:4px"></i> MaterialCheck App</a>
   </div>
 </nav>
 
@@ -431,11 +432,11 @@
 
   <section class="hero-section">
     <div class="hero-inner">
-      <div class="hero-badge">⚡ Wissen für das Elektrohandwerk</div>
+      <div class="hero-badge"><i data-lucide="zap" style="width:13px;height:13px;display:inline;vertical-align:-1px;margin-right:4px"></i> Wissen für das Elektrohandwerk</div>
       <h1>Elektrotechnik<span class="line2">Einfach. Erklärt. Modern.</span></h1>
       <p class="hero-sub reveal">Wir machen komplexe Elektrotechnik verständlich — für Azubis, Gesellen und alle, die mehr wissen wollen. Praxisnah, modern und direkt auf den Punkt.</p>
       <div class="hero-buttons reveal">
-        <a href="https://lernportal.elektrogenius.de" target="_blank" class="btn-primary">⚡ Zum Lernportal</a>
+        <a href="https://lernportal.elektrogenius.de" target="_blank" class="btn-primary"><i data-lucide="zap" style="width:16px;height:16px;display:inline;vertical-align:-3px;margin-right:5px"></i> Zum Lernportal</a>
         <a href="https://www.instagram.com/elektrogenius.de" target="_blank" class="btn-secondary">Uns folgen →</a>
       </div>
     </div>
@@ -458,7 +459,7 @@
         <p>Ich bin Elektriker aus Leidenschaft — und ich kenne das Problem aus eigener Erfahrung: Die Theorie in der Ausbildung ist trocken, schwer zugänglich und weit weg vom echten Handwerksalltag. <strong>Genau das wollte ich ändern.</strong></p>
         <p>Zusammen mit einer Gruppe erfahrener <strong>Elektriker und Meister</strong> haben wir ElektroGenius gegründet. Wir glauben, dass gutes Fachwissen nicht in dicken Büchern verstauben sollte — sondern dort sein muss, wo die Azubis heute lernen: im Feed, im Video, in der Community.</p>
         <p>Wir verbinden <strong>jahrelange Praxiserfahrung</strong> aus dem Handwerk mit modernen Lernformaten. Kein trockener Frontalunterricht — sondern Wissen, das hängen bleibt.</p>
-        <a href="https://lernportal.elektrogenius.de/" target="_blank" class="btn-primary" style="margin-top:1.2rem;cursor:pointer">⚡ Zum Lernportal →</a>
+        <a href="https://lernportal.elektrogenius.de/" target="_blank" class="btn-primary" style="margin-top:1.2rem;cursor:pointer"><i data-lucide="zap" style="width:16px;height:16px;display:inline;vertical-align:-3px;margin-right:5px"></i> Zum Lernportal →</a>
       </div>
     </div>
   </section>
@@ -470,12 +471,12 @@
       <div class="divider-eg reveal"></div>
       <p class="lead reveal">Wir liefern Inhalte in den Formaten, die wirklich funktionieren — modern, schnell und praxisnah.</p>
       <div class="features-grid">
-        <div class="feature-card reveal"><span class="feature-icon">📸</span><h3>Instagram-Lernposts</h3><p>Regelmäßige Karussell-Beiträge mit Fachwissen, Erklärungen und Memes aus dem echten Handwerksalltag.</p></div>
-        <div class="feature-card reveal"><span class="feature-icon">🧠</span><h3>Quiz für Azubis</h3><p>20 Multiple-Choice-Fragen zu typischen Prüfungsthemen — Wissen festigen, Highscore knacken!</p></div>
-        <div class="feature-card reveal"><span class="feature-icon">▶️</span><h3>YouTube-Videos</h3><p>Schritt-für-Schritt-Erklärungen zu komplexen Themen — so, wie es ein erfahrener Kollege erklären würde.</p></div>
-        <div class="feature-card reveal"><span class="feature-icon">💬</span><h3>WhatsApp Community</h3><p>Fragen stellen, Erfahrungen teilen, voneinander lernen. Eine aktive Community, in der niemand allein gelassen wird.</p></div>
-        <div class="feature-card reveal"><span class="feature-icon">⚡</span><h3>VoltIQ Lernportal</h3><p>Interaktives Lernportal mit Theorie, Formeln und Rechnern — direkt hier auf der Website, keine extra App nötig.</p></div>
-        <div class="feature-card reveal"><span class="feature-icon">😄</span><h3>Humor trifft Handwerk</h3><p>Lernen darf Spaß machen. Memes und Humor gehören dazu — Wissen das hängen bleibt.</p></div>
+        <div class="feature-card reveal"><span class="feature-icon"><i data-lucide="instagram" style="color:#f5a623"></i></span><h3>Instagram-Lernposts</h3><p>Regelmäßige Karussell-Beiträge mit Fachwissen, Erklärungen und Memes aus dem echten Handwerksalltag.</p></div>
+        <div class="feature-card reveal"><span class="feature-icon"><i data-lucide="help-circle" style="color:#4fc3f7"></i></span><h3>Quiz für Azubis</h3><p>20 Multiple-Choice-Fragen zu typischen Prüfungsthemen — Wissen festigen, Highscore knacken!</p></div>
+        <div class="feature-card reveal"><span class="feature-icon"><i data-lucide="play-circle" style="color:#f5a623"></i></span><h3>YouTube-Videos</h3><p>Schritt-für-Schritt-Erklärungen zu komplexen Themen — so, wie es ein erfahrener Kollege erklären würde.</p></div>
+        <div class="feature-card reveal"><span class="feature-icon"><i data-lucide="message-circle" style="color:#00D084"></i></span><h3>WhatsApp Community</h3><p>Fragen stellen, Erfahrungen teilen, voneinander lernen. Eine aktive Community, in der niemand allein gelassen wird.</p></div>
+        <div class="feature-card reveal"><span class="feature-icon"><i data-lucide="zap" style="color:#4fc3f7"></i></span><h3>VoltIQ Lernportal</h3><p>Interaktives Lernportal mit Theorie, Formeln und Rechnern — direkt hier auf der Website, keine extra App nötig.</p></div>
+        <div class="feature-card reveal"><span class="feature-icon"><i data-lucide="book-open" style="color:#00D084"></i></span><h3>Lernen mit System</h3><p>Strukturierte Inhalte, die wirklich hängen bleiben — praxisnah, modern und direkt anwendbar.</p></div>
       </div>
     </div>
   </section>
@@ -507,13 +508,13 @@
       <div class="divider-eg" style="margin:1rem auto 1.5rem"></div>
       <p class="lead reveal">Wir bauen mehr als eine Lernplattform — wir bauen eine Community. Tausch dich mit anderen Azubis und Fachkräften aus, stell Fragen und wachse gemeinsam mit uns.</p>
       <div class="channels-grid reveal">
-        <a href="https://www.instagram.com/elektrogenius.de" target="_blank" class="channel-btn">📸 Instagram</a>
-        <a href="https://www.youtube.com/channel/UCM4BVx1bDFUrbMhQ39Y9VCg" target="_blank" class="channel-btn">▶️ YouTube</a>
-        <a href="https://chat.whatsapp.com/FIRdC7y5bg1Az9H3JfpouL" target="_blank" class="channel-btn">💬 WhatsApp Community</a>
-        <a href="https://app.elektrogenius.de" target="_blank" class="channel-btn" style="border-color:rgba(245,166,35,.4);color:#f5a623">📦 MaterialCheck App</a>
+        <a href="https://www.instagram.com/elektrogenius.de" target="_blank" class="channel-btn"><i data-lucide="instagram" style="width:18px;height:18px"></i> Instagram</a>
+        <a href="https://www.youtube.com/channel/UCM4BVx1bDFUrbMhQ39Y9VCg" target="_blank" class="channel-btn"><i data-lucide="play-circle" style="width:18px;height:18px"></i> YouTube</a>
+        <a href="https://chat.whatsapp.com/FIRdC7y5bg1Az9H3JfpouL" target="_blank" class="channel-btn"><i data-lucide="message-circle" style="width:18px;height:18px"></i> WhatsApp Community</a>
+        <a href="https://app.elektrogenius.de" target="_blank" class="channel-btn" style="border-color:rgba(245,166,35,.4);color:#f5a623"><i data-lucide="package" style="width:18px;height:18px"></i> MaterialCheck App</a>
       </div>
       <div style="margin-top:3rem" class="reveal">
-        <a href="https://chat.whatsapp.com/FIRdC7y5bg1Az9H3JfpouL" target="_blank" class="btn-primary" style="font-size:1.1rem;padding:1rem 2.5rem">⚡ Jetzt der Community beitreten</a>
+        <a href="https://chat.whatsapp.com/FIRdC7y5bg1Az9H3JfpouL" target="_blank" class="btn-primary" style="font-size:1.1rem;padding:1rem 2.5rem"><i data-lucide="users" style="width:18px;height:18px;display:inline;vertical-align:-3px;margin-right:6px"></i> Jetzt der Community beitreten</a>
       </div>
     </div>
   </section>
@@ -522,7 +523,7 @@
   <section id="quiz" style="padding:4rem 5%;background:var(--navy)">
     <div style="text-align:center;margin-bottom:2.5rem">
       <span style="display:inline-block;font-size:.75rem;font-weight:700;letter-spacing:.12em;color:var(--electric);text-transform:uppercase;margin-bottom:.8rem">Teste dein Wissen</span>
-      <h2 style="font-family:'Barlow Condensed',sans-serif;font-size:clamp(2rem,5vw,3rem);font-weight:800;margin-bottom:.5rem">🧠 Elektrotechnik <span style="color:var(--electric)">Quiz</span></h2>
+      <h2 style="font-family:'Barlow Condensed',sans-serif;font-size:clamp(2rem,5vw,3rem);font-weight:800;margin-bottom:.5rem"><i data-lucide="help-circle" style="width:1em;height:1em;display:inline;vertical-align:-4px;margin-right:8px;color:var(--electric)"></i> Elektrotechnik <span style="color:var(--electric)">Quiz</span></h2>
       <p style="color:var(--text2)">20 Fragen für Azubis und Profis – teste jetzt dein Wissen!</p>
       <div id="quiz-highscore-display" style="margin-top:.8rem"></div>
     </div>
@@ -537,16 +538,16 @@
       <div id="quiz-question" style="font-size:1.15rem;color:var(--white);margin-bottom:1.5rem;font-weight:600;line-height:1.5"></div>
       <div id="quiz-options" style="display:flex;flex-direction:column;gap:.8rem"></div>
       <div id="quiz-feedback" style="margin-top:1rem;font-weight:600;font-size:1rem"></div>
-      <button id="quiz-next" onclick="nextQuestion()" style="display:none;margin-top:1.5rem;padding:.8rem 2rem;background:var(--electric);color:var(--navy);border:none;border-radius:8px;font-weight:700;cursor:pointer;font-size:1rem">Nächste Frage ⚡</button>
+      <button id="quiz-next" onclick="nextQuestion()" style="display:none;margin-top:1.5rem;padding:.8rem 2rem;background:var(--electric);color:var(--navy);border:none;border-radius:8px;font-weight:700;cursor:pointer;font-size:1rem">Nächste Frage</button>
       <div id="quiz-result" style="display:none;text-align:center;padding:1rem 0">
         <div id="quiz-score" style="font-size:3.5rem;color:var(--electric);font-weight:800;margin-bottom:.5rem"></div>
         <div id="quiz-result-msg" style="font-size:1.3rem;color:var(--white);font-weight:700;margin-bottom:.5rem"></div>
         <div id="quiz-new-highscore" style="display:none;margin:.5rem 0">
-          <span style="background:rgba(255,140,66,.15);border:1px solid rgba(255,140,66,.4);border-radius:8px;padding:.4rem 1rem;color:var(--orange);font-weight:700;font-size:.95rem">🏆 Neuer Highscore!</span>
+          <span style="background:rgba(255,140,66,.15);border:1px solid rgba(255,140,66,.4);border-radius:8px;padding:.4rem 1rem;color:var(--orange);font-weight:700;font-size:.95rem;display:inline-flex;align-items:center;gap:6px"><i data-lucide="trophy" style="width:16px;height:16px"></i> Neuer Highscore!</span>
         </div>
-        <p style="color:var(--text2);margin:1rem 0 1.5rem">Weiter üben und Profi werden! 💪</p>
-        <button onclick="restartQuiz()" class="btn-primary" style="margin-right:.5rem">Nochmal 🔄</button>
-        <a onclick="showPage('lernplattform')" class="btn-secondary" style="cursor:pointer">Jetzt lernen ⚡</a>
+        <p style="color:var(--text2);margin:1rem 0 1.5rem">Weiter üben und Profi werden!</p>
+        <button onclick="restartQuiz()" class="btn-primary" style="margin-right:.5rem">Nochmal</button>
+        <a onclick="showPage('lernplattform')" class="btn-secondary" style="cursor:pointer">Jetzt lernen</a>
       </div>
     </div>
   </section>
@@ -555,7 +556,7 @@
   <section id="kontakt" style="padding:4rem 5%;background:var(--navy-mid)">
     <div style="text-align:center;margin-bottom:2.5rem">
       <span style="display:inline-block;font-size:.75rem;font-weight:700;letter-spacing:.12em;color:var(--electric);text-transform:uppercase;margin-bottom:.8rem">Schreib uns</span>
-      <h2 style="font-family:'Barlow Condensed',sans-serif;font-size:clamp(2rem,5vw,3rem);font-weight:800;margin-bottom:.5rem">⚡ <span style="color:var(--electric)">Kontakt</span></h2>
+      <h2 style="font-family:'Barlow Condensed',sans-serif;font-size:clamp(2rem,5vw,3rem);font-weight:800;margin-bottom:.5rem"><i data-lucide="mail" style="width:1em;height:1em;display:inline;vertical-align:-4px;margin-right:8px;color:var(--electric)"></i> <span style="color:var(--electric)">Kontakt</span></h2>
       <p style="color:var(--text2)">Fragen, Feedback oder Zusammenarbeit? Wir freuen uns auf deine Nachricht!</p>
     </div>
     <form id="contact-form" action="https://formspree.io/f/mreyjjan" method="POST" style="max-width:600px;margin:0 auto;display:flex;flex-direction:column;gap:1rem" onsubmit="handleFormSubmit(event)">
@@ -1269,5 +1270,7 @@ window.addEventListener('load', () => {
 });
 </script>
 
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+<script>lucide.createIcons();</script>
 </body>
 </html>
