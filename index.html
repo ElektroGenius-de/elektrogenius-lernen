@@ -442,6 +442,8 @@
     <li><a href="https://lernportal.elektrogenius.de" target="_blank" class="vl" id="nav-lern"><i data-lucide="zap" style="width:14px;height:14px;display:inline;vertical-align:-2px;margin-right:3px"></i> VoltBase</a></li>
     <li><a href="https://voltoffice.elektrogenius.de" target="_blank" style="color:#00c6ff"><i data-lucide="building-2" style="width:14px;height:14px;display:inline;vertical-align:-2px;margin-right:3px"></i> VoltOffice</a></li>
     <li><a href="https://coaching.elektrogenius.de" target="_blank" style="color:var(--orange)">Coaching</a></li>
+    <li><a onclick="showPage('home');smoothTo('materialcheck');closeNav()" style="color:#f5a623"><i data-lucide="package" style="width:14px;height:14px;display:inline;vertical-align:-2px;margin-right:3px"></i> MaterialCheck</a></li>
+    <li><a onclick="showPage('home');smoothTo('leistungen');closeNav()">Leistungen</a></li>
   </ul>
   <div class="nav-right">
     <button class="nav-toggle" onclick="toggleNav()" aria-label="Menü">
@@ -623,8 +625,95 @@
     </div>
   </section>
 
+  <!-- MATERIALCHECK -->
+  <section id="materialcheck" style="position:relative;z-index:1;background:linear-gradient(180deg,rgba(245,166,35,.07) 0%,rgba(13,27,42,.5) 60%,transparent 100%);border-top:1px solid rgba(245,166,35,.18);border-bottom:1px solid rgba(245,166,35,.18)">
+    <div class="section-inner">
+
+      <!-- Header -->
+      <div style="display:flex;align-items:center;gap:1.4rem;margin-bottom:2.8rem;flex-wrap:wrap">
+        <div style="width:62px;height:62px;border-radius:14px;background:linear-gradient(135deg,rgba(245,166,35,.22),rgba(200,120,0,.10));border:1.5px solid rgba(245,166,35,.35);display:flex;align-items:center;justify-content:center;flex-shrink:0;box-shadow:0 0 24px rgba(245,166,35,.18)">
+          <i data-lucide="package" style="width:28px;height:28px;stroke:#f5a623;stroke-width:1.5"></i>
+        </div>
+        <div>
+          <span class="section-tag reveal" style="color:#f5a623;margin-bottom:.3rem">Lagerverwaltung für Elektriker</span>
+          <h2 class="eg reveal" style="margin-bottom:0">Material<em style="color:#f5a623">Check</em></h2>
+        </div>
+        <div class="reveal" style="margin-left:auto;display:flex;gap:.8rem;flex-wrap:wrap">
+          <a href="https://app.elektrogenius.de" target="_blank" class="btn-primary" style="background:linear-gradient(135deg,#f5a623,#c4841c);color:#0d1b2e;box-shadow:0 0 28px rgba(245,166,35,.35);display:inline-flex;align-items:center;gap:8px;white-space:nowrap">
+            <i data-lucide="external-link" style="width:16px;height:16px"></i> Web-App öffnen
+          </a>
+          <a href="https://play.google.com/store/apps/details?id=de.elektrogenius.materialcheck.firmenwagen" target="_blank" class="btn-primary" style="background:rgba(245,166,35,.12);color:#f5a623;border:1.5px solid rgba(245,166,35,.4);box-shadow:none;display:inline-flex;align-items:center;gap:8px;white-space:nowrap">
+            <i data-lucide="smartphone" style="width:16px;height:16px"></i> Im Play Store laden
+          </a>
+        </div>
+      </div>
+
+      <!-- Lead -->
+      <div class="divider-eg reveal" style="background:linear-gradient(90deg,#f5a623,transparent)"></div>
+      <p class="lead reveal" style="max-width:620px;margin-bottom:3rem">Die Lagerverwaltungs-App speziell für Elektriker und Elektrobetriebe. Materialien, Bestände und Bestelllisten im Griff — als Web-App und Android-App. Kostenlos starten, für Teams erweiterbar.</p>
+
+      <!-- Feature-Cards -->
+      <div class="features-grid reveal">
+
+        <div class="feature-card" style="border-color:rgba(245,166,35,.2)">
+          <div class="feature-icon">
+            <i data-lucide="package" style="width:36px;height:36px;stroke:#f5a623;stroke-width:1.5"></i>
+          </div>
+          <h3 style="color:var(--white)">Lagerverwaltung</h3>
+          <p>Materialien, Bestände und Lagerorte zentral verwalten. Immer den Überblick über Verbrauch und Nachbestellbedarf.</p>
+        </div>
+
+        <div class="feature-card" style="border-color:rgba(245,166,35,.2)">
+          <div class="feature-icon">
+            <i data-lucide="scan-barcode" style="width:36px;height:36px;stroke:#f5a623;stroke-width:1.5"></i>
+          </div>
+          <h3 style="color:var(--white)">QR-Code Scanner</h3>
+          <p>Materialien per QR-Code scannen und Bestände direkt in der App buchen — schnell, papierlos und ohne Tippfehler.</p>
+        </div>
+
+        <div class="feature-card" style="border-color:rgba(245,166,35,.2)">
+          <div class="feature-icon">
+            <i data-lucide="users" style="width:36px;height:36px;stroke:#f5a623;stroke-width:1.5"></i>
+          </div>
+          <h3 style="color:var(--white)">Teamzugriff</h3>
+          <p>Mehrere Mitarbeiter können gemeinsam auf dasselbe Lager zugreifen. Änderungen werden in Echtzeit synchronisiert.</p>
+        </div>
+
+        <div class="feature-card" style="border-color:rgba(245,166,35,.2)">
+          <div class="feature-icon">
+            <i data-lucide="smartphone" style="width:36px;height:36px;stroke:#f5a623;stroke-width:1.5"></i>
+          </div>
+          <h3 style="color:var(--white)">Android App</h3>
+          <p>Direkt im Google Play Store verfügbar — auch offline nutzbar, mit automatischer Synchronisation sobald wieder online.</p>
+        </div>
+
+      </div>
+
+      <!-- CTA-Footer -->
+      <div class="reveal" style="margin-top:3rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1.5rem;padding:2rem 2.2rem;background:rgba(245,166,35,.05);border:1px solid rgba(245,166,35,.18);border-radius:14px">
+        <div>
+          <div style="font-family:'Barlow Condensed',sans-serif;font-size:1.25rem;font-weight:800;color:var(--white);margin-bottom:.3rem">Jetzt kostenlos starten</div>
+          <div style="color:var(--muted);font-size:.88rem;display:flex;align-items:center;gap:1.2rem;flex-wrap:wrap">
+            <span style="display:flex;align-items:center;gap:.4rem"><i data-lucide="check" style="width:13px;height:13px;color:#00D084"></i> Kostenlos nutzbar</span>
+            <span style="display:flex;align-items:center;gap:.4rem"><i data-lucide="check" style="width:13px;height:13px;color:#00D084"></i> Web + Android</span>
+            <span style="display:flex;align-items:center;gap:.4rem"><i data-lucide="check" style="width:13px;height:13px;color:#00D084"></i> Speziell für Elektrobetriebe</span>
+          </div>
+        </div>
+        <div style="display:flex;gap:.8rem;flex-wrap:wrap">
+          <a href="https://app.elektrogenius.de" target="_blank" class="btn-primary" style="background:linear-gradient(135deg,#f5a623,#c4841c);color:#0d1b2e;box-shadow:0 0 28px rgba(245,166,35,.35);display:inline-flex;align-items:center;gap:8px;font-size:1.05rem;padding:.9rem 2.2rem">
+            <i data-lucide="external-link" style="width:17px;height:17px"></i> Web-App öffnen
+          </a>
+          <a href="https://play.google.com/store/apps/details?id=de.elektrogenius.materialcheck.firmenwagen" target="_blank" class="btn-primary" style="background:rgba(245,166,35,.12);color:#f5a623;border:1.5px solid rgba(245,166,35,.4);box-shadow:none;display:inline-flex;align-items:center;gap:8px;font-size:1.05rem;padding:.9rem 2.2rem">
+            <i data-lucide="smartphone" style="width:17px;height:17px"></i> Im Play Store laden
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
   <!-- LEISTUNGEN -->
-  <section class="leistungen-section reveal">
+  <section id="leistungen" class="leistungen-section reveal">
   <div style="text-align:center;margin-bottom:2.5rem">
     <h2 style="font-family:'Barlow Condensed',sans-serif;font-size:clamp(1.8rem,4vw,2.6rem);font-weight:800;color:#fff;margin-bottom:.5rem">Unsere <span style="color:#00c6ff">Leistungen</span></h2>
     <p style="color:var(--muted);font-size:.95rem">Alles für Elektrofachkräfte — Lernen, Planen, Verwalten</p>
