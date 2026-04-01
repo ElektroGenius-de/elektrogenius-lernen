@@ -435,115 +435,318 @@
     <span class="nav-logo-text">Elektro<span>Genius</span></span>
   </div>
   <ul class="nav-links" id="nav-menu">
-    <li><a onclick="showPage('home');closeNav()" id="nav-home" class="active">Startseite</a></li>
+    <li><a onclick="showPage('home');window.scrollTo({top:0,behavior:'smooth'});closeNav()" id="nav-home" class="active">Startseite</a></li>
     <li><a onclick="showPage('home');smoothTo('ueber-uns');closeNav()">Über uns</a></li>
     <li><a onclick="showPage('home');smoothTo('quiz');closeNav()">Quiz</a></li>
     <li><a onclick="showPage('home');smoothTo('community');closeNav()">Community</a></li>
-    <li><a href="https://lernportal.elektrogenius.de" target="_blank" class="vl" id="nav-lern"><i data-lucide="zap" style="width:14px;height:14px;display:inline;vertical-align:-2px;margin-right:3px"></i> VoltBase</a></li>
-    <li><a href="https://voltoffice.elektrogenius.de" target="_blank" style="color:#00c6ff"><i data-lucide="building-2" style="width:14px;height:14px;display:inline;vertical-align:-2px;margin-right:3px"></i> VoltOffice</a></li>
-    <li><a href="https://coaching.elektrogenius.de" target="_blank" style="color:var(--orange)">Coaching</a></li>
-    <li><a onclick="showPage('home');smoothTo('materialcheck');closeNav()" style="color:#f5a623"><i data-lucide="package" style="width:14px;height:14px;display:inline;vertical-align:-2px;margin-right:3px"></i> MaterialCheck</a></li>
     <li><a onclick="showPage('home');smoothTo('leistungen');closeNav()">Leistungen</a></li>
+    <li><a href="https://lernportal.elektrogenius.de" target="_blank" id="nav-lern">VoltBase</a></li>
+    <li><a href="https://voltoffice.elektrogenius.de" target="_blank">VoltOffice</a></li>
+    <li><a onclick="showPage('home');smoothTo('materialcheck');closeNav()">MaterialCheck</a></li>
+    <li><a href="https://coaching.elektrogenius.de" target="_blank">Coaching</a></li>
   </ul>
   <div class="nav-right">
     <button class="nav-toggle" onclick="toggleNav()" aria-label="Menü">
       <span></span><span></span><span></span>
     </button>
-    <a href="https://chat.whatsapp.com/FIRdC7y5bg1Az9H3JfpouL" target="_blank" class="nav-cta">JETZT MITMACHEN</a>
-    <a href="https://app.elektrogenius.de" target="_blank" class="nav-cta" style="background:linear-gradient(135deg,#f5a623,#ff8c00);box-shadow:0 0 18px rgba(245,166,35,.35)"><i data-lucide="package" style="width:14px;height:14px;display:inline;vertical-align:-2px;margin-right:4px"></i> MaterialCheck App</a>
+    <a href="https://lernportal.elektrogenius.de" target="_blank" class="nav-cta">Kostenlos starten →</a>
   </div>
 </nav>
 
 <!-- ═══ PAGE: HOME ═══ -->
 <div id="page-home" class="page active">
 
+  <!-- ── HERO ─────────────────────────────────────────────────────── -->
   <section class="hero-section">
     <div class="hero-inner">
-      <div class="hero-badge"><i data-lucide="zap" style="width:13px;height:13px;display:inline;vertical-align:-1px;margin-right:4px"></i> Wissen für das Elektrohandwerk</div>
-      <h1>Elektrotechnik<span class="line2">Einfach. Erklärt. Modern.</span></h1>
-      <p class="hero-sub reveal">Wir machen komplexe Elektrotechnik verständlich — für Azubis, Gesellen und alle, die mehr wissen wollen. Praxisnah, modern und direkt auf den Punkt.</p>
+      <div class="hero-badge">
+        <i data-lucide="zap" style="width:13px;height:13px;display:inline;vertical-align:-1px;margin-right:4px"></i>
+        Das Ökosystem für Elektrofachkräfte
+      </div>
+      <h1>Software & Wissen<span class="line2">für Elektriker.</span></h1>
+      <p class="hero-sub reveal">ElektroGenius entwickelt digitale Werkzeuge und Lernplattformen, die den Elektrohandwerk-Alltag einfacher, schneller und professioneller machen — von der Ausbildung bis zum Betrieb.</p>
       <div class="hero-buttons reveal">
-        <a href="https://lernportal.elektrogenius.de" target="_blank" class="btn-primary"><i data-lucide="zap" style="width:16px;height:16px;display:inline;vertical-align:-3px;margin-right:5px"></i> Zum Lernportal</a>
-        <button onclick="showPage('lernplattform');vqShow('rechner')" class="btn-secondary"><i data-lucide="calculator" style="width:16px;height:16px;display:inline;vertical-align:-3px;margin-right:5px"></i> Zu den Rechnern</button>
-        <a href="https://www.instagram.com/elektrogenius.de" target="_blank" class="btn-secondary">Uns folgen →</a>
+        <a href="https://lernportal.elektrogenius.de" target="_blank" class="btn-primary">
+          <i data-lucide="zap" style="width:16px;height:16px;display:inline;vertical-align:-3px;margin-right:6px"></i> VoltBase öffnen
+        </a>
+        <a onclick="showPage('home');smoothTo('leistungen')" class="btn-secondary" style="cursor:pointer">
+          Alle Produkte ansehen →
+        </a>
       </div>
     </div>
     <div class="hero-scroll">↓ Mehr entdecken</div>
   </section>
 
+  <!-- ── STATS ─────────────────────────────────────────────────────── -->
   <div class="stats">
-    <div class="stat-item reveal"><span class="stat-num">100%</span><span class="stat-label">Kostenlos & frei zugänglich</span></div>
-    <div class="stat-item reveal"><span class="stat-num">100+</span><span class="stat-label">Themen</span></div>
-    <div class="stat-item reveal"><span class="stat-num">7</span><span class="stat-label">Rechner</span></div>
-    <div class="stat-item reveal"><span class="stat-num">3</span><span class="stat-label">Fragen pro Thema</span></div>
+    <div class="stat-item reveal"><span class="stat-num">4</span><span class="stat-label">Produkte & Plattformen</span></div>
+    <div class="stat-item reveal"><span class="stat-num">2.000+</span><span class="stat-label">Community-Mitglieder</span></div>
+    <div class="stat-item reveal"><span class="stat-num">100+</span><span class="stat-label">Fachthemen (VoltBase)</span></div>
+    <div class="stat-item reveal"><span class="stat-num">0 €</span><span class="stat-label">Einstieg kostenlos</span></div>
   </div>
 
+  <!-- ── LEISTUNGEN ────────────────────────────────────────────────── -->
+  <section id="leistungen">
+    <div class="section-inner">
+      <span class="section-tag reveal">Unsere Produkte</span>
+      <h2 class="eg reveal">Alles was du <em>brauchst</em></h2>
+      <div class="divider-eg reveal"></div>
+      <p class="lead reveal">Von der Ausbildung bis zur Betriebsführung — vier spezialisierte Produkte für Elektriker und Elektrobetriebe.</p>
+
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.5rem;margin-top:3rem">
+
+        <!-- VoltBase -->
+        <div class="feature-card reveal" style="border-color:rgba(79,195,247,.25);display:flex;flex-direction:column">
+          <div style="width:52px;height:52px;border-radius:12px;background:rgba(79,195,247,.12);border:1px solid rgba(79,195,247,.25);display:flex;align-items:center;justify-content:center;margin-bottom:1.2rem;flex-shrink:0">
+            <i data-lucide="zap" style="width:24px;height:24px;stroke:#4fc3f7;stroke-width:1.8"></i>
+          </div>
+          <span style="font-size:.72rem;font-weight:700;letter-spacing:.1em;color:#4fc3f7;text-transform:uppercase;margin-bottom:.4rem">Lernportal</span>
+          <h3 style="font-family:'Barlow Condensed',sans-serif;font-size:1.5rem;font-weight:800;color:var(--white);margin-bottom:.6rem">VoltBase</h3>
+          <p style="color:var(--muted);font-size:.9rem;line-height:1.7;flex:1">100+ Fachthemen mit Theorie, Formeln, interaktiven Quizzes und Rechnern. Das umfassendste Lernportal für Elektrotechnik — kostenlos zugänglich.</p>
+          <a href="https://lernportal.elektrogenius.de" target="_blank" class="btn-primary" style="margin-top:1.5rem;display:inline-flex;align-items:center;gap:7px;font-size:.9rem;padding:.7rem 1.4rem;align-self:flex-start">
+            <i data-lucide="external-link" style="width:14px;height:14px"></i> Zum Lernportal
+          </a>
+        </div>
+
+        <!-- VoltOffice -->
+        <div class="feature-card reveal" style="border-color:rgba(0,198,255,.25);display:flex;flex-direction:column">
+          <div style="width:52px;height:52px;border-radius:12px;background:rgba(0,198,255,.12);border:1px solid rgba(0,198,255,.25);display:flex;align-items:center;justify-content:center;margin-bottom:1.2rem;flex-shrink:0">
+            <i data-lucide="building-2" style="width:24px;height:24px;stroke:#00c6ff;stroke-width:1.8"></i>
+          </div>
+          <span style="font-size:.72rem;font-weight:700;letter-spacing:.1em;color:#00c6ff;text-transform:uppercase;margin-bottom:.4rem">Office-Software</span>
+          <h3 style="font-family:'Barlow Condensed',sans-serif;font-size:1.5rem;font-weight:800;color:var(--white);margin-bottom:.6rem">VoltOffice</h3>
+          <p style="color:var(--muted);font-size:.9rem;line-height:1.7;flex:1">Angebote erstellen, Rechnungen schreiben, Kunden verwalten und Zeiterfassung — alles in einer schlanken Web-App speziell für Elektrobetriebe.</p>
+          <a href="https://voltoffice.elektrogenius.de" target="_blank" class="btn-primary" style="margin-top:1.5rem;display:inline-flex;align-items:center;gap:7px;font-size:.9rem;padding:.7rem 1.4rem;align-self:flex-start;background:linear-gradient(135deg,#00c6ff,#0092c8);color:#0d1b2a;box-shadow:0 0 20px rgba(0,198,255,.25)">
+            <i data-lucide="external-link" style="width:14px;height:14px"></i> VoltOffice öffnen
+          </a>
+        </div>
+
+        <!-- MaterialCheck -->
+        <div class="feature-card reveal" style="border-color:rgba(245,166,35,.25);display:flex;flex-direction:column">
+          <div style="width:52px;height:52px;border-radius:12px;background:rgba(245,166,35,.12);border:1px solid rgba(245,166,35,.25);display:flex;align-items:center;justify-content:center;margin-bottom:1.2rem;flex-shrink:0">
+            <i data-lucide="package" style="width:24px;height:24px;stroke:#f5a623;stroke-width:1.8"></i>
+          </div>
+          <span style="font-size:.72rem;font-weight:700;letter-spacing:.1em;color:#f5a623;text-transform:uppercase;margin-bottom:.4rem">Lagerverwaltung</span>
+          <h3 style="font-family:'Barlow Condensed',sans-serif;font-size:1.5rem;font-weight:800;color:var(--white);margin-bottom:.6rem">MaterialCheck</h3>
+          <p style="color:var(--muted);font-size:.9rem;line-height:1.7;flex:1">Materialien, Bestände und Bestelllisten für Elektrobetriebe — als Web-App und Android-App. Mit Teamzugriff und Echtzeit-Sync.</p>
+          <div style="display:flex;gap:.6rem;flex-wrap:wrap;margin-top:1.5rem">
+            <a href="https://app.elektrogenius.de" target="_blank" class="btn-primary" style="display:inline-flex;align-items:center;gap:7px;font-size:.9rem;padding:.7rem 1.4rem;background:linear-gradient(135deg,#f5a623,#c4841c);color:#0d1b2e;box-shadow:0 0 20px rgba(245,166,35,.25)">
+              <i data-lucide="external-link" style="width:14px;height:14px"></i> Web-App
+            </a>
+            <a href="https://play.google.com/store/apps/details?id=de.elektrogenius.materialcheck.firmenwagen" target="_blank" class="btn-secondary" style="display:inline-flex;align-items:center;gap:7px;font-size:.9rem;padding:.7rem 1.4rem;border-color:rgba(245,166,35,.4);color:#f5a623">
+              <i data-lucide="smartphone" style="width:14px;height:14px"></i> Android
+            </a>
+          </div>
+        </div>
+
+        <!-- Coaching -->
+        <div class="feature-card reveal" style="border-color:rgba(255,140,66,.25);display:flex;flex-direction:column">
+          <div style="width:52px;height:52px;border-radius:12px;background:rgba(255,140,66,.12);border:1px solid rgba(255,140,66,.25);display:flex;align-items:center;justify-content:center;margin-bottom:1.2rem;flex-shrink:0">
+            <i data-lucide="user-check" style="width:24px;height:24px;stroke:var(--orange);stroke-width:1.8"></i>
+          </div>
+          <span style="font-size:.72rem;font-weight:700;letter-spacing:.1em;color:var(--orange);text-transform:uppercase;margin-bottom:.4rem">1:1 Beratung</span>
+          <h3 style="font-family:'Barlow Condensed',sans-serif;font-size:1.5rem;font-weight:800;color:var(--white);margin-bottom:.6rem">Coaching</h3>
+          <p style="color:var(--muted);font-size:.9rem;line-height:1.7;flex:1">Persönliche 1:1 Beratung für Azubis, Gesellen und Betriebsinhaber. Prüfungsvorbereitung, Karriereplanung oder digitale Betriebsstrategie.</p>
+          <a href="https://coaching.elektrogenius.de" target="_blank" class="btn-primary" style="margin-top:1.5rem;display:inline-flex;align-items:center;gap:7px;font-size:.9rem;padding:.7rem 1.4rem;align-self:flex-start;background:linear-gradient(135deg,var(--orange),#cc6e2a);color:#0d1b2e;box-shadow:0 0 20px rgba(255,140,66,.2)">
+            <i data-lucide="external-link" style="width:14px;height:14px"></i> Coaching buchen
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── VOLTOFFICE DEEP ────────────────────────────────────────────── -->
+  <section id="voltoffice" style="position:relative;z-index:1;background:linear-gradient(180deg,rgba(0,198,255,.07) 0%,rgba(13,27,42,.5) 60%,transparent 100%);border-top:1px solid rgba(0,198,255,.18);border-bottom:1px solid rgba(0,198,255,.18)">
+    <div class="section-inner">
+      <div style="display:flex;align-items:center;gap:1.4rem;margin-bottom:2.8rem;flex-wrap:wrap">
+        <div style="width:62px;height:62px;border-radius:14px;background:linear-gradient(135deg,rgba(0,198,255,.22),rgba(0,150,200,.10));border:1.5px solid rgba(0,198,255,.35);display:flex;align-items:center;justify-content:center;flex-shrink:0;box-shadow:0 0 24px rgba(0,198,255,.18)">
+          <span style="font-family:'Barlow Condensed',sans-serif;font-size:1.5rem;font-weight:800;color:#00c6ff;letter-spacing:.04em">VO</span>
+        </div>
+        <div>
+          <span class="section-tag reveal" style="color:#00c6ff;margin-bottom:.3rem">Office-Tool für Elektriker</span>
+          <h2 class="eg reveal" style="margin-bottom:0">Volt<em style="color:#00c6ff">Office</em></h2>
+        </div>
+        <a href="https://voltoffice.elektrogenius.de" target="_blank" class="btn-primary reveal" style="margin-left:auto;background:linear-gradient(135deg,#00c6ff,#0092c8);color:#0d1b2a;box-shadow:0 0 28px rgba(0,198,255,.35);display:inline-flex;align-items:center;gap:8px;white-space:nowrap">
+          <i data-lucide="external-link" style="width:16px;height:16px"></i> VoltOffice öffnen
+        </a>
+      </div>
+      <div class="divider-eg reveal" style="background:linear-gradient(90deg,#00c6ff,transparent)"></div>
+      <p class="lead reveal" style="max-width:620px;margin-bottom:3rem">Das moderne Office-Tool für Elektriker und Elektrobetriebe. Angebote und Rechnungen erstellen, Kunden verwalten, Aufmaß erfassen — alles in einer schlanken Web-App. 14 Tage kostenlos testen.</p>
+      <div class="features-grid reveal">
+        <div class="feature-card" style="border-color:rgba(0,198,255,.2)">
+          <div class="feature-icon"><i data-lucide="file-plus" style="width:36px;height:36px;stroke:#00c6ff;stroke-width:1.5"></i></div>
+          <h3 style="color:var(--white)">Angebote & Rechnungen</h3>
+          <p>Professionelle Angebote in Minuten erstellen und direkt als PDF exportieren. Rechnungen mit einem Klick aus Angeboten generieren.</p>
+        </div>
+        <div class="feature-card" style="border-color:rgba(0,198,255,.2)">
+          <div class="feature-icon"><i data-lucide="users" style="width:36px;height:36px;stroke:#00c6ff;stroke-width:1.5"></i></div>
+          <h3 style="color:var(--white)">Kundenverwaltung</h3>
+          <p>Alle Kunden, Kontaktdaten und Projekte zentral verwalten. Immer den Überblick über laufende und vergangene Aufträge.</p>
+        </div>
+        <div class="feature-card" style="border-color:rgba(0,198,255,.2)">
+          <div class="feature-icon"><i data-lucide="clock" style="width:36px;height:36px;stroke:#00c6ff;stroke-width:1.5"></i></div>
+          <h3 style="color:var(--white)">Zeiterfassung</h3>
+          <p>Arbeitszeiten direkt in der App erfassen — mit Timer, Wochenübersicht und Projektbezug. Kein Zettel, kein Excel.</p>
+        </div>
+        <div class="feature-card" style="border-color:rgba(0,198,255,.2)">
+          <div class="feature-icon"><i data-lucide="ruler" style="width:36px;height:36px;stroke:#00c6ff;stroke-width:1.5"></i></div>
+          <h3 style="color:var(--white)">Aufmaß & Projekte</h3>
+          <p>Aufmaße direkt in der App erfassen. Mengen, Positionen und Leistungen sauber dokumentieren — ohne Papier.</p>
+        </div>
+      </div>
+      <div class="reveal" style="margin-top:3rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1.5rem;padding:2rem 2.2rem;background:rgba(0,198,255,.05);border:1px solid rgba(0,198,255,.18);border-radius:14px">
+        <div>
+          <div style="font-family:'Barlow Condensed',sans-serif;font-size:1.25rem;font-weight:800;color:var(--white);margin-bottom:.3rem">14 Tage kostenlos — alle Pro-Features</div>
+          <div style="color:var(--muted);font-size:.88rem;display:flex;align-items:center;gap:1.2rem;flex-wrap:wrap">
+            <span style="display:flex;align-items:center;gap:.4rem"><i data-lucide="check" style="width:13px;height:13px;color:#00D084"></i> Kein Abo nötig zum Start</span>
+            <span style="display:flex;align-items:center;gap:.4rem"><i data-lucide="check" style="width:13px;height:13px;color:#00D084"></i> Direkt im Browser</span>
+            <span style="display:flex;align-items:center;gap:.4rem"><i data-lucide="check" style="width:13px;height:13px;color:#00D084"></i> Speziell für Elektrobetriebe</span>
+          </div>
+        </div>
+        <a href="https://voltoffice.elektrogenius.de" target="_blank" class="btn-primary" style="background:linear-gradient(135deg,#00c6ff,#0092c8);color:#0d1b2a;box-shadow:0 0 28px rgba(0,198,255,.35);display:inline-flex;align-items:center;gap:8px;font-size:1.05rem;padding:.9rem 2.2rem">
+          <i data-lucide="external-link" style="width:17px;height:17px"></i> Jetzt kostenlos starten
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── MATERIALCHECK DEEP ─────────────────────────────────────────── -->
+  <section id="materialcheck" style="position:relative;z-index:1;background:linear-gradient(180deg,rgba(245,166,35,.07) 0%,rgba(13,27,42,.5) 60%,transparent 100%);border-top:1px solid rgba(245,166,35,.18);border-bottom:1px solid rgba(245,166,35,.18)">
+    <div class="section-inner">
+      <div style="display:flex;align-items:center;gap:1.4rem;margin-bottom:2.8rem;flex-wrap:wrap">
+        <div style="width:62px;height:62px;border-radius:14px;background:linear-gradient(135deg,rgba(245,166,35,.22),rgba(200,120,0,.10));border:1.5px solid rgba(245,166,35,.35);display:flex;align-items:center;justify-content:center;flex-shrink:0;box-shadow:0 0 24px rgba(245,166,35,.18)">
+          <i data-lucide="package" style="width:28px;height:28px;stroke:#f5a623;stroke-width:1.5"></i>
+        </div>
+        <div>
+          <span class="section-tag reveal" style="color:#f5a623;margin-bottom:.3rem">Lagerverwaltung für Elektriker</span>
+          <h2 class="eg reveal" style="margin-bottom:0">Material<em style="color:#f5a623">Check</em></h2>
+        </div>
+        <div class="reveal" style="margin-left:auto;display:flex;gap:.8rem;flex-wrap:wrap">
+          <a href="https://app.elektrogenius.de" target="_blank" class="btn-primary" style="background:linear-gradient(135deg,#f5a623,#c4841c);color:#0d1b2e;box-shadow:0 0 28px rgba(245,166,35,.35);display:inline-flex;align-items:center;gap:8px;white-space:nowrap">
+            <i data-lucide="external-link" style="width:16px;height:16px"></i> Web-App öffnen
+          </a>
+          <a href="https://play.google.com/store/apps/details?id=de.elektrogenius.materialcheck.firmenwagen" target="_blank" class="btn-secondary" style="display:inline-flex;align-items:center;gap:8px;white-space:nowrap;border-color:rgba(245,166,35,.4);color:#f5a623">
+            <i data-lucide="smartphone" style="width:16px;height:16px"></i> Play Store
+          </a>
+        </div>
+      </div>
+      <div class="divider-eg reveal" style="background:linear-gradient(90deg,#f5a623,transparent)"></div>
+      <p class="lead reveal" style="max-width:620px;margin-bottom:3rem">Die Lagerverwaltungs-App speziell für Elektriker. Materialien, Bestände und Bestelllisten digital verwalten — als Web-App und Android-App. Für Einzelunternehmer und Teams.</p>
+      <div class="features-grid reveal">
+        <div class="feature-card" style="border-color:rgba(245,166,35,.2)">
+          <div class="feature-icon"><i data-lucide="package" style="width:36px;height:36px;stroke:#f5a623;stroke-width:1.5"></i></div>
+          <h3 style="color:var(--white)">Lagerverwaltung</h3>
+          <p>Materialien, Bestände und Lagerorte zentral verwalten. Immer den Überblick über Verbrauch und Nachbestellbedarf.</p>
+        </div>
+        <div class="feature-card" style="border-color:rgba(245,166,35,.2)">
+          <div class="feature-icon"><i data-lucide="scan-barcode" style="width:36px;height:36px;stroke:#f5a623;stroke-width:1.5"></i></div>
+          <h3 style="color:var(--white)">QR-Code Scanner</h3>
+          <p>Materialien per QR-Code scannen und Bestände direkt buchen — schnell, papierlos und ohne Tippfehler auf der Baustelle.</p>
+        </div>
+        <div class="feature-card" style="border-color:rgba(245,166,35,.2)">
+          <div class="feature-icon"><i data-lucide="users" style="width:36px;height:36px;stroke:#f5a623;stroke-width:1.5"></i></div>
+          <h3 style="color:var(--white)">Teamzugriff</h3>
+          <p>Mehrere Mitarbeiter greifen gemeinsam auf dasselbe Lager zu. Änderungen werden automatisch in Echtzeit synchronisiert.</p>
+        </div>
+        <div class="feature-card" style="border-color:rgba(245,166,35,.2)">
+          <div class="feature-icon"><i data-lucide="smartphone" style="width:36px;height:36px;stroke:#f5a623;stroke-width:1.5"></i></div>
+          <h3 style="color:var(--white)">Android App</h3>
+          <p>Im Google Play Store verfügbar — auch offline nutzbar, mit automatischer Synchronisation sobald wieder online.</p>
+        </div>
+      </div>
+      <div class="reveal" style="margin-top:3rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1.5rem;padding:2rem 2.2rem;background:rgba(245,166,35,.05);border:1px solid rgba(245,166,35,.18);border-radius:14px">
+        <div>
+          <div style="font-family:'Barlow Condensed',sans-serif;font-size:1.25rem;font-weight:800;color:var(--white);margin-bottom:.3rem">Jetzt kostenlos starten</div>
+          <div style="color:var(--muted);font-size:.88rem;display:flex;align-items:center;gap:1.2rem;flex-wrap:wrap">
+            <span style="display:flex;align-items:center;gap:.4rem"><i data-lucide="check" style="width:13px;height:13px;color:#00D084"></i> Kostenlos nutzbar</span>
+            <span style="display:flex;align-items:center;gap:.4rem"><i data-lucide="check" style="width:13px;height:13px;color:#00D084"></i> Web + Android</span>
+            <span style="display:flex;align-items:center;gap:.4rem"><i data-lucide="check" style="width:13px;height:13px;color:#00D084"></i> Für Einzelunternehmer und Teams</span>
+          </div>
+        </div>
+        <div style="display:flex;gap:.8rem;flex-wrap:wrap">
+          <a href="https://app.elektrogenius.de" target="_blank" class="btn-primary" style="background:linear-gradient(135deg,#f5a623,#c4841c);color:#0d1b2e;box-shadow:0 0 28px rgba(245,166,35,.35);display:inline-flex;align-items:center;gap:8px">
+            <i data-lucide="external-link" style="width:17px;height:17px"></i> Web-App öffnen
+          </a>
+          <a href="https://play.google.com/store/apps/details?id=de.elektrogenius.materialcheck.firmenwagen" target="_blank" class="btn-secondary" style="display:inline-flex;align-items:center;gap:8px;border-color:rgba(245,166,35,.4);color:#f5a623">
+            <i data-lucide="smartphone" style="width:17px;height:17px"></i> Im Play Store laden
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── ÜBER UNS ───────────────────────────────────────────────────── -->
   <section id="ueber-uns">
     <div class="section-inner">
-      <span class="section-tag reveal">Wer wir sind</span>
-      <h2 class="eg reveal">Elektriker & Meister — <em>mit Mission</em></h2>
+      <span class="section-tag reveal">Über ElektroGenius</span>
+      <h2 class="eg reveal">Gegründet von <em>Elektrikern</em></h2>
       <div class="divider-eg reveal"></div>
-      <div class="about-text reveal" style="max-width:680px">
-        <p>Ich bin Elektriker aus Leidenschaft — und ich kenne das Problem aus eigener Erfahrung: Die Theorie in der Ausbildung ist trocken, schwer zugänglich und weit weg vom echten Handwerksalltag. <strong>Genau das wollte ich ändern.</strong></p>
-        <p>Zusammen mit einer Gruppe erfahrener <strong>Elektriker und Meister</strong> haben wir ElektroGenius gegründet. Wir glauben, dass gutes Fachwissen nicht in dicken Büchern verstauben sollte — sondern dort sein muss, wo die Azubis heute lernen: im Feed, im Video, in der Community.</p>
-        <p>Wir verbinden <strong>jahrelange Praxiserfahrung</strong> aus dem Handwerk mit modernen Lernformaten. Kein trockener Frontalunterricht — sondern Wissen, das hängen bleibt.</p>
-        <a href="https://lernportal.elektrogenius.de/" target="_blank" class="btn-primary" style="margin-top:1.2rem;cursor:pointer"><i data-lucide="zap" style="width:16px;height:16px;display:inline;vertical-align:-3px;margin-right:5px"></i> Zum Lernportal →</a>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start" class="reveal">
+        <div class="about-text">
+          <p><strong>ElektroGenius ist ein Software- und Bildungsunternehmen für das Elektrohandwerk.</strong> Wir entwickeln digitale Werkzeuge, die den Alltag von Elektrikern, Azubis und Betriebsinhabern einfacher machen.</p>
+          <p>Gegründet von einem Elektriker — mit dem Ziel, moderne Softwaretools und praxisnahes Fachwissen direkt in den Handwerksalltag zu bringen. Kein Umweg über teure Agenturen oder komplizierte Systeme.</p>
+          <p>Heute umfasst ElektroGenius vier Produkte: das Lernportal <strong>VoltBase</strong>, die Office-Software <strong>VoltOffice</strong>, die Lagerverwaltungs-App <strong>MaterialCheck</strong> und <strong>1:1 Coaching</strong>. Alle Produkte sind speziell für Elektrofachkräfte entwickelt.</p>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:1.2rem">
+          <div style="padding:1.4rem 1.6rem;background:rgba(79,195,247,.06);border:1px solid rgba(79,195,247,.18);border-radius:12px">
+            <div style="display:flex;align-items:center;gap:.8rem;margin-bottom:.5rem">
+              <i data-lucide="target" style="width:18px;height:18px;stroke:#4fc3f7;flex-shrink:0"></i>
+              <span style="font-family:'Barlow Condensed',sans-serif;font-weight:800;color:var(--white);letter-spacing:.04em">MISSION</span>
+            </div>
+            <p style="color:var(--muted);font-size:.9rem;line-height:1.6">Digitale Werkzeuge entwickeln, die den Elektrohandwerk-Alltag effizienter machen — ohne Overhead, ohne Kompromisse.</p>
+          </div>
+          <div style="padding:1.4rem 1.6rem;background:rgba(245,166,35,.06);border:1px solid rgba(245,166,35,.18);border-radius:12px">
+            <div style="display:flex;align-items:center;gap:.8rem;margin-bottom:.5rem">
+              <i data-lucide="users" style="width:18px;height:18px;stroke:#f5a623;flex-shrink:0"></i>
+              <span style="font-family:'Barlow Condensed',sans-serif;font-weight:800;color:var(--white);letter-spacing:.04em">ZIELGRUPPE</span>
+            </div>
+            <p style="color:var(--muted);font-size:.9rem;line-height:1.6">Elektriker, Azubis, Gesellen, Meister und Inhaber kleiner bis mittelgroßer Elektrobetriebe in Deutschland.</p>
+          </div>
+          <div style="padding:1.4rem 1.6rem;background:rgba(0,208,132,.06);border:1px solid rgba(0,208,132,.18);border-radius:12px">
+            <div style="display:flex;align-items:center;gap:.8rem;margin-bottom:.5rem">
+              <i data-lucide="shield-check" style="width:18px;height:18px;stroke:#00D084;flex-shrink:0"></i>
+              <span style="font-family:'Barlow Condensed',sans-serif;font-weight:800;color:var(--white);letter-spacing:.04em">WERTE</span>
+            </div>
+            <p style="color:var(--muted);font-size:.9rem;line-height:1.6">Praxisnah. Ehrlich. Bezahlbar. Wir bauen Software, die wir selbst täglich nutzen würden.</p>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
-  <section id="rechner" class="features-bg">
-    <div class="section-inner">
-      <span class="section-tag reveal">Was wir bieten</span>
-      <h2 class="eg reveal">Lernen auf <em>jedem Kanal</em></h2>
-      <div class="divider-eg reveal"></div>
-      <p class="lead reveal">Wir liefern Inhalte in den Formaten, die wirklich funktionieren — modern, schnell und praxisnah.</p>
-      <div class="features-grid">
-        <div class="feature-card reveal"><span class="feature-icon"><i data-lucide="instagram" style="color:#f5a623"></i></span><h3>Instagram-Lernposts</h3><p>Regelmäßige Karussell-Beiträge mit Fachwissen, Erklärungen und Memes aus dem echten Handwerksalltag.</p></div>
-        <div class="feature-card reveal" style="opacity:.85"><span class="feature-icon" style="font-size:.85rem"><i data-lucide="help-circle" style="color:#4fc3f7;width:22px;height:22px"></i></span><h3 style="font-size:1.05rem">Schnell-Quiz</h3><p style="font-size:.82rem">20 Fragen zum Wissen testen — direkt auf der Startseite verfügbar.</p></div>
-        <div class="feature-card reveal"><span class="feature-icon"><i data-lucide="play-circle" style="color:#f5a623"></i></span><h3>YouTube-Videos</h3><p>Schritt-für-Schritt-Erklärungen zu komplexen Themen — so, wie es ein erfahrener Kollege erklären würde.</p></div>
-        <div class="feature-card reveal"><span class="feature-icon"><i data-lucide="message-circle" style="color:#00D084"></i></span><h3>WhatsApp Community</h3><p>Fragen stellen, Erfahrungen teilen, voneinander lernen. Eine aktive Community, in der niemand allein gelassen wird.</p></div>
-        <div class="feature-card reveal" style="border-color:rgba(79,195,247,.3)"><span class="feature-icon"><i data-lucide="zap" style="color:#4fc3f7"></i></span><h3>VoltBase Lernportal</h3><p>100 Fachthemen mit Quizzes, Formeln und Rechnern — interaktiv und direkt hier auf der Website. Das Herzstück von ElektroGenius.</p></div>
-        <div class="feature-card reveal"><span class="feature-icon"><i data-lucide="book-open" style="color:#00D084"></i></span><h3>Lernen mit System</h3><p>Strukturierte Inhalte, die wirklich hängen bleiben — praxisnah, modern und direkt anwendbar.</p></div>
-      </div>
-    </div>
-  </section>
-
-  <section>
-    <div class="section-inner">
-      <span class="section-tag reveal">Unsere Inhalte</span>
-      <h2 class="eg reveal">Was wir <em>abdecken</em></h2>
-      <div class="divider-eg reveal"></div>
-      <div class="topics-grid">
-        <div class="topic-chip reveal"><div class="topic-chip-dot"></div>Spannung, Strom & Widerstand</div>
-        <div class="topic-chip reveal"><div class="topic-chip-dot"></div>Wirkleistung & Blindleistung</div>
-        <div class="topic-chip reveal"><div class="topic-chip-dot"></div>Schutzmaßnahmen (VDE)</div>
-        <div class="topic-chip reveal"><div class="topic-chip-dot"></div>IP-Schutzarten</div>
-        <div class="topic-chip reveal"><div class="topic-chip-dot"></div>Installationstechnik</div>
-        <div class="topic-chip reveal"><div class="topic-chip-dot"></div>Energie- & Gebäudetechnik</div>
-        <div class="topic-chip reveal"><div class="topic-chip-dot"></div>Schaltpläne lesen</div>
-        <div class="topic-chip reveal"><div class="topic-chip-dot"></div>Prüfungsvorbereitung</div>
-        <div class="topic-chip reveal"><div class="topic-chip-dot"></div>Berechnungen & Formeln</div>
-        <div class="topic-chip reveal"><div class="topic-chip-dot"></div>Tipps für Azubis</div>
-      </div>
-    </div>
-  </section>
-
+  <!-- ── COMMUNITY ─────────────────────────────────────────────────── -->
   <section id="community" class="cta-section">
     <div class="cta-inner">
-      <span class="section-tag reveal">Werde Teil von uns</span>
-      <h2 class="eg reveal">Gemeinsam stärker — <em>Unsere Community</em></h2>
+      <span class="section-tag reveal">Wo du uns findest</span>
+      <h2 class="eg reveal">Folge uns — <em>bleib up to date</em></h2>
       <div class="divider-eg" style="margin:1rem auto 1.5rem"></div>
-      <p class="lead reveal">Wir bauen mehr als eine Lernplattform — wir bauen eine Community. Tausch dich mit anderen Azubis und Fachkräften aus, stell Fragen und wachse gemeinsam mit uns.</p>
+      <p class="lead reveal" style="margin:0 auto 2.5rem">Neuigkeiten, Tutorials, Fachwissen und Community-Updates auf allen Kanälen.</p>
       <div class="channels-grid reveal">
-        <a href="https://www.instagram.com/elektrogenius.de" target="_blank" class="channel-btn"><i data-lucide="instagram" style="width:18px;height:18px"></i> Instagram</a>
-        <a href="https://www.youtube.com/channel/UCM4BVx1bDFUrbMhQ39Y9VCg" target="_blank" class="channel-btn"><i data-lucide="play-circle" style="width:18px;height:18px"></i> YouTube</a>
-        <a href="https://chat.whatsapp.com/FIRdC7y5bg1Az9H3JfpouL" target="_blank" class="channel-btn"><i data-lucide="message-circle" style="width:18px;height:18px"></i> WhatsApp Community</a>
-        <a href="https://app.elektrogenius.de" target="_blank" class="channel-btn" style="border-color:rgba(245,166,35,.4);color:#f5a623"><i data-lucide="package" style="width:18px;height:18px"></i> MaterialCheck App</a>
-        <a href="https://voltoffice.elektrogenius.de" target="_blank" class="channel-btn" style="border-color:rgba(0,198,255,.4);color:#00c6ff"><i data-lucide="building-2" style="width:18px;height:18px"></i> VoltOffice</a>
+        <a href="https://www.instagram.com/elektrogenius.de" target="_blank" class="channel-btn">
+          <i data-lucide="instagram" style="width:18px;height:18px"></i> Instagram
+        </a>
+        <a href="https://www.youtube.com/channel/UCM4BVx1bDFUrbMhQ39Y9VCg" target="_blank" class="channel-btn">
+          <i data-lucide="play-circle" style="width:18px;height:18px"></i> YouTube
+        </a>
+        <a href="https://chat.whatsapp.com/FIRdC7y5bg1Az9H3JfpouL" target="_blank" class="channel-btn">
+          <i data-lucide="message-circle" style="width:18px;height:18px"></i> WhatsApp Community
+        </a>
+        <a href="https://lernportal.elektrogenius.de" target="_blank" class="channel-btn" style="border-color:rgba(79,195,247,.4);color:#4fc3f7">
+          <i data-lucide="zap" style="width:18px;height:18px"></i> VoltBase
+        </a>
+        <a href="https://voltoffice.elektrogenius.de" target="_blank" class="channel-btn" style="border-color:rgba(0,198,255,.4);color:#00c6ff">
+          <i data-lucide="building-2" style="width:18px;height:18px"></i> VoltOffice
+        </a>
+        <a href="https://app.elektrogenius.de" target="_blank" class="channel-btn" style="border-color:rgba(245,166,35,.4);color:#f5a623">
+          <i data-lucide="package" style="width:18px;height:18px"></i> MaterialCheck
+        </a>
       </div>
       <div style="margin-top:3rem" class="reveal">
-        <a href="https://chat.whatsapp.com/FIRdC7y5bg1Az9H3JfpouL" target="_blank" class="btn-primary" style="font-size:1.1rem;padding:1rem 2.5rem"><i data-lucide="users" style="width:18px;height:18px;display:inline;vertical-align:-3px;margin-right:6px"></i> Jetzt der Community beitreten</a>
+        <a href="https://chat.whatsapp.com/FIRdC7y5bg1Az9H3JfpouL" target="_blank" class="btn-primary" style="font-size:1.1rem;padding:1rem 2.5rem">
+          <i data-lucide="users" style="width:18px;height:18px;display:inline;vertical-align:-3px;margin-right:6px"></i> Der Community beitreten
+        </a>
       </div>
     </div>
   </section>
