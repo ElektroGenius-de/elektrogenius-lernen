@@ -547,32 +547,79 @@
   </section>
 
   <!-- VOLTOFFICE -->
-  <section id="voltoffice" style="position:relative;z-index:1;background:linear-gradient(180deg,rgba(0,198,255,.05) 0%,rgba(13,27,42,.4) 100%);border-top:1px solid rgba(0,198,255,.13);border-bottom:1px solid rgba(0,198,255,.13)">
+  <section id="voltoffice" style="position:relative;z-index:1;background:linear-gradient(180deg,rgba(0,198,255,.07) 0%,rgba(13,27,42,.5) 60%,transparent 100%);border-top:1px solid rgba(0,198,255,.18);border-bottom:1px solid rgba(0,198,255,.18)">
     <div class="section-inner">
-      <div style="display:flex;gap:4rem;align-items:center;flex-wrap:wrap">
-        <div style="flex:1;min-width:280px">
-          <span class="section-tag reveal" style="background:rgba(0,198,255,.1);border:1px solid rgba(0,198,255,.28);padding:.3rem .9rem;border-radius:20px">✦ Neu bei ElektroGenius</span>
-          <h2 class="eg reveal" style="margin-top:.9rem">Volt<em>Office</em></h2>
-          <div class="divider-eg reveal"></div>
-          <p class="lead reveal" style="max-width:520px;margin-bottom:2rem">Die Handwerkersoftware für Elektrobetriebe — kostenlos starten. Kunden, Angebote, Projekte und Zeiterfassung in einer modernen Web-App. Speziell entwickelt für Elektrobetriebe.</p>
-          <div class="reveal" style="display:flex;gap:1rem;align-items:center;flex-wrap:wrap">
-            <a href="https://voltoffice.elektrogenius.de" target="_blank" class="btn-primary" style="background:linear-gradient(135deg,#00c6ff,#0099cc);color:#0d1b2e;display:inline-flex;align-items:center;gap:8px;border:none;box-shadow:0 0 28px rgba(0,198,255,.35)">
-              <i data-lucide="building-2" style="width:17px;height:17px"></i> Kostenlos starten
-            </a>
-            <span style="color:var(--muted);font-size:.85rem;display:flex;align-items:center;gap:.5rem">
-              <i data-lucide="check-circle" style="width:14px;height:14px;color:#00D084;display:inline;vertical-align:-2px"></i> Kein Abo nötig
-            </span>
+
+      <!-- Header -->
+      <div style="display:flex;align-items:center;gap:1.4rem;margin-bottom:2.8rem;flex-wrap:wrap">
+        <div style="width:62px;height:62px;border-radius:14px;background:linear-gradient(135deg,rgba(0,198,255,.22),rgba(0,150,200,.10));border:1.5px solid rgba(0,198,255,.35);display:flex;align-items:center;justify-content:center;flex-shrink:0;box-shadow:0 0 24px rgba(0,198,255,.18)">
+          <span style="font-family:'Barlow Condensed',sans-serif;font-size:1.5rem;font-weight:800;color:#00c6ff;letter-spacing:.04em">VO</span>
+        </div>
+        <div>
+          <span class="section-tag reveal" style="color:#00c6ff;margin-bottom:.3rem">Office-Tool für Elektriker</span>
+          <h2 class="eg reveal" style="margin-bottom:0">Volt<em style="color:#00c6ff">Office</em></h2>
+        </div>
+        <a href="https://voltoffice.elektrogenius.de" target="_blank" class="btn-primary reveal" style="margin-left:auto;background:linear-gradient(135deg,#00c6ff,#0092c8);color:#0d1b2a;box-shadow:0 0 28px rgba(0,198,255,.35);display:inline-flex;align-items:center;gap:8px;white-space:nowrap">
+          <i data-lucide="external-link" style="width:16px;height:16px"></i> VoltOffice öffnen
+        </a>
+      </div>
+
+      <!-- Lead -->
+      <div class="divider-eg reveal" style="background:linear-gradient(90deg,#00c6ff,transparent)"></div>
+      <p class="lead reveal" style="max-width:620px;margin-bottom:3rem">Das moderne Office-Tool speziell für Elektriker und Elektrobetriebe. Angebote und Rechnungen erstellen, Kunden verwalten, Aufmaß erfassen — alles in einer schlanken Web-App. Kostenlos starten, kein Abo nötig.</p>
+
+      <!-- Feature-Cards -->
+      <div class="features-grid reveal">
+
+        <div class="feature-card" style="border-color:rgba(0,198,255,.2)">
+          <div class="feature-icon">
+            <i data-lucide="file-plus" style="width:36px;height:36px;stroke:#00c6ff;stroke-width:1.5"></i>
+          </div>
+          <h3 style="color:var(--white)">Angebote erstellen</h3>
+          <p>Professionelle Angebote in Minuten — mit Positionen, Mengen und Preisen. Als PDF exportieren und direkt an den Kunden senden.</p>
+        </div>
+
+        <div class="feature-card" style="border-color:rgba(0,198,255,.2)">
+          <div class="feature-icon">
+            <i data-lucide="receipt" style="width:36px;height:36px;stroke:#00c6ff;stroke-width:1.5"></i>
+          </div>
+          <h3 style="color:var(--white)">Rechnungen</h3>
+          <p>Rechnungen direkt aus Angeboten erzeugen, nummerieren und als PDF ausgeben. Sauber, rechtssicher und schnell.</p>
+        </div>
+
+        <div class="feature-card" style="border-color:rgba(0,198,255,.2)">
+          <div class="feature-icon">
+            <i data-lucide="users" style="width:36px;height:36px;stroke:#00c6ff;stroke-width:1.5"></i>
+          </div>
+          <h3 style="color:var(--white)">Kundenverwaltung</h3>
+          <p>Alle Kunden, Kontaktdaten und Adressen zentral an einem Ort. Immer den Überblick über laufende und vergangene Aufträge.</p>
+        </div>
+
+        <div class="feature-card" style="border-color:rgba(0,198,255,.2)">
+          <div class="feature-icon">
+            <i data-lucide="ruler" style="width:36px;height:36px;stroke:#00c6ff;stroke-width:1.5"></i>
+          </div>
+          <h3 style="color:var(--white)">Aufmaß</h3>
+          <p>Aufmaße direkt in der App erfassen und verwalten. Mengen, Positionen und Leistungen sauber dokumentieren — ohne Papier.</p>
+        </div>
+
+      </div>
+
+      <!-- CTA-Footer -->
+      <div class="reveal" style="margin-top:3rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1.5rem;padding:2rem 2.2rem;background:rgba(0,198,255,.05);border:1px solid rgba(0,198,255,.18);border-radius:14px">
+        <div>
+          <div style="font-family:'Barlow Condensed',sans-serif;font-size:1.25rem;font-weight:800;color:var(--white);margin-bottom:.3rem">Jetzt kostenlos testen</div>
+          <div style="color:var(--muted);font-size:.88rem;display:flex;align-items:center;gap:1.2rem;flex-wrap:wrap">
+            <span style="display:flex;align-items:center;gap:.4rem"><i data-lucide="check" style="width:13px;height:13px;color:#00D084"></i> Kein Abo nötig</span>
+            <span style="display:flex;align-items:center;gap:.4rem"><i data-lucide="check" style="width:13px;height:13px;color:#00D084"></i> Direkt im Browser</span>
+            <span style="display:flex;align-items:center;gap:.4rem"><i data-lucide="check" style="width:13px;height:13px;color:#00D084"></i> Speziell für Elektrobetriebe</span>
           </div>
         </div>
-        <div class="reveal" style="flex:1;min-width:240px;max-width:380px;display:grid;grid-template-columns:1fr 1fr;gap:.65rem">
-          <div style="background:rgba(0,198,255,.06);border:1px solid rgba(0,198,255,.16);border-radius:10px;padding:.8rem 1rem;font-size:.83rem;color:#c8dff0;display:flex;align-items:center;gap:.5rem"><i data-lucide="users" style="width:14px;height:14px;color:#00c6ff;flex-shrink:0"></i>Kundenverwaltung</div>
-          <div style="background:rgba(0,198,255,.06);border:1px solid rgba(0,198,255,.16);border-radius:10px;padding:.8rem 1rem;font-size:.83rem;color:#c8dff0;display:flex;align-items:center;gap:.5rem"><i data-lucide="file-text" style="width:14px;height:14px;color:#00c6ff;flex-shrink:0"></i>Angebote erstellen</div>
-          <div style="background:rgba(0,198,255,.06);border:1px solid rgba(0,198,255,.16);border-radius:10px;padding:.8rem 1rem;font-size:.83rem;color:#c8dff0;display:flex;align-items:center;gap:.5rem"><i data-lucide="briefcase" style="width:14px;height:14px;color:#00c6ff;flex-shrink:0"></i>Projektverwaltung</div>
-          <div style="background:rgba(0,198,255,.06);border:1px solid rgba(0,198,255,.16);border-radius:10px;padding:.8rem 1rem;font-size:.83rem;color:#c8dff0;display:flex;align-items:center;gap:.5rem"><i data-lucide="clock" style="width:14px;height:14px;color:#00c6ff;flex-shrink:0"></i>Zeiterfassung</div>
-          <div style="background:rgba(0,198,255,.06);border:1px solid rgba(0,198,255,.16);border-radius:10px;padding:.8rem 1rem;font-size:.83rem;color:#c8dff0;display:flex;align-items:center;gap:.5rem"><i data-lucide="download" style="width:14px;height:14px;color:#00c6ff;flex-shrink:0"></i>PDF-Export</div>
-          <div style="background:rgba(245,166,35,.06);border:1px solid rgba(245,166,35,.2);border-radius:10px;padding:.8rem 1rem;font-size:.83rem;color:#f5d08a;display:flex;align-items:center;gap:.5rem"><i data-lucide="zap" style="width:14px;height:14px;color:#f5a623;flex-shrink:0"></i>Free &amp; Pro Plan</div>
-        </div>
+        <a href="https://voltoffice.elektrogenius.de" target="_blank" class="btn-primary" style="background:linear-gradient(135deg,#00c6ff,#0092c8);color:#0d1b2a;box-shadow:0 0 28px rgba(0,198,255,.35);display:inline-flex;align-items:center;gap:8px;font-size:1.05rem;padding:.9rem 2.2rem">
+          <i data-lucide="external-link" style="width:17px;height:17px"></i> VoltOffice öffnen
+        </a>
       </div>
+
     </div>
   </section>
 
