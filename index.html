@@ -1100,30 +1100,113 @@
 
 <!-- ═══ PAGE: IMPRESSUM ═══ -->
 <div id="page-impressum" class="page">
-  <div class="legal-page">
+  <div class="legal-page" style="max-width:860px">
     <button class="back-btn" onclick="showPage('home')">← Zurück zur Startseite</button>
-    <h1>Impressum</h1>
-    <h2>Angaben gemäß § 5 DDG</h2>
-    <p>ElektroGenius<br>
-    Safin Deler Yezdin Al Ali<br>
-    Nördlinger Str. 1<br>
-    51103 Köln<br>
-    Deutschland</p>
-    <h2>Kontakt</h2>
-    <p>E-Mail: <a href="mailto:info@elektrogenius.de">info@elektrogenius.de</a><br>
-    Website: <a href="https://elektrogenius.de">elektrogenius.de</a></p>
-    <h2>Social Media</h2>
-    <p>Instagram: <a href="https://www.instagram.com/elektrogenius.de" target="_blank">@elektrogenius.de</a><br>
-    YouTube: <a href="https://www.youtube.com/channel/UCM4BVx1bDFUrbMhQ39Y9VCg" target="_blank">ElektroGenius</a></p>
-    <h2>Verantwortlich für den Inhalt</h2>
-    <p>Safin Deler Yezdin Al Ali (Anschrift wie oben)</p>
-    <h2>Haftungsausschluss</h2>
-    <p>Die Inhalte dieser Website wurden mit größter Sorgfalt erstellt. Für die Richtigkeit, Vollständigkeit und Aktualität der Inhalte können wir jedoch keine Gewähr übernehmen. Als Diensteanbieter sind wir gemäß § 7 Abs.1 DDG für eigene Inhalte auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich.</p>
-    <h2>Urheberrecht</h2>
-    <p>Die durch die Seitenbetreiber erstellten Inhalte und Werke auf diesen Seiten unterliegen dem deutschen Urheberrecht. Die Vervielfältigung, Bearbeitung, Verbreitung und jede Art der Verwertung außerhalb der Grenzen des Urheberrechtes bedürfen der schriftlichen Zustimmung des jeweiligen Autors bzw. Erstellers.</p>
-    <h2>Streitschlichtung</h2>
-    <p>Die Europäische Kommission stellt eine Plattform zur Online-Streitbeilegung (OS) bereit: <a href="https://ec.europa.eu/consumers/odr/" target="_blank">https://ec.europa.eu/consumers/odr/</a></p>
-    <p>Wir sind nicht bereit oder verpflichtet, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.</p>
+
+    <div style="border-left:4px solid var(--orange,#f5a623);padding-left:20px;margin-bottom:40px">
+      <h1 style="font-size:2.2rem;margin-bottom:6px">Impressum</h1>
+      <p style="color:var(--muted);font-size:.85rem;margin:0">Angaben gemäß § 5 DDG · Stand: April 2026</p>
+    </div>
+
+    <!-- Anbieter -->
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:14px">
+      <span style="font-size:10px;font-weight:700;color:var(--orange,#f5a623);text-transform:uppercase;letter-spacing:1.2px">Anbieter</span>
+      <div style="flex:1;height:0.5px;background:rgba(245,166,35,0.2)"></div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px;margin-bottom:32px">
+      <div style="background:rgba(255,255,255,0.03);border:0.5px solid rgba(255,255,255,0.1);border-radius:14px;padding:20px 22px">
+        <p style="font-size:10px;font-weight:700;color:var(--orange,#f5a623);text-transform:uppercase;letter-spacing:1px;margin-bottom:10px">Verantwortliche Person</p>
+        <p style="color:var(--white,#e6edf3);font-weight:600;margin-bottom:4px">ElektroGenius</p>
+        <p>Safin Deler Yezdin Al Ali<br>Nördlinger Str. 1<br>51103 Köln<br>Deutschland</p>
+      </div>
+      <div style="background:rgba(255,255,255,0.03);border:0.5px solid rgba(255,255,255,0.1);border-radius:14px;padding:20px 22px">
+        <p style="font-size:10px;font-weight:700;color:var(--orange,#f5a623);text-transform:uppercase;letter-spacing:1px;margin-bottom:10px">Kontakt &amp; Social Media</p>
+        <p>E-Mail: <a href="mailto:info@elektrogenius.de">info@elektrogenius.de</a></p>
+        <p style="margin-top:10px">Instagram: <a href="https://www.instagram.com/elektrogenius.de" target="_blank">@elektrogenius.de</a><br>
+        YouTube: <a href="https://www.youtube.com/channel/UCM4BVx1bDFUrbMhQ39Y9VCg" target="_blank">ElektroGenius</a></p>
+      </div>
+    </div>
+
+    <!-- Webangebote -->
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:14px">
+      <span style="font-size:10px;font-weight:700;color:var(--orange,#f5a623);text-transform:uppercase;letter-spacing:1.2px">Alle Webangebote &amp; Subdomains</span>
+      <div style="flex:1;height:0.5px;background:rgba(245,166,35,0.2)"></div>
+    </div>
+
+    <div style="background:rgba(255,255,255,0.03);border:0.5px solid rgba(255,255,255,0.1);border-radius:14px;padding:20px 22px;margin-bottom:14px">
+      <p style="margin-bottom:14px">Alle nachfolgenden Webangebote betreibe ich unter der Hauptdomain <strong style="color:var(--white,#e6edf3)">elektrogenius.de</strong> sowie deren Subdomains. Subdomains (z. B. <em>sub.elektrogenius.de</em>) sind technische Unterbereiche und stehen vollständig im Eigentum von Safin Deler Yezdin Al Ali. Für alle Angebote gilt dieses Impressum.</p>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px">
+        <div style="background:rgba(13,27,42,0.6);border:0.5px solid rgba(255,255,255,0.1);border-radius:10px;padding:12px 14px;display:flex;align-items:flex-start;gap:10px">
+          <span style="font-size:18px;margin-top:2px">🌐</span>
+          <div>
+            <p style="color:var(--white,#e6edf3);font-weight:700;font-size:.9rem;margin-bottom:2px"><a href="https://elektrogenius.de">elektrogenius.de</a></p>
+            <p style="font-size:.78rem;margin:0">Hauptseite · Lernplattform für Elektrotechnik</p>
+            <span style="display:inline-block;font-size:9px;font-weight:700;background:rgba(245,166,35,0.15);color:#f5a623;border:0.5px solid rgba(245,166,35,0.3);padding:2px 7px;border-radius:10px;margin-top:5px;text-transform:uppercase;letter-spacing:0.5px">Hauptdomain</span>
+          </div>
+        </div>
+        <div style="background:rgba(13,27,42,0.6);border:0.5px solid rgba(255,255,255,0.1);border-radius:10px;padding:12px 14px;display:flex;align-items:flex-start;gap:10px">
+          <span style="font-size:18px;margin-top:2px">📦</span>
+          <div>
+            <p style="color:var(--white,#e6edf3);font-weight:700;font-size:.9rem;margin-bottom:2px"><a href="https://app.elektrogenius.de" target="_blank">app.elektrogenius.de</a></p>
+            <p style="font-size:.78rem;margin:0">MaterialCheck · Materialverwaltung für Betriebe</p>
+            <span style="display:inline-block;font-size:9px;font-weight:700;background:rgba(245,166,35,0.15);color:#f5a623;border:0.5px solid rgba(245,166,35,0.3);padding:2px 7px;border-radius:10px;margin-top:5px;text-transform:uppercase;letter-spacing:0.5px">GitHub Pages</span>
+          </div>
+        </div>
+        <div style="background:rgba(13,27,42,0.6);border:0.5px solid rgba(255,255,255,0.1);border-radius:10px;padding:12px 14px;display:flex;align-items:flex-start;gap:10px">
+          <span style="font-size:18px;margin-top:2px">⚡</span>
+          <div>
+            <p style="color:var(--white,#e6edf3);font-weight:700;font-size:.9rem;margin-bottom:2px"><a href="https://voltoffice.elektrogenius.de" target="_blank">voltoffice.elektrogenius.de</a></p>
+            <p style="font-size:.78rem;margin:0">VoltOffice · Handwerkersoftware (SaaS)</p>
+            <span style="display:inline-block;font-size:9px;font-weight:700;background:rgba(0,198,255,0.15);color:#00c6ff;border:0.5px solid rgba(0,198,255,0.3);padding:2px 7px;border-radius:10px;margin-top:5px;text-transform:uppercase;letter-spacing:0.5px">Vercel</span>
+          </div>
+        </div>
+        <div style="background:rgba(13,27,42,0.6);border:0.5px solid rgba(255,255,255,0.1);border-radius:10px;padding:12px 14px;display:flex;align-items:flex-start;gap:10px">
+          <span style="font-size:18px;margin-top:2px">🎓</span>
+          <div>
+            <p style="color:var(--white,#e6edf3);font-weight:700;font-size:.9rem;margin-bottom:2px"><a href="https://coaching.elektrogenius.de" target="_blank">coaching.elektrogenius.de</a></p>
+            <p style="font-size:.78rem;margin:0">Coaching · Bewerbungs- &amp; Karrierecoaching</p>
+            <span style="display:inline-block;font-size:9px;font-weight:700;background:rgba(245,166,35,0.15);color:#f5a623;border:0.5px solid rgba(245,166,35,0.3);padding:2px 7px;border-radius:10px;margin-top:5px;text-transform:uppercase;letter-spacing:0.5px">GitHub Pages</span>
+          </div>
+        </div>
+        <div style="background:rgba(13,27,42,0.6);border:0.5px solid rgba(255,255,255,0.1);border-radius:10px;padding:12px 14px;display:flex;align-items:flex-start;gap:10px">
+          <span style="font-size:18px;margin-top:2px">📚</span>
+          <div>
+            <p style="color:var(--white,#e6edf3);font-weight:700;font-size:.9rem;margin-bottom:2px"><a href="https://lernportal.elektrogenius.de" target="_blank">lernportal.elektrogenius.de</a></p>
+            <p style="font-size:.78rem;margin:0">VoltBase Lernportal · Lernen für Azubis &amp; Gesellen</p>
+            <span style="display:inline-block;font-size:9px;font-weight:700;background:rgba(245,166,35,0.15);color:#f5a623;border:0.5px solid rgba(245,166,35,0.3);padding:2px 7px;border-radius:10px;margin-top:5px;text-transform:uppercase;letter-spacing:0.5px">GitHub Pages</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Rechtliches -->
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:14px;margin-top:32px">
+      <span style="font-size:10px;font-weight:700;color:var(--orange,#f5a623);text-transform:uppercase;letter-spacing:1.2px">Rechtliches</span>
+      <div style="flex:1;height:0.5px;background:rgba(245,166,35,0.2)"></div>
+    </div>
+
+    <div style="display:grid;gap:12px">
+      <div style="background:rgba(255,255,255,0.03);border:0.5px solid rgba(255,255,255,0.1);border-radius:14px;padding:20px 22px">
+        <p style="font-size:10px;font-weight:700;color:var(--orange,#f5a623);text-transform:uppercase;letter-spacing:1px;margin-bottom:10px">Verantwortlich für den Inhalt (§ 18 Abs. 2 MStV)</p>
+        <p>Safin Deler Yezdin Al Ali — Anschrift wie oben</p>
+      </div>
+      <div style="background:rgba(255,255,255,0.03);border:0.5px solid rgba(255,255,255,0.1);border-radius:14px;padding:20px 22px">
+        <p style="font-size:10px;font-weight:700;color:var(--orange,#f5a623);text-transform:uppercase;letter-spacing:1px;margin-bottom:10px">Haftungsausschluss</p>
+        <p>Die Inhalte dieser Website wurden mit größter Sorgfalt erstellt. Für die Richtigkeit, Vollständigkeit und Aktualität der Inhalte kann jedoch keine Gewähr übernommen werden. Als Diensteanbieter bin ich gemäß § 7 Abs. 1 DDG für eigene Inhalte nach den allgemeinen Gesetzen verantwortlich.</p>
+      </div>
+      <div style="background:rgba(255,255,255,0.03);border:0.5px solid rgba(255,255,255,0.1);border-radius:14px;padding:20px 22px">
+        <p style="font-size:10px;font-weight:700;color:var(--orange,#f5a623);text-transform:uppercase;letter-spacing:1px;margin-bottom:10px">Urheberrecht</p>
+        <p>Die durch den Seitenbetreiber erstellten Inhalte und Werke auf diesen Seiten unterliegen dem deutschen Urheberrecht. Die Vervielfältigung, Bearbeitung, Verbreitung und jede Art der Verwertung außerhalb der Grenzen des Urheberrechts bedürfen der schriftlichen Zustimmung.</p>
+      </div>
+      <div style="background:rgba(255,255,255,0.03);border:0.5px solid rgba(255,255,255,0.1);border-radius:14px;padding:20px 22px">
+        <p style="font-size:10px;font-weight:700;color:var(--orange,#f5a623);text-transform:uppercase;letter-spacing:1px;margin-bottom:10px">Streitschlichtung</p>
+        <p>Die Europäische Kommission stellt eine Plattform zur Online-Streitbeilegung (OS) bereit: <a href="https://ec.europa.eu/consumers/odr/" target="_blank">https://ec.europa.eu/consumers/odr/</a></p>
+        <p style="margin-top:8px">Ich bin nicht bereit oder verpflichtet, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.</p>
+      </div>
+    </div>
+
+    <p style="text-align:center;color:var(--muted);font-size:.8rem;margin-top:40px">© 2026 ElektroGenius · Safin Deler Yezdin Al Ali · Köln</p>
   </div>
 </div>
 
