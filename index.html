@@ -337,7 +337,7 @@
     .leistungen-section{padding:5rem 5%;background:linear-gradient(180deg,rgba(10,20,32,0) 0%,rgba(10,20,32,0.6) 100%)}
     .leistungen-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;max-width:1100px;margin:0 auto}
     .leistung-card{position:relative;border-radius:16px;overflow:hidden;aspect-ratio:4/3;cursor:pointer;border:1px solid rgba(255,255,255,0.08);transition:transform .25s,box-shadow .25s}
-    .leistung-card:hover{transform:translateY(-6px);box-shadow:0 16px 40px rgba(0,198,255,0.18)}
+    .leistung-card:hover{transform:scale(1.03);box-shadow:0 16px 48px rgba(0,198,255,0.22)}
     .leistung-card img{width:100%;height:100%;object-fit:cover;filter:brightness(0.55);transition:filter .3s}
     .leistung-card:hover img{filter:brightness(0.45)}
     .leistung-card .overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(5,15,30,0.92) 0%,rgba(5,15,30,0.2) 60%,transparent 100%)}
@@ -923,7 +923,7 @@
     <p style="color:var(--muted);font-size:.95rem">Alles für Elektrofachkräfte — Lernen, Planen, Verwalten</p>
   </div>
   <div class="leistungen-grid">
-    <div class="leistung-card">
+    <div class="leistung-card" onclick="window.location.href='/lernportal'">
       <img src="https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=600&q=80" alt="Elektrotechnik Lernen" loading="lazy">
       <div class="overlay"></div>
       <div class="card-content">
@@ -931,7 +931,7 @@
         <div class="card-title">Elektrotechnik Lernen</div>
       </div>
     </div>
-    <div class="leistung-card">
+    <div class="leistung-card" onclick="window.open('https://materialcheck.elektrogenius.de','_blank','noopener,noreferrer')">
       <img src="https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=600&q=80" alt="MaterialCheck App" loading="lazy">
       <div class="overlay"></div>
       <div class="card-content">
@@ -947,7 +947,7 @@
         <div class="card-title">VoltOffice Software</div>
       </div>
     </div>
-    <div class="leistung-card">
+    <div class="leistung-card" onclick="window.open('https://coaching.elektrogenius.de/','_blank','noopener,noreferrer')">
       <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=600&q=80" alt="1:1 Coaching" loading="lazy">
       <div class="overlay"></div>
       <div class="card-content">
@@ -955,7 +955,7 @@
         <div class="card-title">1:1 Coaching</div>
       </div>
     </div>
-    <div class="leistung-card">
+    <div class="leistung-card" onclick="window.location.href='/voltbase'">
       <img src="https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=600&q=80" alt="VoltBase Lernportal" loading="lazy">
       <div class="overlay"></div>
       <div class="card-content">
@@ -963,7 +963,7 @@
         <div class="card-title">VoltBase Lernportal</div>
       </div>
     </div>
-    <div class="leistung-card">
+    <div class="leistung-card" onclick="window.open('https://chat.whatsapp.com/FIRdC7y5bg1Az9H3JfpouL','_blank','noopener,noreferrer')">
       <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=600&q=80" alt="WhatsApp Community" loading="lazy">
       <div class="overlay"></div>
       <div class="card-content">
@@ -1094,10 +1094,6 @@
     </div>
     <div class="footer-bottom">
       <span class="footer-copy">© 2026 ElektroGenius — Elektrotechnik einfach erklärt. Alle Rechte vorbehalten.</span>
-      <div class="footer-legal">
-        <a onclick="showPage('impressum')">Impressum</a>
-        <a onclick="showPage('datenschutz')">Datenschutz</a>
-      </div>
     </div>
   </footer>
 </div><!-- /page-home -->
@@ -1110,9 +1106,8 @@
     <h2>Angaben gemäß § 5 TMG</h2>
     <p>ElektroGenius<br>
     Safin Deler Yezdin Al Ali<br>
-    c/o Postflex PFX-938-000<br>
-    Emsdettener Str. 10<br>
-    48268 Greven<br>
+    Nördlinger Str. 1<br>
+    51103 Köln<br>
     Deutschland</p>
     <h2>Kontakt</h2>
     <p>E-Mail: <a href="mailto:info@elektrogenius.de">info@elektrogenius.de</a><br>
@@ -1141,9 +1136,8 @@
     <p>Die folgenden Hinweise geben einen einfachen Überblick darüber, was mit Ihren personenbezogenen Daten passiert, wenn Sie diese Website besuchen.</p>
     <h2>2. Verantwortliche Stelle</h2>
     <p>ElektroGenius, Safin Deler Yezdin Al Ali<br>
-    c/o Postflex PFX-938-000<br>
-    Emsdettener Str. 10<br>
-    48268 Greven
+    Nördlinger Str. 1<br>
+    51103 Köln<br>
     E-Mail: <a href="mailto:info@elektrogenius.de">info@elektrogenius.de</a></p>
     <h2>3. Datenerfassung auf dieser Website</h2>
     <h2>Cookies</h2>
