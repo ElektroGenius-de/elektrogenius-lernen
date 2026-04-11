@@ -357,6 +357,27 @@
       .cta-inner{padding:48px 4%}
       .hero-section{padding:72px 4% 48px}
     }
+/* ── About-Section Mobile Fix ── */
+@media (max-width: 768px) {
+  /* 2-Spalten-Grid (Inline-Style) auf 1 Spalte brechen */
+  #ueber-uns .section-inner > .reveal {
+    grid-template-columns: 1fr !important;
+    display: grid !important;
+    gap: 2rem !important;
+  }
+  /* Text-Block volle Breite */
+  #ueber-uns .about-text {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+  /* Karten-Container volle Breite */
+  #ueber-uns .section-inner > .reveal > div:last-child {
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+  }
+}
+
 /* ========================================
    ELEKTROGENIUS — MOBILE FIX
    ======================================== */
