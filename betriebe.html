@@ -52,20 +52,31 @@
     .nav-logo svg{width:38px;height:38px}
     .nav-logo-text{font-family:'Barlow Condensed',sans-serif;font-size:1.35rem;font-weight:800;color:var(--white);letter-spacing:.04em}
     .nav-logo-text span{color:var(--cyan)}
-    .nav-links{display:flex;gap:1.6rem;list-style:none}
-    .nav-links a{color:var(--muted);text-decoration:none;font-size:.88rem;font-weight:500;letter-spacing:.03em;transition:color .2s}
+    .nav-links{display:flex;gap:.9rem;list-style:none;align-items:center}
+    .nav-links a{color:var(--muted);text-decoration:none;font-size:.84rem;font-weight:500;letter-spacing:.02em;transition:color .2s;white-space:nowrap}
     .nav-links a:hover,.nav-links a.active{color:var(--cyan)}
     .nav-links .vl{color:var(--cyan)!important;font-weight:700}
+    .nav-dropdown{position:relative;list-style:none}
+    .nav-dropdown-toggle{color:var(--muted);background:none;border:none;font-size:.84rem;font-weight:500;letter-spacing:.02em;cursor:pointer;display:flex;align-items:center;gap:.25rem;padding:0;font-family:'Barlow',sans-serif;white-space:nowrap;transition:color .2s}
+    .nav-dropdown-toggle:hover,.nav-dropdown.open .nav-dropdown-toggle{color:var(--cyan)}
+    .nav-dropdown-toggle::after{content:'▾';font-size:.65rem;transition:transform .2s}
+    .nav-dropdown.open .nav-dropdown-toggle::after{transform:rotate(180deg)}
+    .nav-dropdown-menu{display:none;position:absolute;top:calc(100% + 10px);right:0;background:rgba(13,27,46,.98);border:1px solid var(--border);border-radius:10px;padding:.5rem 0;min-width:160px;z-index:300;box-shadow:0 8px 32px rgba(0,0,0,.4)}
+    .nav-dropdown.open .nav-dropdown-menu{display:block}
+    .nav-dropdown-menu a{display:block;padding:.55rem 1.1rem;color:var(--muted);text-decoration:none;font-size:.82rem;font-weight:500;white-space:nowrap;transition:color .2s,background .2s}
+    .nav-dropdown-menu a:hover{color:var(--cyan);background:rgba(0,198,255,.06)}
     .nav-right{display:flex;align-items:center;gap:1rem}
     .nav-cta{background:var(--cyan);color:var(--navy);border:none;border-radius:6px;padding:.5rem 1.2rem;font-family:'Barlow Condensed',sans-serif;font-size:.95rem;font-weight:700;letter-spacing:.06em;cursor:pointer;transition:background .2s,transform .15s;text-decoration:none;white-space:nowrap}
     .nav-cta:hover{background:var(--cyan2);transform:translateY(-1px)}
     .nav-toggle{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:4px}
     .nav-toggle span{width:24px;height:2px;background:var(--white);border-radius:2px;transition:all .3s}
     @media(max-width:900px){
-      .nav-links{display:none;position:fixed;top:68px;left:0;right:0;background:rgba(13,27,46,.98);flex-direction:column;padding:1.5rem 5%;gap:1rem;border-bottom:1px solid var(--border);z-index:199}
+      .nav-links{display:none;position:fixed;top:68px;left:0;right:0;background:rgba(13,27,46,.98);flex-direction:column;padding:1.5rem 5%;gap:1rem;border-bottom:1px solid var(--border);z-index:199;align-items:flex-start}
       .nav-links.open{display:flex}
       .nav-toggle{display:flex}
       .nav-cta{display:none}
+      .nav-dropdown-menu{position:static;background:none;border:none;box-shadow:none;padding:.25rem 0 0 .8rem}
+      .nav-dropdown-menu a{font-size:.85rem;padding:.4rem 0}
     }
 
     /* ── MAIN ── */
@@ -187,16 +198,21 @@
   </a>
   <ul class="nav-links" id="nav-menu">
     <li><a href="/">Startseite</a></li>
-    <li><a href="/#ueber-uns">Über uns</a></li>
-    <li><a href="/#quiz">Quiz</a></li>
-    <li><a href="/#community">Community</a></li>
+    <li><a href="https://lernportal.elektrogenius.de" target="_blank">VoltBase</a></li>
+    <li><a href="https://voltoffice.elektrogenius.de" target="_blank">VoltOffice</a></li>
     <li><a href="/#leistungen">Leistungen</a></li>
     <li><a href="/betriebe.html" class="active">Betriebe</a></li>
-    <li><a href="https://lernportal.elektrogenius.de" target="_blank">VoltBase</a></li>
-    <li><a href="https://lernportal.elektrogenius.de/vde-rechner.html" target="_blank" class="vl">VDE-Rechner</a></li>
-    <li><a href="https://voltoffice.elektrogenius.de" target="_blank">VoltOffice</a></li>
-    <li><a href="/#materialcheck">MaterialCheck</a></li>
-    <li><a href="https://coaching.elektrogenius.de" target="_blank">Coaching</a></li>
+    <li><a href="/jobs.html">Jobs</a></li>
+    <li class="nav-dropdown" id="nav-mehr">
+      <button class="nav-dropdown-toggle" onclick="this.closest('.nav-dropdown').classList.toggle('open')">Mehr</button>
+      <div class="nav-dropdown-menu">
+        <a href="https://lernportal.elektrogenius.de/vde-rechner.html" target="_blank">VDE-Rechner</a>
+        <a href="/#materialcheck">MaterialCheck</a>
+        <a href="https://coaching.elektrogenius.de" target="_blank">Coaching</a>
+        <a href="/#quiz">Quiz</a>
+        <a href="/#ueber-uns">Über uns</a>
+      </div>
+    </li>
   </ul>
   <div class="nav-right">
     <button class="nav-toggle" id="nav-toggle" aria-label="Menü">
@@ -410,6 +426,11 @@
   // Mobile nav toggle
   document.getElementById('nav-toggle').addEventListener('click', function() {
     document.getElementById('nav-menu').classList.toggle('open');
+  });
+  // Dropdown close on outside click
+  document.addEventListener('click', function(e) {
+    var d = document.getElementById('nav-mehr');
+    if (d && !d.contains(e.target)) d.classList.remove('open');
   });
 
   // Smooth scroll for anchor links
