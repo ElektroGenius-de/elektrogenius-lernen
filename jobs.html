@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#0d1b2e" />
+  <meta name="description" content="Elektro-Jobportal – ElektroGenius. Azubis, Gesellen und Meister eintragen oder Fachkräfte als Betrieb finden." />
+  <title>Jobs &amp; Fachkräfte | ElektroGenius</title>
+  <meta name="robots" content="index, follow" />
+  <meta name="author" content="ElektroGenius" />
+  <link rel="canonical" href="https://elektrogenius.de/jobs.html" />
+  <meta property="og:title" content="Elektro-Jobportal – Jobs &amp; Fachkräfte | ElektroGenius" />
+  <meta property="og:description" content="Azubis, Gesellen und Meister eintragen oder Fachkräfte als Betrieb finden. ElektroGenius stellt den Kontakt her." />
+  <meta property="og:url" content="https://elektrogenius.de/jobs.html" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://elektrogenius.de/logonewEG.png" />
+  <link rel="manifest" href="/manifest.json" />
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-9EYXMP1S7Y"></script>
+  <script>
+    window.dataLayer=window.dataLayer||[];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js',new Date());
+    gtag('config','G-9EYXMP1S7Y');
+  </script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Barlow:wght@400;500;600&display=swap');
+
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{
+      --navy:#0d1b2e;
+      --navy2:#0f2035;
+      --navy-mid:#122236;
+      --navy-light:#1a3050;
+      --cyan:#00c6ff;
+      --cyan2:#00e5ff;
+      --orange:#f5a623;
+      --white:#f0f4f8;
+      --muted:#8fa8bf;
+      --text2:#A0A0B8;
+      --text3:#6A6A88;
+      --border:rgba(0,198,255,.16);
+    }
+    html{scroll-behavior:smooth;width:100%;overflow-x:hidden}
+    body{font-family:'Barlow',sans-serif;background:var(--navy);color:var(--white);overflow-x:hidden;width:100%;-webkit-text-size-adjust:100%;position:relative}
+    ::-webkit-scrollbar{width:6px}::-webkit-scrollbar-track{background:var(--navy-mid)}::-webkit-scrollbar-thumb{background:var(--navy-light);border-radius:3px}
+    body::before{content:'';position:fixed;inset:0;background-image:radial-gradient(ellipse 80% 50% at 50% -10%,rgba(0,198,255,.09) 0%,transparent 70%),repeating-linear-gradient(0deg,transparent,transparent 39px,rgba(0,198,255,.025) 40px),repeating-linear-gradient(90deg,transparent,transparent 39px,rgba(0,198,255,.025) 40px);pointer-events:none;z-index:0}
+
+    /* NAV */
+    nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:0 5%;height:68px;background:rgba(13,27,46,.95);backdrop-filter:blur(14px);border-bottom:1px solid var(--border)}
+    .nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+    .nav-logo svg{width:38px;height:38px}
+    .nav-logo-text{font-family:'Barlow Condensed',sans-serif;font-size:1.35rem;font-weight:800;color:var(--white);letter-spacing:.04em}
+    .nav-logo-text span{color:var(--cyan)}
+    .nav-links{display:flex;gap:1.6rem;list-style:none}
+    .nav-links a{color:var(--muted);text-decoration:none;font-size:.88rem;font-weight:500;letter-spacing:.03em;transition:color .2s}
+    .nav-links a:hover,.nav-links a.active{color:var(--cyan)}
+    .nav-links .vl{color:var(--cyan)!important;font-weight:700}
+    .nav-right{display:flex;align-items:center;gap:1rem}
+    .nav-cta{background:var(--cyan);color:var(--navy);border:none;border-radius:6px;padding:.5rem 1.2rem;font-family:'Barlow Condensed',sans-serif;font-size:.95rem;font-weight:700;letter-spacing:.06em;cursor:pointer;transition:background .2s,transform .15s;text-decoration:none;white-space:nowrap}
+    .nav-cta:hover{background:var(--cyan2);transform:translateY(-1px)}
+    .nav-toggle{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:4px}
+    .nav-toggle span{width:24px;height:2px;background:var(--white);border-radius:2px;transition:all .3s}
+    @media(max-width:900px){
+      .nav-links{display:none;position:fixed;top:68px;left:0;right:0;background:rgba(13,27,46,.98);flex-direction:column;padding:1.5rem 5%;gap:1rem;border-bottom:1px solid var(--border);z-index:199}
+      .nav-links.open{display:flex}
+      .nav-toggle{display:flex}
+      .nav-cta{display:none}
+    }
+
+    /* MAIN */
+    main{padding-top:68px;min-height:100vh;position:relative;z-index:1}
+
+    /* HERO */
+    .hero{padding:80px 5% 56px;text-align:center;max-width:860px;margin:0 auto}
+    .hero-badge{display:inline-flex;align-items:center;gap:7px;background:rgba(0,198,255,.1);border:1px solid var(--border);border-radius:100px;padding:.3rem .9rem;font-size:.78rem;font-weight:600;letter-spacing:.08em;color:var(--cyan);text-transform:uppercase;margin-bottom:1.6rem}
+    .hero-badge::before{content:'';width:7px;height:7px;border-radius:50%;background:var(--cyan);box-shadow:0 0 8px var(--cyan);animation:pulse 2s ease-in-out infinite;flex-shrink:0}
+    @keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+    .hero h1{font-family:'Barlow Condensed',sans-serif;font-size:clamp(2.4rem,7vw,4.5rem);font-weight:800;line-height:1.05;letter-spacing:-.01em;margin-bottom:1.1rem}
+    .hero h1 span{color:var(--cyan);display:block}
+    .hero p{font-size:clamp(.95rem,2.2vw,1.15rem);color:var(--muted);line-height:1.7;max-width:580px;margin:0 auto}
+
+    /* NOTICE BANNER */
+    .notice-banner{max-width:860px;margin:0 auto 2rem;padding:0 5%}
+    .notice-box{background:rgba(0,198,255,.07);border:1px solid rgba(0,198,255,.25);border-radius:12px;padding:1rem 1.4rem;display:flex;align-items:center;gap:.75rem;font-size:.88rem;color:var(--muted);line-height:1.6}
+    .notice-box svg{width:18px;height:18px;color:var(--cyan);flex-shrink:0}
+
+    /* TABS */
+    .tabs-wrap{max-width:1100px;margin:0 auto;padding:0 5% 3rem}
+    .tabs-nav{display:flex;gap:.75rem;margin-bottom:2.5rem;flex-wrap:wrap}
+    .tab-btn{font-family:'Barlow Condensed',sans-serif;font-size:1.05rem;font-weight:700;letter-spacing:.05em;padding:.6rem 1.6rem;border-radius:10px;border:1px solid var(--border);background:rgba(13,27,46,.6);color:var(--muted);cursor:pointer;transition:all .2s}
+    .tab-btn:hover{border-color:rgba(0,198,255,.35);color:var(--white)}
+    .tab-btn.active{background:rgba(0,198,255,.12);border-color:rgba(0,198,255,.45);color:var(--cyan)}
+    .tab-panel{display:none}
+    .tab-panel.active{display:block}
+
+    /* SECTION */
+    .section-tag{display:inline-block;font-size:.75rem;font-weight:700;letter-spacing:.12em;color:var(--cyan);text-transform:uppercase;margin-bottom:.8rem}
+    .section-h2{font-family:'Barlow Condensed',sans-serif;font-size:clamp(1.8rem,4vw,2.8rem);font-weight:800;letter-spacing:-.01em;margin-bottom:.5rem}
+    .section-h2 em{font-style:normal;color:var(--cyan)}
+    .divider{width:60px;height:3px;background:linear-gradient(90deg,var(--cyan),transparent);border-radius:2px;margin:1rem 0 2.5rem}
+
+    /* FORM */
+    .form-wrap{background:var(--navy2);border:1px solid var(--border);border-radius:18px;padding:2.5rem 2.5rem 2rem}
+    .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem}
+    @media(max-width:640px){.form-grid{grid-template-columns:1fr}.form-wrap{padding:1.5rem 1.2rem}}
+    .form-group{display:flex;flex-direction:column;gap:.45rem}
+    .form-group.full{grid-column:1/-1}
+    .form-group label{font-size:.82rem;font-weight:600;color:var(--muted);letter-spacing:.02em}
+    .form-group label .req{color:var(--cyan)}
+    .form-input{padding:.85rem 1rem;border-radius:10px;border:1px solid rgba(0,198,255,.18);background:rgba(13,27,46,.85);color:var(--white);font-size:.95rem;width:100%;transition:border-color .2s;outline:none;font-family:'Barlow',sans-serif}
+    .form-input:focus{border-color:var(--cyan);box-shadow:0 0 0 3px rgba(0,198,255,.08)}
+    .form-input::placeholder{color:var(--text3)}
+    textarea.form-input{resize:vertical;min-height:110px}
+    select.form-input{cursor:pointer}
+    select.form-input option{background:var(--navy-mid)}
+
+    /* DSGVO CHECKBOX */
+    .dsgvo-row{display:flex;align-items:flex-start;gap:.65rem;margin-top:.5rem}
+    .dsgvo-row input[type=checkbox]{width:16px;height:16px;accent-color:var(--cyan);cursor:pointer;flex-shrink:0;margin-top:2px}
+    .dsgvo-row label{font-size:.83rem;color:var(--muted);line-height:1.55;cursor:pointer}
+    .dsgvo-row label a{color:var(--cyan);text-decoration:none}
+    .dsgvo-row label a:hover{text-decoration:underline}
+
+    .btn-submit{background:var(--cyan);color:var(--navy);border:none;border-radius:10px;padding:.95rem 2.2rem;font-family:'Barlow Condensed',sans-serif;font-size:1.1rem;font-weight:700;letter-spacing:.07em;cursor:pointer;transition:background .2s,box-shadow .2s,transform .15s;box-shadow:0 0 24px rgba(0,198,255,.28);width:100%;margin-top:1.2rem}
+    .btn-submit:hover{background:var(--cyan2);box-shadow:0 0 40px rgba(0,198,255,.45);transform:translateY(-2px)}
+
+    /* FOOTER */
+    footer{position:relative;z-index:1;background:rgba(10,20,35,.9);border-top:1px solid var(--border);padding:3rem 5% 2rem;margin-top:80px}
+    .footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:2rem;margin-bottom:2rem}
+    .footer-brand .footer-logo{font-family:'Barlow Condensed',sans-serif;font-size:1.4rem;font-weight:800;margin-bottom:.8rem}
+    .footer-brand .footer-logo span{color:var(--cyan)}
+    .footer-brand p{color:var(--muted);font-size:.85rem;line-height:1.7;max-width:260px}
+    .footer-col h4{font-family:'Barlow Condensed',sans-serif;font-size:1rem;font-weight:700;letter-spacing:.06em;color:var(--white);margin-bottom:1rem;text-transform:uppercase}
+    .footer-col ul{list-style:none;display:flex;flex-direction:column;gap:.6rem}
+    .footer-col ul a{color:var(--muted);text-decoration:none;font-size:.85rem;transition:color .2s}
+    .footer-col ul a:hover{color:var(--cyan)}
+    .footer-bottom{border-top:1px solid var(--border);padding-top:1.5rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem}
+    .footer-copy{color:var(--text3);font-size:.8rem}
+    .footer-legal{display:flex;gap:1.5rem}
+    .footer-legal a{color:var(--text3);text-decoration:none;font-size:.8rem;transition:color .2s}
+    .footer-legal a:hover{color:var(--cyan)}
+    @media(max-width:768px){
+      .footer-grid{grid-template-columns:1fr 1fr}
+      .footer-brand{grid-column:1/-1}
+      .footer-bottom{flex-direction:column;text-align:center}
+    }
+    @media(max-width:480px){.footer-grid{grid-template-columns:1fr}}
+
+    /* WATERMARK */
+    .watermark{position:fixed;bottom:1.1rem;right:1.4rem;font-size:.72rem;color:rgba(0,198,255,.22);font-family:'Barlow Condensed',sans-serif;letter-spacing:.06em;pointer-events:none;z-index:50;user-select:none}
+
+    /* REVEAL */
+    .reveal{opacity:0;transform:translateY(26px);transition:opacity .65s ease,transform .65s ease}
+    .reveal.visible{opacity:1;transform:none}
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="/" class="nav-logo">
+    <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect width="48" height="48" rx="10" fill="#122236"/>
+      <text x="5" y="33" font-family="'Barlow Condensed',sans-serif" font-weight="800" font-size="24" fill="#f0f4f8">E</text>
+      <text x="24" y="33" font-family="'Barlow Condensed',sans-serif" font-weight="800" font-size="24" fill="#f0f4f8">G</text>
+      <polygon points="25,10 19,26 24,26 21,40 30,22 24,22" fill="#00c6ff" opacity=".9"/>
+    </svg>
+    <span class="nav-logo-text">Elektro<span>Genius</span></span>
+  </a>
+  <ul class="nav-links" id="nav-menu">
+    <li><a href="/">Startseite</a></li>
+    <li><a href="/#ueber-uns">Über uns</a></li>
+    <li><a href="/#quiz">Quiz</a></li>
+    <li><a href="/#community">Community</a></li>
+    <li><a href="/#leistungen">Leistungen</a></li>
+    <li><a href="/betriebe.html">Betriebe</a></li>
+    <li><a href="/jobs.html" class="active">Jobs</a></li>
+    <li><a href="https://lernportal.elektrogenius.de" target="_blank">VoltBase</a></li>
+    <li><a href="https://lernportal.elektrogenius.de/vde-rechner.html" target="_blank" class="vl">VDE-Rechner</a></li>
+    <li><a href="https://voltoffice.elektrogenius.de" target="_blank">VoltOffice</a></li>
+    <li><a href="/#materialcheck">MaterialCheck</a></li>
+    <li><a href="https://coaching.elektrogenius.de" target="_blank">Coaching</a></li>
+  </ul>
+  <div class="nav-right">
+    <button class="nav-toggle" id="nav-toggle" aria-label="Menü">
+      <span></span><span></span><span></span>
+    </button>
+    <a href="https://lernportal.elektrogenius.de" target="_blank" class="nav-cta">Kostenlos starten →</a>
+  </div>
+</nav>
+
+<main>
+
+  <!-- HERO -->
+  <div class="hero reveal">
+    <div class="hero-badge">Elektrohandwerk · Jobportal</div>
+    <h1>Jobs &amp; Fachkräfte<span>im Elektrohandwerk</span></h1>
+    <p>Azubis, Gesellen und Meister können sich eintragen — Betriebe finden hier qualifizierte Fachkräfte. ElektroGenius stellt den Kontakt her.</p>
+  </div>
+
+  <!-- DATENSCHUTZ-HINWEIS -->
+  <div class="notice-banner reveal">
+    <div class="notice-box">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      <span>Ihre Kontaktdaten werden nicht öffentlich angezeigt. ElektroGenius stellt den Kontakt her.</span>
+    </div>
+  </div>
+
+  <!-- TABS -->
+  <div class="tabs-wrap">
+    <div class="tabs-nav">
+      <button class="tab-btn active" onclick="switchTab('kandidat', this)">Ich bin Kandidat (Azubi / Geselle / Meister)</button>
+      <button class="tab-btn" onclick="switchTab('betrieb', this)">Ich bin ein Betrieb</button>
+    </div>
+
+    <!-- FORMULAR 1: KANDIDAT -->
+    <div class="tab-panel active" id="tab-kandidat">
+      <span class="section-tag">Als Fachkraft eintragen</span>
+      <h2 class="section-h2">Ich suche eine <em>neue Stelle</em></h2>
+      <div class="divider"></div>
+      <div class="form-wrap reveal">
+        <form action="https://formspree.io/f/mreyjjan" method="POST">
+          <input type="hidden" name="_subject" value="Neuer Kandidat – ElektroGenius Jobportal" />
+          <input type="hidden" name="formular_typ" value="Kandidat" />
+
+          <div class="form-grid">
+
+            <div class="form-group">
+              <label for="kandidat_name">Name <span class="req">*</span></label>
+              <input class="form-input" type="text" id="kandidat_name" name="name"
+                placeholder="Max Mustermann" required />
+            </div>
+
+            <div class="form-group">
+              <label for="kandidat_beruf">Berufsbezeichnung <span class="req">*</span></label>
+              <select class="form-input" id="kandidat_beruf" name="berufsbezeichnung" required>
+                <option value="" disabled selected>Bitte wählen …</option>
+                <option value="Auszubildender Elektroniker">Auszubildender Elektroniker</option>
+                <option value="Elektroniker Energie- und Gebäudetechnik (Geselle)">Elektroniker Energie- und Gebäudetechnik (Geselle)</option>
+                <option value="Elektroniker Automatisierungstechnik (Geselle)">Elektroniker Automatisierungstechnik (Geselle)</option>
+                <option value="Elektromeister">Elektromeister</option>
+                <option value="Elektrotechniker">Elektrotechniker</option>
+                <option value="Sonstige Elektrofachkraft">Sonstige Elektrofachkraft</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="kandidat_erfahrung">Berufserfahrung <span class="req">*</span></label>
+              <select class="form-input" id="kandidat_erfahrung" name="erfahrung" required>
+                <option value="" disabled selected>Bitte wählen …</option>
+                <option value="Ausbildung laufend">Ausbildung laufend</option>
+                <option value="Berufseinsteiger (0–2 Jahre)">Berufseinsteiger (0–2 Jahre)</option>
+                <option value="Erfahren (3–5 Jahre)">Erfahren (3–5 Jahre)</option>
+                <option value="Senior (6–10 Jahre)">Senior (6–10 Jahre)</option>
+                <option value="Erfahren (10+ Jahre)">Erfahren (10+ Jahre)</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="kandidat_region">Region / Bundesland <span class="req">*</span></label>
+              <input class="form-input" type="text" id="kandidat_region" name="region"
+                placeholder="z. B. NRW, Bayern, Köln …" required />
+            </div>
+
+            <div class="form-group full">
+              <label for="kandidat_beschreibung">Kurze Beschreibung <span class="req">*</span></label>
+              <textarea class="form-input" id="kandidat_beschreibung" name="beschreibung"
+                placeholder="Was macht dich aus? Schwerpunkte, Stärken, Wünsche …" required></textarea>
+            </div>
+
+            <div class="form-group full">
+              <label for="kandidat_email">E-Mail <span class="req">*</span></label>
+              <input class="form-input" type="email" id="kandidat_email" name="email"
+                placeholder="deine@email.de" required />
+              <span style="font-size:.78rem;color:var(--text3);margin-top:.2rem">Deine E-Mail wird nicht öffentlich angezeigt — nur für die Kontaktvermittlung durch ElektroGenius.</span>
+            </div>
+
+            <div class="form-group full">
+              <div class="dsgvo-row">
+                <input type="checkbox" id="kandidat_dsgvo" name="dsgvo_zustimmung" value="Ja" required />
+                <label for="kandidat_dsgvo">
+                  Ich stimme der Verarbeitung meiner Daten zum Zweck der Jobvermittlung zu. Meine Daten werden nicht an Dritte weitergegeben und nur zur Kontaktvermittlung genutzt. Weitere Informationen in der <a href="/datenschutz.html">Datenschutzerklärung</a>. <span class="req">*</span>
+                </label>
+              </div>
+            </div>
+
+          </div>
+
+          <button type="submit" class="btn-submit">Jetzt als Kandidat eintragen →</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- FORMULAR 2: BETRIEB -->
+    <div class="tab-panel" id="tab-betrieb">
+      <span class="section-tag">Als Betrieb Fachkräfte finden</span>
+      <h2 class="section-h2">Ich suche eine <em>Fachkraft</em></h2>
+      <div class="divider"></div>
+      <div class="form-wrap reveal">
+        <form action="https://formspree.io/f/mreyjjan" method="POST">
+          <input type="hidden" name="_subject" value="Neuer Betrieb sucht Fachkraft – ElektroGenius Jobportal" />
+          <input type="hidden" name="formular_typ" value="Betrieb" />
+
+          <div class="form-grid">
+
+            <div class="form-group">
+              <label for="betrieb_name">Firmenname <span class="req">*</span></label>
+              <input class="form-input" type="text" id="betrieb_name" name="firmenname"
+                placeholder="Muster Elektro GmbH" required />
+            </div>
+
+            <div class="form-group">
+              <label for="betrieb_region">Region / Standort <span class="req">*</span></label>
+              <input class="form-input" type="text" id="betrieb_region" name="region"
+                placeholder="z. B. Köln, Bayern, bundesweit …" required />
+            </div>
+
+            <div class="form-group full">
+              <label for="betrieb_stelle">Gesuchte Stelle <span class="req">*</span></label>
+              <select class="form-input" id="betrieb_stelle" name="gesuchte_stelle" required>
+                <option value="" disabled selected>Bitte wählen …</option>
+                <option value="Auszubildender Elektroniker">Auszubildender Elektroniker</option>
+                <option value="Elektroniker Energie- und Gebäudetechnik (Geselle)">Elektroniker Energie- und Gebäudetechnik (Geselle)</option>
+                <option value="Elektroniker Automatisierungstechnik (Geselle)">Elektroniker Automatisierungstechnik (Geselle)</option>
+                <option value="Elektromeister">Elektromeister</option>
+                <option value="Elektrotechniker">Elektrotechniker</option>
+                <option value="Projektleiter Elektrotechnik">Projektleiter Elektrotechnik</option>
+                <option value="Sonstige Elektrofachkraft">Sonstige Elektrofachkraft</option>
+              </select>
+            </div>
+
+            <div class="form-group full">
+              <label for="betrieb_anforderungen">Anforderungen / Stellenbeschreibung <span class="req">*</span></label>
+              <textarea class="form-input" id="betrieb_anforderungen" name="anforderungen"
+                placeholder="Welche Kenntnisse und Erfahrungen werden erwartet? Was bietet ihr dem Bewerber?" required></textarea>
+            </div>
+
+            <div class="form-group full">
+              <label for="betrieb_email">Kontakt-E-Mail <span class="req">*</span></label>
+              <input class="form-input" type="email" id="betrieb_email" name="email"
+                placeholder="info@meinbetrieb.de" required />
+              <span style="font-size:.78rem;color:var(--text3);margin-top:.2rem">Ihre E-Mail wird nicht öffentlich angezeigt — nur für die Kontaktvermittlung durch ElektroGenius.</span>
+            </div>
+
+            <div class="form-group full">
+              <div class="dsgvo-row">
+                <input type="checkbox" id="betrieb_dsgvo" name="dsgvo_zustimmung" value="Ja" required />
+                <label for="betrieb_dsgvo">
+                  Ich stimme der Verarbeitung meiner Daten zum Zweck der Personalvermittlung zu. Die Daten werden nicht an unbeteiligte Dritte weitergegeben und ausschließlich zur Kontaktvermittlung genutzt. Weitere Informationen in der <a href="/datenschutz.html">Datenschutzerklärung</a>. <span class="req">*</span>
+                </label>
+              </div>
+            </div>
+
+          </div>
+
+          <button type="submit" class="btn-submit">Jetzt Fachkraft anfragen →</button>
+        </form>
+      </div>
+    </div>
+
+  </div>
+
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="footer-logo">Elektro<span>Genius</span></div>
+      <p>Kostenlose Lernplattform für Elektrotechnik. Für Azubis, Gesellen und alle, die mehr wissen wollen.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Plattform</h4>
+      <ul>
+        <li><a href="https://lernportal.elektrogenius.de" target="_blank">VoltBase Lernportal</a></li>
+        <li><a href="https://voltoffice.elektrogenius.de" target="_blank">VoltOffice</a></li>
+        <li><a href="/betriebe.html">Betriebe</a></li>
+        <li><a href="/jobs.html">Jobs</a></li>
+        <li><a href="https://coaching.elektrogenius.de" target="_blank">Coaching</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Rechtliches</h4>
+      <ul>
+        <li><a href="/impressum.html">Impressum</a></li>
+        <li><a href="/datenschutz.html">Datenschutz</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span class="footer-copy">© 2026 ElektroGenius — Elektrotechnik einfach erklärt. Alle Rechte vorbehalten.</span>
+    <div class="footer-legal">
+      <a href="/impressum.html">Impressum</a>
+      <a href="/datenschutz.html">Datenschutz</a>
+    </div>
+  </div>
+</footer>
+
+<div class="watermark">@elektrogenius.de</div>
+
+<script>
+  // Mobile nav toggle
+  document.getElementById('nav-toggle').addEventListener('click', function() {
+    document.getElementById('nav-menu').classList.toggle('open');
+  });
+
+  // Tab switching
+  function switchTab(id, btn) {
+    document.querySelectorAll('.tab-panel').forEach(function(p){ p.classList.remove('active'); });
+    document.querySelectorAll('.tab-btn').forEach(function(b){ b.classList.remove('active'); });
+    document.getElementById('tab-' + id).classList.add('active');
+    btn.classList.add('active');
+  }
+
+  // Reveal on scroll
+  var reveals = document.querySelectorAll('.reveal');
+  var observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(e){ if(e.isIntersecting) e.target.classList.add('visible'); });
+  }, {threshold: 0.1});
+  reveals.forEach(function(el){ observer.observe(el); });
+</script>
+
+</body>
+</html>
